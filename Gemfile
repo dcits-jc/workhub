@@ -60,6 +60,12 @@ gem 'aasm'
 gem 'figaro'
 
 
+# 添加rails国际化支持
+gem 'rails-i18n', '~> 5.0.0'
+# 添加 devise 的国际化支持
+gem 'devise-i18n'
+
+
 # develop plugins
 # 数据图生成器
 gem "rails-erd"

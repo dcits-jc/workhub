@@ -1,0 +1,24 @@
+<div class="container jumbotron">
+  <div class="row registraion_devise">
+    <div class="left_description col-md-8">
+        <!-- 描述内容 -->
+    </div>
+    <div class="right_form col-md-4 ">      
+        <h2 class="text-center"><%= t(".sign_up") %></h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :email, label: false, required: true, autofocus: true ,placeholder: "电子邮箱" %>
+            <%= f.input :password, label: false,required: true, placeholder: "密码,至少8位英文与数字组合" %>
+            <%= f.input :password_confirmation, label: false,required: true,placeholder: "确认密码" %>
+          </div>
+          <h6 class="text-center">-------- 注册即表示同意以下使用条款 --------</h6>
+          <div class="form-actions">
+            <%= f.button :submit, t(".sign_up"), class: "btn-block" %>
+          </div>
+        <% end %>
+        <h5 class="text-left">已经有账号? <%= link_to("登录",new_user_session_path) %></h5>
+      <%#= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

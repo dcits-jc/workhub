@@ -1,0 +1,37 @@
+<div class="container jumbotron">
+  <div class="row registraion_devise">
+    <div class="left_description col-md-8">
+      <!-- 描述内容 -->
+      <%= render "random_notes/cl_001" %>
+    </div>
+    <div class="right_form col-md-4 ">      
+        <h2 class="text-center"><%= t(".sign_in") %></h2>
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+          <div class="form-inputs">
+            <%= f.input :email, required: false, autofocus: true,  label: false,placeholder: "登录邮箱" %>
+            <%= f.input :password, required: false,  label: false,placeholder: "密码" %>
+            <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+            <span class="new-password-link">
+              <%= link_to("忘记密码",new_user_password_path) %>
+            </span> 
+          </div>
+          <div class="form-actions">
+            <%= f.button :submit, t(".sign_in"), class: "btn-block" %>
+          </div>
+        <% end %>
+        <%#= render "devise/shared/links" %>
+        <h5 class="text-left">还没有账号? <%= link_to("注册",new_user_registration_path) %></h5>
+      <%#= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+<style>
+  .right_form{
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  .new-password-link{
+    float: right;
+  }
+</style>
