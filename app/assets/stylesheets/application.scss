@@ -18,3 +18,14 @@
 @import "bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+/* 整体颜色浅色 */
+body{
+  background-color: #e5e5e5;
+}
+/* 同时线的颜色调深 */
+hr{
+  border-color:#ccc;
+
+}
+
