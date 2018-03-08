@@ -14,10 +14,10 @@ ActiveRecord::Schema.define(version: 20180307112251) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.string "code"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_teams_on_code", unique: true
+    t.index ["name"], name: "index_teams_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180307112251) do
     t.string "title"
     t.string "code"
     t.string "phone"
+    t.text "description"
     t.integer "team_id"
     t.boolean "password_resetting", default: true
     t.index ["code"], name: "index_users_on_code", unique: true

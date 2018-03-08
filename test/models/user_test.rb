@@ -27,6 +27,7 @@ end
 #  title                  :string
 #  code                   :string
 #  phone                  :string
+#  description            :text
 #  team_id                :integer
 #  password_resetting     :boolean          default(TRUE)
 #

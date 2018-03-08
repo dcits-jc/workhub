@@ -73,6 +73,10 @@ gem "rails-erd"
 gem "awesome_rails_console"
 
 
+# 搜索下拉菜单
+gem 'bootstrap-select-rails'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

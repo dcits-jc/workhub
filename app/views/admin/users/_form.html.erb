@@ -1,0 +1,91 @@
+<%= simple_form_for [:admin,@user] do |f| %>
+  <div class="form-group">
+    <%= f.input :email,label: '邮箱', input_html: { class: "form-control"} %>
+    
+
+
+    <%= f.input :code,label: '昵称', input_html: { class: "form-control"} %>
+    <%= f.input :name,label: '真实姓名', input_html: { class: "form-control"} %>
+
+
+
+    <!-- ajax 选择 -->
+    <div class="form-group">
+      <label>隶属团队</label>
+      <select data-live-search="true" data-size=10  name="user[team_id]" id="user_team_id" class="selectpicker form-control select required" data-live-search-placeholder="输入团队名进行搜索" data-none-selected-text="<%= @user.team.present? ?  @user.team.name : '不在任何团队中' %>">
+      </select>
+    </div>    
+
+
+
+  </div>
+  <%= f.submit "提交", class: "btn btn-primary btn-xs", data: { disable_with: "提交中..." } %>
+<% end %>
+
+
+
+
+
+<script>
+
+$(document).ready(function(){
+  // 设置 keyup 延时
+  var last;
+  // 动态ajax调整下拉框
+  $("#user_team_id").on('shown.bs.select',function(e){
+      $('#user_team_id').prev().find("input").keyup(function(event){
+        // 建立时间戳
+        last = event.timeStamp;
+        // 设置延时500ms 执行 keyup事件
+        setTimeout(function() {
+          if(last-event.timeStamp==0){
+
+            // 增加 id
+            $('#user_team_id').prev().find("input").attr('id',"team_id_input");
+            // 设置启动 ajax 最少字符数
+            if ($('#team_id_input').val().length>0) {
+
+                  // console.log($('#team_id_input').val()); //获取输入框值输出到控制台  
+
+                  $.ajax({
+                    // get请求地址
+                        url: "/api/v1/teams/" + $('#team_id_input').val(),
+                        dataType: "json",
+                        success: function (data) {
+                          data_arrary = data['data'];
+                          // console.log(data_arrary)
+                          // 如果是正常的搜到了
+                          if (data['stat']==1) {
+
+                          $('.selectpicker').html("");
+                            for (var i = 0; i < data_arrary.length; i++) {
+                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name + "</option>");
+                            };
+                            // 缺一不可
+                            $('#user_team_id').selectpicker('refresh');
+                            $('#user_team_id').selectpicker('render');
+
+                          } else {
+                            $('.selectpicker').html("");
+                            $('.selectpicker').append("<option value=0>未找到</option>");
+                          }
+                      }
+                  });
+                }
+          }
+          // body...
+        },500)
+
+      })  
+  });
+
+
+});
+
+
+// 重新绘图 防止 display:none 的问题
+$(".selectpicker").selectpicker()
+
+
+
+</script>

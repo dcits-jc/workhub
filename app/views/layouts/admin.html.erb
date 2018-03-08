@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
@@ -13,14 +12,28 @@
     <div class="container">
       <%= render "common/navbar" %>
       <%= render "common/flashes" %>
-      <%= yield %>
+      
+      <!-- 内容区 -->
+      <div class="row" id='main_content'>
+        <!-- 左侧的侧边栏 -->
+        <div class="col-md-3 hidden-xs hidden-sm">
+          <%= render 'common/admin_sidebar' %>
+        </div>
 
+        <!-- 右侧 -->
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+
+      </div>
+
+      
       <%= render "common/footer" %>
 
     </div>
 
-
-
   </body>
+
+
 
 </html>

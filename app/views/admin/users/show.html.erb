@@ -1,0 +1,27 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部用户',admin_users_path) %></li>
+  <li class="active"><%= @user.code %></li>
+</ol>
+
+<p>昵称: <%= @user.code %></p>
+<p>姓名: <%= @user.name %></p>
+<p>邮箱: <%= @user.email %></p>
+<p>当前团队: 
+  <% if @user.team.present? %>
+  
+    <%= link_to admin_team_path(@user.team) do %>
+    </kbd>
+      <%= @user.team.name %>
+    </kbd>
+    <% end %>
+  <% else %>
+    <span class="alert-warning">不在任何团队中</span> 
+  <% end %>  
+</p>
+
+<%= link_to('编辑',edit_admin_user_path(@user),class: 'btn btn-primary btn-xs') %> 
+
+<%= link_to('重置密码',reset_password_admin_user_path(@user), method: 'POST', data: { confirm: "确认重置该用户为默认密码?" },class: 'btn btn-warning btn-xs') %> 
+
+<%= link_to('删除',admin_user_path(@user), method: 'DELETE', data: { confirm: "确认删除该用户?" },class: 'btn btn-danger btn-xs') %>

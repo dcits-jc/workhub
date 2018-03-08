@@ -13,6 +13,9 @@ class AddColunmToUser < ActiveRecord::Migration[5.1]
     # 用户电话号码
     add_column :users, :phone, :string
 
+    # 用户自我介绍
+    add_column :users, :description, :text
+
     # 组织 id
     add_column :users, :team_id, :integer
 

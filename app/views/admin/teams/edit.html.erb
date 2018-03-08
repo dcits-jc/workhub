@@ -1,0 +1,7 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部团队',admin_teams_path) %></li>
+  <li><%= link_to(@team.name,admin_team_path(@team)) %></li>
+  <li class="active">编辑团队</li>
+</ol>
+<%= render 'form' %>

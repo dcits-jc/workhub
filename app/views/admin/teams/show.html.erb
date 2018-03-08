@@ -1,0 +1,45 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部团队',admin_teams_path) %></li>
+  <li class="active"><%= @team.name %></li>
+</ol>
+
+
+<h2><%= @team.name %></kbd></h2>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">描述</h3>
+  </div>
+  <div class="panel-body">
+    <%= @team.description %>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">成员 <kbd><%= @members.count %></kbd>
+      <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#newMember">
+         <i class="fa fa-user-plus" aria-hidden="true"></i>
+      </button>
+    </h3>
+
+
+  </div>
+  <div class="panel-body">
+        <% @members.each do |m| %>
+       <code><%= link_to(m.name,admin_user_path(m)) %></code>
+    <% end %>
+  </div>
+</div>
+
+
+
+<%= link_to('编辑',edit_admin_team_path(@team),class: 'btn btn-primary btn-xs') %> 
+
+<%= link_to('删除',admin_team_path(@team), method: 'DELETE', data: { confirm: "确认删除该用户?" },class: 'btn btn-danger btn-xs') %>
+
+
+<%= render 'form_member_add'  %>
+

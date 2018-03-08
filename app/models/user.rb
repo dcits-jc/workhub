@@ -3,6 +3,21 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  # 一个用户只隶属于同一个团队
+  belongs_to :team, optional: true
+
+
+  # 搜索常规项目
+  def self.search(search)
+    if search
+      where('name LIKE ? or code LIKE ?',"%#{search}%","%#{search}%")
+    else
+      scoped
+    end
+  end
+
+
 end
 
 # == Schema Information
@@ -26,6 +41,7 @@ end
 #  title                  :string
 #  code                   :string
 #  phone                  :string
+#  description            :text
 #  team_id                :integer
 #  password_resetting     :boolean          default(TRUE)
 #

@@ -1,0 +1,114 @@
+<%= simple_form_for [:admin,@team] do |f| %>
+
+
+<!-- Modal -->
+<div class="modal fade" id="newMember" tabindex="-1" role="dialog" aria-labelledby="newMemberLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="newMemberLabel">新增成员</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div class="form-group">
+          <select data-live-search="true" data-size=10  name="team[new_member]" id="new_member" class="selectpicker form-control select required" data-live-search-placeholder="输入用户名或昵称进行搜索" data-none-selected-text="点击输入用户名">
+          </select>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">取消</button>
+        <%= f.submit "提交", class: "btn btn-primary btn-xs", data: { disable_with: "提交中..." } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+$(document).ready(function(){
+  // 设置 keyup 延时
+  var last;
+  // 动态ajax调整下拉框
+  $("#new_member").on('shown.bs.select',function(e){
+      $('#new_member').prev().find("input").keyup(function(event){
+        // 建立时间戳
+        last = event.timeStamp;
+        // 设置延时500ms 执行 keyup事件
+        setTimeout(function() {
+          if(last-event.timeStamp==0){
+
+            // 增加 id
+            $('#new_member').prev().find("input").attr('id',"member_id_input");
+            // 设置启动 ajax 最少字符数
+            if ($('#member_id_input').val().length>0) {
+
+                  // console.log($('#member_id_input').val()); //获取输入框值输出到控制台  
+
+                  $.ajax({
+                    // get请求地址
+                        url: "/api/v1/users/" + $('#member_id_input').val(),
+                        dataType: "json",
+                        success: function (data) {
+                          data_arrary = data['data'];
+                          // console.log(data_arrary)
+                          // 如果是正常的搜到了
+                          if (data['stat']==1) {
+
+                          $('.selectpicker').html("");
+                            for (var i = 0; i < data_arrary.length; i++) {
+                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].code + "</option>");
+                            };
+                            // 缺一不可
+                            $('#new_member').selectpicker('refresh');
+                            $('#new_member').selectpicker('render');
+
+                          } else {
+                            $('.selectpicker').html("");
+                            $('.selectpicker').append("<option value=0>未找到</option>");
+                          }
+                      }
+                  });
+                }
+          }
+          // body...
+        },500)
+
+      })  
+  });
+
+
+  // $('#project_number').addClass('hidden');
+
+
+
+
+
+});
+
+
+// 重新绘图 防止 display:none 的问题
+$(".selectpicker").selectpicker()
+
+
+
+</script>
