@@ -39,7 +39,7 @@ class Admin::TeamsController < ApplicationController
     # 如果是增加成员就只增加成员
     if team_params[:new_member].present?
       user = User.find(team_params[:new_member])
-      if @team.add_member!(user)
+      if @team.join!(user)
         flash[:notice] = "新增成员成功!"
         redirect_to admin_team_path(@team)
       else

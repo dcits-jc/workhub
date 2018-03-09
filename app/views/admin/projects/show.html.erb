@@ -1,18 +1,18 @@
 <!-- 导航条 -->
 <ol class="breadcrumb">
-  <li><%= link_to('全部团队',admin_teams_path) %></li>
-  <li class="active"><%= @team.name %></li>
+  <li><%= link_to('全部项目',admin_projects_path) %></li>
+  <li class="active"><%= @project.name %></li>
 </ol>
 
 
-<h2><%= @team.name %></kbd></h2>
+<h2><%= @project.name %></kbd></h2>
 
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">描述</h3>
   </div>
   <div class="panel-body">
-    <%= @team.description %>
+    <%= @project.description %>
   </div>
 </div>
 
@@ -36,9 +36,9 @@
 
 
 
-<%= link_to('编辑',edit_admin_team_path(@team),class: 'btn btn-primary btn-xs') %> 
+<%= link_to('编辑',edit_admin_project_path(@project),class: 'btn btn-primary btn-xs') %> 
 
-<%= link_to('删除',admin_team_path(@team), method: 'DELETE', data: { confirm: "确认删除该团队?" },class: 'btn btn-danger btn-xs') %>
+<%= link_to('删除',admin_project_path(@project), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
 
 
 <%= render 'form_member_add'  %>

@@ -1,0 +1,7 @@
+<%= simple_form_for [:admin,@project] do |p| %>
+  <div class="form-group">
+    <%= p.input :name,label: '项目名', input_html: { class: "form-control"} %>
+    <%= p.input :description,label: '项目简介', input_html: { class: "form-control"} %>
+  </div>
+  <%= p.submit "提交", class: "btn btn-primary btn-xs", data: { disable_with: "提交中..." } %>
+<% end %>

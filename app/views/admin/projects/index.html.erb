@@ -1,0 +1,31 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li class="active">全部项目<kbd><%= @projects.count %></kbd></li>
+</ol>
+
+
+
+<%= link_to('+ 新建项目',new_admin_project_path,class: 'btn btn-primary btn-xs') %>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <td>项目名</td>
+      <td>成员数</td>
+      <td>创建者</td>
+      <td>项目描述</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |p| %>
+    <tr>
+      <td><strong><%= link_to(p.name,admin_project_path(p)) %></strong></td>
+      <td><kbd><%= p.members.count %></kbd> </td>
+      <td><code><%= p.builder.name %></code></td>
+      <td> <small> <%= p.description %></small></td>
+      <td><%= link_to('编辑',edit_admin_project_path(p)) %>  | <%= link_to('删除',admin_project_path(p), method: 'DELETE', data: { confirm: "确认删除该项目?" }) %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>

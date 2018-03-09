@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
     end
     resources :teams
+    resources :projects
   end
   
 

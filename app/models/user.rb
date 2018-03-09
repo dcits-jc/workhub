@@ -7,6 +7,17 @@ class User < ApplicationRecord
   # 一个用户只隶属于同一个团队
   belongs_to :team, optional: true
 
+  # 1:n 创建项目
+  has_many :projects
+  # 改名一对多关系为 build_projects : builder
+  has_many :build_projects, class_name: "Project"
+
+
+
+  # n:m 参与项目
+  has_many :project_relationships
+  has_many :participated_projects, through: :project_relationships, source: :project
+
 
   # 搜索常规项目
   def self.search(search)

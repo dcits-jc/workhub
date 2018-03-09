@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.includes(:team).find(params[:id])
+    @participated_projects = @user.participated_projects
   end
 
   def edit
