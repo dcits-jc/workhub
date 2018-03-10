@@ -4,6 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # 邮箱唯一验证
+  validates :email, presence: true, uniqueness: true
+  # 昵称唯一验证
+  validates :code, presence: true, uniqueness: true
+  # 名字必须填写验证
+  validates :name, presence: true
+
+
   # 团队关系
   # 一个用户只隶属于同一个团队
   belongs_to :team, optional: true

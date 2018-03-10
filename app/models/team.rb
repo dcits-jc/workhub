@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
+  # 名字唯一验证
+  validates :name, presence: true, uniqueness: true
 
   # 一个团队拥有多个成员
   has_many :users

@@ -1,4 +1,7 @@
 class Project < ApplicationRecord
+  # 名字唯一验证
+  validates :name, presence: true, uniqueness: true
+
   # 拥有一个创建者
   belongs_to :builder, class_name: 'User', foreign_key: 'builder_id'
 
