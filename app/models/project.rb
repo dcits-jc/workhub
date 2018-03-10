@@ -5,18 +5,17 @@ class Project < ApplicationRecord
   # 拥有一个创建者
   belongs_to :builder, class_name: 'User', foreign_key: 'builder_id'
 
-
-
   # n:m 参与项目
   has_many :projectparticipated_relationships
   has_many :members, through: :projectparticipated_relationships, source: :user
-
 
   # n:m 管理项目
   has_many :projectmanager_relationships
   has_many :managers, through: :projectmanager_relationships, source: :user
 
 
+  # 1:n 对应工作流
+  has_many :workflows
 
   # 加入成员
   def join!(user)
@@ -24,15 +23,11 @@ class Project < ApplicationRecord
     self.save
   end
 
-
-
   # 加入管理员
   def join_manager!(user)
     self.managers << user
     self.save
   end
-
-
 
   # 搜索常规项目
   def self.search(search)
@@ -42,8 +37,6 @@ class Project < ApplicationRecord
       scoped
     end
   end
-
-
 
 end
 

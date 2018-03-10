@@ -1,5 +1,9 @@
+
+
 <%= simple_form_for [:admin,@user] do |f| %>
-  <div class="form-group">
+  <div class="form-group"> 
+    <%= f.input :avatar_attachment,label: "更换头像"%>
+
     <%= f.input :email,label: '邮箱', input_html: { class: "form-control"} %>
     
 

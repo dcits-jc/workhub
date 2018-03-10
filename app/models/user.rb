@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # 扩展 Dragonfly 头像模块
+  extend Dragonfly::Model
+  include Avatarable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,6 +15,9 @@ class User < ApplicationRecord
   # 名字必须填写验证
   validates :name, presence: true
 
+
+  # 挂载头像
+  mount_uploader :avatar_attachment, AvatarAttachmentUploader
 
   # 团队关系
   # 一个用户只隶属于同一个团队
@@ -37,10 +44,6 @@ class User < ApplicationRecord
   has_many :projectmanager_relationships
   has_many :manage_projects, through: :projectmanager_relationships, source: :project
 
-
-
-
-
   # 搜索常规项目
   def self.search(search)
     if search
@@ -49,6 +52,17 @@ class User < ApplicationRecord
       scoped
     end
   end
+
+  # 全名
+  def name_pinyin
+    Pinyin.t(self.name)
+  end
+
+  # 头像字符
+  def avatar_text
+    name_pinyin.chr
+  end
+
 
 end
 
@@ -76,6 +90,7 @@ end
 #  description            :text
 #  team_id                :integer
 #  password_resetting     :boolean          default(TRUE)
+#  avatar_attachment      :string
 #
 # Indexes
 #

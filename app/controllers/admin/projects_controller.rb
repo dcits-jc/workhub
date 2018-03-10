@@ -16,12 +16,9 @@ class Admin::ProjectsController < ApplicationController
     @members = @project.members
   end
 
-
-
   def new
     @project = Project.new
   end
-
 
   def create
     @project = Project.new(project_params)
@@ -72,8 +69,6 @@ class Admin::ProjectsController < ApplicationController
         render :edit
       end
     end
-
-
   end
 
   def destroy
@@ -89,11 +84,5 @@ class Admin::ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name, :description,:new_member,:new_manager)
   end
-  
-
-
-
-
-
 
 end

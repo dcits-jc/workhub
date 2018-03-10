@@ -30,6 +30,7 @@ end
 #  description            :text
 #  team_id                :integer
 #  password_resetting     :boolean          default(TRUE)
+#  avatar_attachment      :string
 #
 # Indexes
 #

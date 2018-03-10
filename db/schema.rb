@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180310083450) do
+ActiveRecord::Schema.define(version: 20180310150756) do
 
   create_table "projectmanager_relationships", force: :cascade do |t|
     t.integer "user_id"
@@ -70,9 +70,19 @@ ActiveRecord::Schema.define(version: 20180310083450) do
     t.text "description"
     t.integer "team_id"
     t.boolean "password_resetting", default: true
+    t.string "avatar_attachment"
     t.index ["code"], name: "index_users_on_code", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "workflows", force: :cascade do |t|
+    t.datetime "begin_time"
+    t.datetime "end_time"
+    t.text "content"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

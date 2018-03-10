@@ -31,8 +31,8 @@
     </h3>
   </div>
   <div class="panel-body">
-        <% @managers.each do |m| %>
-       <code><%= link_to(m.name,admin_user_path(m)) %></code>
+    <% @managers.each do |m| %>
+      <code><%= link_to(m.name,admin_user_path(m)) %></code>
     <% end %>
   </div>
 </div>

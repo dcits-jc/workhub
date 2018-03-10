@@ -76,6 +76,16 @@ gem "awesome_rails_console"
 # 搜索下拉菜单
 gem 'bootstrap-select-rails'
 
+# 文件上传
+gem 'carrierwave'
+
+# 头像生成
+gem 'dragonfly', '~> 1.1.4'
+gem 'avatar_magick'
+
+# 拼音
+gem 'chinese_pinyin'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
