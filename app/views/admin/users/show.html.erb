@@ -8,8 +8,8 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 基本信息
-     <%= link_to edit_admin_user_path(@user),class: 'btn btn-default btn-xs pull-right',type: 'button' do %>
+    <h3 class="panel-title"><i class="fa fa-address-card" aria-hidden="true"></i> 基本信息
+     <%= link_to edit_admin_user_path(@user),class: 'pull-right' do %>
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
      <% end %>
 
@@ -44,7 +44,7 @@
 <!-- 参与项目 -->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">参与项目
+    <h3 class="panel-title"><i class="fa fa-flag" aria-hidden="true"></i> 参与项目
       <kbd><%= @participated_projects.count %></kbd>
     </h3>
 

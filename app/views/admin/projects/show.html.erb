@@ -9,7 +9,11 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 描述</h3>
+    <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 描述
+     <%= link_to edit_admin_project_path(@project),class: ' pull-right',type: 'button' do %>
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+     <% end %>
+    </h3>
   </div>
   <div class="panel-body">
     <%= @project.description %>
@@ -21,9 +25,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> 管理员 <kbd><%= @managers.count %></kbd>
-      <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#newManager">
+      <a href="" class="pull-right" data-toggle="modal" data-target="#newManager">
          <i class="fa fa-user-plus" aria-hidden="true"></i>
-      </button>
+      </a>
     </h3>
   </div>
   <div class="panel-body">
@@ -38,9 +42,9 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-user-o" aria-hidden="true"></i> 成员 <kbd><%= @members.count %></kbd>
-      <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#newMember">
+      <a href="" class="pull-right" data-toggle="modal" data-target="#newMember">
          <i class="fa fa-user-plus" aria-hidden="true"></i>
-      </button>
+      </a>
     </h3>
   </div>
   <div class="panel-body">
@@ -51,9 +55,7 @@
 </div>
 
 
-
-<%= link_to('编辑',edit_admin_project_path(@project),class: 'btn btn-primary btn-xs') %> 
-
+<%= link_to('编辑',edit_admin_project_path(@project),class: 'btn btn-primary btn-xs') %>
 <%= link_to('删除',admin_project_path(@project), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
 
 <!-- 新增管理员模态框 -->
