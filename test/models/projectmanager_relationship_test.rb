@@ -1,13 +1,14 @@
-class ProjectRelationship < ApplicationRecord
+require 'test_helper'
 
-  belongs_to :project
-  belongs_to :user  
-
+class ProjectmanagerRelationshipTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
 
 # == Schema Information
 #
-# Table name: project_relationships
+# Table name: projectmanager_relationships
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer

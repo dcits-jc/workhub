@@ -12,7 +12,7 @@ two: {}
 
 # == Schema Information
 #
-# Table name: project_relationships
+# Table name: projectparticipated_relationships
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer

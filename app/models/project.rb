@@ -5,13 +5,27 @@ class Project < ApplicationRecord
 
 
   # n:m 参与项目
-  has_many :project_relationships
-  has_many :members, through: :project_relationships, source: :user
+  has_many :projectparticipated_relationships
+  has_many :members, through: :projectparticipated_relationships, source: :user
+
+
+  # n:m 管理项目
+  has_many :projectmanager_relationships
+  has_many :managers, through: :projectmanager_relationships, source: :user
+
 
 
   # 加入成员
   def join!(user)
     self.members << user
+    self.save
+  end
+
+
+
+  # 加入管理员
+  def join_manager!(user)
+    self.managers << user
     self.save
   end
 

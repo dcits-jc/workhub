@@ -9,7 +9,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">描述</h3>
+    <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 描述</h3>
   </div>
   <div class="panel-body">
     <%= @project.description %>
@@ -17,18 +17,34 @@
 </div>
 
 
+<!-- 管理员 -->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">成员 <kbd><%= @members.count %></kbd>
+    <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> 管理员 <kbd><%= @managers.count %></kbd>
+      <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#newManager">
+         <i class="fa fa-user-plus" aria-hidden="true"></i>
+      </button>
+    </h3>
+  </div>
+  <div class="panel-body">
+        <% @managers.each do |m| %>
+       <code><%= link_to(m.name,admin_user_path(m)) %></code>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- 成员 -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-user-o" aria-hidden="true"></i> 成员 <kbd><%= @members.count %></kbd>
       <button type="button" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#newMember">
          <i class="fa fa-user-plus" aria-hidden="true"></i>
       </button>
     </h3>
-
-
   </div>
   <div class="panel-body">
-        <% @members.each do |m| %>
+    <% @members.each do |m| %>
        <code><%= link_to(m.name,admin_user_path(m)) %></code>
     <% end %>
   </div>
@@ -40,6 +56,8 @@
 
 <%= link_to('删除',admin_project_path(@project), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
 
-
+<!-- 新增管理员模态框 -->
+<%= render 'form_manager_add'  %>
+<!-- 新增成员模态框 -->
 <%= render 'form_member_add'  %>
 

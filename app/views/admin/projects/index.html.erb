@@ -1,6 +1,6 @@
 <!-- 导航栏 -->
 <ol class="breadcrumb">
-  <li class="active">全部项目<kbd><%= @projects.count %></kbd></li>
+  <li class="active">全部项目 <kbd><%= @projects.count %></kbd></li>
 </ol>
 
 
@@ -21,7 +21,7 @@
     <tr>
       <td><strong><%= link_to(p.name,admin_project_path(p)) %></strong></td>
       <td><kbd><%= p.members.count %></kbd> </td>
-      <td><code><%= p.builder.name %></code></td>
+      <td><code><%= link_to(p.builder.name,admin_user_path(p.builder)) %></code></td>
       <td> <small> <%= p.description %></small></td>
       <td><%= link_to('编辑',edit_admin_project_path(p)) %>  | <%= link_to('删除',admin_project_path(p), method: 'DELETE', data: { confirm: "确认删除该项目?" }) %> </td>
     </tr>

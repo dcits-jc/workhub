@@ -4,19 +4,33 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # 团队关系
   # 一个用户只隶属于同一个团队
   belongs_to :team, optional: true
 
+  # n:m 管理团队
+  has_many :teammanager_relationships
+  has_many :manager_teams, through: :teammanager_relationships, source: :team
+
+
+
+
+  # 项目管理
   # 1:n 创建项目
   has_many :projects
   # 改名一对多关系为 build_projects : builder
   has_many :build_projects, class_name: "Project"
 
-
-
   # n:m 参与项目
-  has_many :project_relationships
-  has_many :participated_projects, through: :project_relationships, source: :project
+  has_many :projectparticipated_relationships
+  has_many :participated_projects, through: :projectparticipated_relationships, source: :project
+
+  # n:m 管理项目
+  has_many :projectmanager_relationships
+  has_many :manage_projects, through: :projectmanager_relationships, source: :project
+
+
+
 
 
   # 搜索常规项目
@@ -27,7 +41,6 @@ class User < ApplicationRecord
       scoped
     end
   end
-
 
 end
 

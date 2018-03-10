@@ -3,12 +3,22 @@ class Team < ApplicationRecord
   # 一个团队拥有多个成员
   has_many :users
 
+  # n:m 管理项目
+  has_many :teammanager_relationships
+  has_many :managers, through: :teammanager_relationships, source: :user
+
+
   # 增加成员
   def join!(user)
     self.users << user
     self.save
   end
 
+  # 加入管理员
+  def join_manager!(user)
+    self.managers << user
+    self.save
+  end
 
   # 搜索常规项目
   def self.search(search)

@@ -8,6 +8,7 @@ class Admin::TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @members = @team.users
+    @managers = @team.managers
   end
 
   def edit
@@ -46,8 +47,16 @@ class Admin::TeamsController < ApplicationController
         flash[:alert] = "新增成员失败!"
         redirect_to admin_team_path(@team)        
       end
-
-      # render :show
+    # 如果是增加负责人就只增加负责人
+    elsif team_params[:new_manager].present?
+      user = User.find(team_params[:new_manager])
+      if @team.join_manager!(user)
+        flash[:notice] = "新增负责人成功!"
+        redirect_to admin_team_path(@team)
+      else
+        flash[:alert] = "新增负责人失败!"
+        redirect_to admin_team_path(@team)        
+      end
     # 如果不是,则是正常更新
     else
       if @team.update(team_params)
@@ -73,7 +82,7 @@ class Admin::TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :description,:new_member)
+    params.require(:team).permit(:name, :description,:new_member,:new_manager)
   end
   
 

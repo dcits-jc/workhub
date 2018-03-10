@@ -8,6 +8,7 @@ class Admin::ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @members = @project.members
+    @managers = @project.managers
   end
 
   def edit
@@ -50,8 +51,18 @@ class Admin::ProjectsController < ApplicationController
         redirect_to admin_project_path(@project)        
       end
 
-      # render :show
-    # 如果不是,则是正常更新
+    # 如果是增加管理员就只增加管理员
+    elsif project_params[:new_manager].present?
+      user = User.find(project_params[:new_manager])
+      if @project.join_manager!(user)
+        flash[:notice] = "新增管理员成功!"
+        redirect_to admin_project_path(@project)
+      else
+        flash[:alert] = "新增管理员失败!"
+        redirect_to admin_project_path(@project)        
+      end
+
+    # 如果都没增加就是更新其他
     else
       if @project.update(project_params)
         flash[:notice] = "团队更新成功!"
@@ -76,7 +87,7 @@ class Admin::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description,:new_member)
+    params.require(:project).permit(:name, :description,:new_member,:new_manager)
   end
   
 
