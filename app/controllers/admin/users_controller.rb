@@ -64,10 +64,10 @@ class Admin::UsersController < ApplicationController
     @user.password = ENV["user_default_password"]
     if @user.save
       flash[:notice] = "用户密码重置成功!"
-      render :show
+      redirect_to admin_user_path(@user)
     else
       flash[:alert] = "用户密码重置失败!"
-      render :show
+      redirect_to admin_user_path(@user)
     end
   end
 
