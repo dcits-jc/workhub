@@ -16,12 +16,23 @@
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |t| %>
+    <% @users.each do |u| %>
     <tr>
-      <td><strong><%= link_to(t.code,admin_user_path(t)) %></strong></td>
-      <td><small> <%= t.name %></small></td>
-      <td><%= t.email %></td>
-      <td><%= link_to('编辑',edit_admin_user_path(t)) %>  | <%= link_to('删除',admin_user_path(t), method: 'DELETE', data: { confirm: "确认删除该用户?" }) %> </td>
+      <td>
+        <strong><%= link_to(u.code,admin_user_path(u)) %></strong>
+        <!-- 如果是管理员,则显示管理员提示 -->
+        <% if u.is_admin? %>
+          <code>管理员</code>
+        <% end %>   
+      </td>
+      <td><small> <%= u.name %></small></td>
+      <td><%= u.email %></td>
+      <td>
+        <% if u.is_admin? %>
+          <%= link_to('取消管理员',cancel_admin_admin_user_path(u),method: 'post') %>
+        <% else %>
+          <%= link_to('设为管理员',set_admin_admin_user_path(u),method: 'post') %>
+        <% end %> | <%= link_to('编辑',edit_admin_user_path(u)) %>  | <%= link_to('删除',admin_user_path(u), method: 'DELETE', data: { confirm: "确认删除该用户?" }) %> </td>
     </tr>
     <% end %>
   </tbody>

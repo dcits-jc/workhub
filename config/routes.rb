@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :users do
       member do
         post :reset_password
+        post :set_admin
+        post :cancel_admin
       end
     end
     resources :teams

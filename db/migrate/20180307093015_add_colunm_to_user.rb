@@ -19,6 +19,10 @@ class AddColunmToUser < ActiveRecord::Migration[5.1]
     # 组织 id
     add_column :users, :team_id, :integer
 
+    # 系统管理员权限
+    add_column :users, :is_admin, :boolean, default: false
+
+
     # 用户密码当前重置状态,如果未 true,默认情况下首次登陆会要求重置密码,重置后把这个改成 false
     add_column :users, :password_resetting, :boolean, default: true
 

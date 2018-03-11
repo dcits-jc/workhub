@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180310150756) do
     t.string "phone"
     t.text "description"
     t.integer "team_id"
+    t.boolean "is_admin", default: false
     t.boolean "password_resetting", default: true
     t.string "avatar_attachment"
     t.index ["code"], name: "index_users_on_code", unique: true

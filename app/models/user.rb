@@ -27,9 +27,6 @@ class User < ApplicationRecord
   has_many :teammanager_relationships
   has_many :manager_teams, through: :teammanager_relationships, source: :team
 
-
-
-
   # 项目管理
   # 1:n 创建项目
   has_many :projects
@@ -44,7 +41,7 @@ class User < ApplicationRecord
   has_many :projectmanager_relationships
   has_many :manage_projects, through: :projectmanager_relationships, source: :project
 
-  # 搜索常规项目
+  # 搜索用户
   def self.search(search)
     if search
       where('name LIKE ? or code LIKE ?',"%#{search}%","%#{search}%")
@@ -63,6 +60,23 @@ class User < ApplicationRecord
     name_pinyin.chr
   end
 
+
+  # 判断是否是管理员
+  def is_admin?
+    self.is_admin
+  end
+
+  # 设置为管理员
+  def set_admin!
+    self.is_admin = true
+    self.save
+  end
+
+  # 取消管理员
+  def cancel_admin!
+    self.is_admin = false
+    self.save
+  end
 
 end
 
@@ -89,6 +103,7 @@ end
 #  phone                  :string
 #  description            :text
 #  team_id                :integer
+#  is_admin               :boolean          default(FALSE)
 #  password_resetting     :boolean          default(TRUE)
 #  avatar_attachment      :string
 #

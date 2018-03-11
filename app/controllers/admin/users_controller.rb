@@ -62,6 +62,7 @@ class Admin::UsersController < ApplicationController
   def reset_password
     @user = User.find(params[:id])
     @user.password = ENV["user_default_password"]
+    @user.password_resetting = true
     if @user.save
       flash[:notice] = "用户密码重置成功!"
       redirect_to admin_user_path(@user)
@@ -71,7 +72,20 @@ class Admin::UsersController < ApplicationController
     end
   end
 
+  # 设置为管理员
+  def set_admin
+    @user = User.find(params[:id])
+    @user.set_admin!
+    redirect_to admin_users_path
+  end
 
+
+  # 取消管理员
+  def cancel_admin
+    @user = User.find(params[:id])
+    @user.cancel_admin!
+    redirect_to admin_users_path
+  end
 
   private
 

@@ -29,6 +29,7 @@ end
 #  phone                  :string
 #  description            :text
 #  team_id                :integer
+#  is_admin               :boolean          default(FALSE)
 #  password_resetting     :boolean          default(TRUE)
 #  avatar_attachment      :string
 #
