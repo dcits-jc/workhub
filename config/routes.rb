@@ -1,13 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'admin/users#index'  
+  root 'workflows#current_week'  
 
-  resources :landingpage do
-    collection do
-      get :demo
-    end
-  end
+  resources :workflows
+
 
   # 管理员路由
   namespace :admin do
@@ -22,6 +19,15 @@ Rails.application.routes.draw do
     resources :projects
   end
   
+
+
+  # demo测试页面
+  resources :landingpage do
+    collection do
+      get :demo
+    end
+  end
+
 
 
   # api

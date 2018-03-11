@@ -1,5 +1,7 @@
 class Admin::TeamsController < ApplicationController
   layout 'admin'
+  # 需要管理员权限
+  before_action :require_is_admin
 
   def index
     @teams = Team.all

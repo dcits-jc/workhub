@@ -18,4 +18,13 @@ class ApplicationController < ActionController::Base
   
 
 
+  # 判断管理员
+  def require_is_admin
+    if current_user.is_admin == false
+      flash[:alert] = '您不是管理员'
+      redirect_to root_path
+    end
+  end
+
+
 end

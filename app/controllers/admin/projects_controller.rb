@@ -1,5 +1,7 @@
 class Admin::ProjectsController < ApplicationController
   layout 'admin'
+  # 需要管理员权限
+  before_action :require_is_admin
 
   def index
     @projects = Project.all

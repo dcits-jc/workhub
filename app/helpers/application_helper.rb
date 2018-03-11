@@ -15,5 +15,20 @@ module ApplicationHelper
   controller.controller_name == controller_name ? "active" : ""
  end
 
+ # 时间格式化
+ def strf(time)
+   time.strftime('%Y/%m/%d')
+ end
+
+ # 时间戳的周起始时间
+ def week_begin(time_cur)
+   time_cur.at_beginning_of_week.strftime('%Y/%m/%d')
+ end
+
+ # 时间戳的周结束时间
+ def week_end(time_cur)
+   time_cur.at_end_of_week.strftime('%Y/%m/%d')
+ end
+
 
 end
