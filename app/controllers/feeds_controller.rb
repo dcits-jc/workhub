@@ -1,4 +1,4 @@
-class WorkflowsController < ApplicationController
+class FeedsController < ApplicationController
   layout 'user'
 
 
@@ -13,7 +13,11 @@ class WorkflowsController < ApplicationController
     @current_time = Time.now
     # 历史周
     @history_weeks = weekindex(Time.now, current_user.created_at)
-    # binding.pry
+
+    # 项目工作流
+    @project_workflow = ProjectWorkflow.new
+
+    @feeds = Feed.all
   end
 
 
@@ -50,6 +54,4 @@ class WorkflowsController < ApplicationController
     # week_list.delete(time_end)
     week_list
   end
-
-
 end

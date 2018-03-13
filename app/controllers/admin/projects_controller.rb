@@ -29,10 +29,10 @@ class Admin::ProjectsController < ApplicationController
     # 加入这个创建者
     @project.join!(current_user)
     if @project.save
-      flash[:notice] = "团队建立成功!"
+      flash[:notice] = "项目建立成功!"
       redirect_to admin_projects_path
     else
-      flash[:alert] = "团队建立失败!"
+      flash[:alert] = "项目建立失败!"
       render :new
     end
   end
@@ -64,10 +64,10 @@ class Admin::ProjectsController < ApplicationController
     # 如果都没增加就是更新其他
     else
       if @project.update(project_params)
-        flash[:notice] = "团队更新成功!"
+        flash[:notice] = "项目更新成功!"
         redirect_to admin_projects_path
       else
-        flash[:alert] = "团队更新失败!"
+        flash[:alert] = "项目更新失败!"
         render :edit
       end
     end
@@ -76,7 +76,7 @@ class Admin::ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    flash[:notice] = "团队已删除"
+    flash[:notice] = "项目已删除"
     redirect_to admin_projects_path
   end
 

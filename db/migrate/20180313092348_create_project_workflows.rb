@@ -1,6 +1,6 @@
-class CreateWorkflows < ActiveRecord::Migration[5.1]
+class CreateProjectWorkflows < ActiveRecord::Migration[5.1]
   def change
-    create_table :workflows do |t|
+    create_table :project_workflows do |t|
 
       # 建立工作流开始与结束时间
       t.datetime :begin_time

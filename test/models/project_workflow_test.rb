@@ -1,15 +1,14 @@
-class Workflow < ApplicationRecord
-  # 工作内容必须填写
-  validates :content, presence: true
+require 'test_helper'
 
-  # 一个工作流应该对应一个项目(非强制)
-  belongs_to :project, optional: true
-
+class ProjectWorkflowTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
 
 # == Schema Information
 #
-# Table name: workflows
+# Table name: project_workflows
 #
 #  id         :integer          not null, primary key
 #  begin_time :datetime

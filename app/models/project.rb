@@ -15,7 +15,7 @@ class Project < ApplicationRecord
 
 
   # 1:n 对应工作流
-  has_many :workflows
+  has_many :project_workflows
 
   # 加入成员
   def join!(user)

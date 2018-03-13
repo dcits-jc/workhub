@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'workflows#current_week'  
+  root 'feeds#current_week'  
 
-  resources :workflows
+  # 信息流
+  resources :feeds
+
+  # 工作流
+  resources :project_workflows
 
 
   # 管理员路由
@@ -38,6 +42,8 @@ Rails.application.routes.draw do
       get "/users/:search"  => "users#search", as: :users
       # 团队搜索
       get "/teams/:search"  => "teams#search", as: :teams
+      # 团队搜索
+      get "/projects/:search"  => "projects#search", as: :projects
     end
   end
 
