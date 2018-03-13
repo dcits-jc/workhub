@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   # 强制登录重定向
   before_action :authenticate_user! 
 

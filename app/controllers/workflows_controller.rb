@@ -1,4 +1,6 @@
 class WorkflowsController < ApplicationController
+  layout 'user'
+
 
   # 全部工作流
   def index
