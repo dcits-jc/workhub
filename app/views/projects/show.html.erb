@@ -1,0 +1,65 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部项目',projects_path) %></li>
+  <li class="active"><%= @project.name %></li>
+</ol>
+
+
+<h2><%= @project.name %></kbd></h2>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 描述
+     <%= link_to edit_project_path(@project),class: ' pull-right',type: 'button' do %>
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+     <% end %>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <%= @project.description %>
+  </div>
+</div>
+
+
+<!-- 管理员 -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> 管理员 <kbd><%= @managers.count %></kbd>
+      <a href="" class="pull-right" data-toggle="modal" data-target="#newManager">
+         <i class="fa fa-user-plus" aria-hidden="true"></i>
+      </a>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <% @managers.each do |m| %>
+      <code><%= m.name %></code>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- 成员 -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><i class="fa fa-user-o" aria-hidden="true"></i> 成员 <kbd><%= @members.count %></kbd>
+      <a href="" class="pull-right" data-toggle="modal" data-target="#newMember">
+         <i class="fa fa-user-plus" aria-hidden="true"></i>
+      </a>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <% @members.each do |m| %>
+       <code><%= m.name %></code>
+    <% end %>
+  </div>
+</div>
+
+
+<%= link_to('编辑',edit_project_path(@project),class: 'btn btn-primary btn-xs') %>
+<%= link_to('删除',project_path(@project), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
+
+<!-- 新增管理员模态框 -->
+<%= render 'form_manager_add'  %>
+<!-- 新增成员模态框 -->
+<%= render 'form_member_add'  %>
+

@@ -29,3 +29,39 @@ hr{
   border-color:#ccc;
 
 }
+
+
+
+/* 用户feed头像和名称的调整 */
+#user_feeds_head_line{
+  display: inline-block; 
+  width: 40px;
+  height: 40px;
+}
+
+#user_feeds_head_line .thumbnail{
+  margin-bottom: 0;
+  padding: 0;
+}
+
+#user_feeds_img{
+  padding-right: 0px
+}
+
+#user_feeds_info{
+  padding-left: 10px;
+  display: inline-block;
+}
+
+
+#user_feeds_info p{
+   margin-bottom: 0;
+}
+
+
+#user_feeds_time{
+  color: #777;
+}
+
+
+

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><%= @current_team.name %></strong> 
+            <kbd><%= @current_team.users.count %></kbd>
+      </div>
+      <div class="panel-body">
+
+        <div class="row">
+          <% @all_team_users.each do |u| %>
+
+            <div class="col-md-12">
+
+              <%= user_avatar(u,{style: "width: 20px;height: 20px;"}) %>
+              <strong><%= u.name %></strong>                 
+            </div>
+
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+    
+  </div>
+</div>

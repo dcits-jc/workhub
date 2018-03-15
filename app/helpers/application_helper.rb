@@ -20,6 +20,11 @@ module ApplicationHelper
    time.strftime('%Y/%m/%d')
  end
 
+ # 时间格式化
+ def strf_detail(time)
+   time.strftime('%Y/%m/%d %H:%M')
+ end
+
  # 时间戳的周起始时间
  def week_begin(time_cur)
    time_cur.at_beginning_of_week.strftime('%Y/%m/%d')

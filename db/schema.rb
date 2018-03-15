@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20180313092348) do
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
     t.string "feedable_type"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,15 +92,6 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.index ["code"], name: "index_users_on_code", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "workflows", force: :cascade do |t|
-    t.datetime "begin_time"
-    t.datetime "end_time"
-    t.text "content"
-    t.integer "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

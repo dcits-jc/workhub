@@ -4,7 +4,20 @@ Rails.application.routes.draw do
   root 'feeds#current_week'  
 
   # 信息流
-  resources :feeds
+  resources :feeds do
+    collection do
+      get :current_week
+    end
+  end
+
+  resources :teams do
+    collection do
+      get :current_week
+    end
+  end
+
+  resources :projects
+
 
   # 工作流
   resources :project_workflows

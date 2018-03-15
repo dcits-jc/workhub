@@ -1,0 +1,7 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部项目',projects_path) %></li>
+  <li><%= link_to(@project.name,project_path(@project)) %></li>
+  <li class="active">编辑项目</li>
+</ol>
+<%= render 'form' %>

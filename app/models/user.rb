@@ -41,6 +41,11 @@ class User < ApplicationRecord
   has_many :projectmanager_relationships
   has_many :manage_projects, through: :projectmanager_relationships, source: :project
 
+
+  # 信息流
+  has_many :feeds
+
+
   # 搜索用户
   def self.search(search)
     if search

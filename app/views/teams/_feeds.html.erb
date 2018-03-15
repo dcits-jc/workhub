@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <% @feeds.each do |f| %>
+    <% @all_team_feeds.each do |f| %>
 
         
 
@@ -9,13 +9,13 @@
         <div class="panel panel-default">
           <div class="panel-heading">
 
-            <!-- 个人信息 -->
-            <div id="user_feeds_head_line" >
-              <a href="#" class="thumbnail">
-                <%= user_avatar(f.user) %>
-              </a>              
+
+            <div class="" style="display: inline-block; width: 40px;height: 40px;" id="user_feeds_head_line" >
+                <a href="#" class="thumbnail">
+                  <%= user_avatar(f.user) %>
+                </a>              
             </div>
-            <div id="user_feeds_info">
+            <div style="display: inline-block;" id="user_feeds_info">
               <p id="user_feeds_name">
                 <strong>
                   <%= f.user.name %>
@@ -25,8 +25,7 @@
               <p id="user_feeds_time">
                 <em><%= strf_detail(f.created_at) %></em>
               </p>
-            </div> 
-            <!-- 个人信息  -->
+            </div>          
 
           </div>
           <div class="panel-body">

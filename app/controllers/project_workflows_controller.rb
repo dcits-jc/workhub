@@ -11,13 +11,13 @@ class ProjectWorkflowsController < ApplicationController
 
   def create
     @project_workflow = ProjectWorkflow.new(project_workflow_params)
-    if @project_workflow.save!
+    if @project_workflow.save
       # 建立 feed 流
-      feed_create!(@project_workflow)
+      feed_create!(@project_workflow,current_user)
       flash[:notice] = "提交成功!"
       redirect_to root_path
     else
-      flash[:notice] = "提交失败!"
+      flash[:alert] = "提交失败!"
       redirect_to root_path      
     end
   end

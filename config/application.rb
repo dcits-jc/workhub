@@ -16,6 +16,8 @@ module Daily
     # -- all .rb files in that directory are automatically loaded.
     # i18n 修改成中文
     config.i18n.default_locale = 'zh-CN'
+    config.time_zone = 'Beijing'
+    config.active_record.default_timezone = :local
 
   end
 end

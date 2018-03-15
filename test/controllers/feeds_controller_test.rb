@@ -5,6 +5,7 @@
 #  id            :integer          not null, primary key
 #  feedable_id   :integer
 #  feedable_type :string
+#  user_id       :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
