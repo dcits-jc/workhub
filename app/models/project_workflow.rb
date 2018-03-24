@@ -1,6 +1,10 @@
 class ProjectWorkflow < ApplicationRecord
   # 工作内容必须填写
   validates :content, presence: true
+  validates :begin_time, presence: true
+  validates :end_time, presence: true
+  validates :project_id, presence: true
+  validates :worktype, presence: true
 
   # 一个工作流应该对应一个项目(非强制)
   belongs_to :project, optional: true
