@@ -1,10 +1,21 @@
 <!-- 导航栏 -->
 <ol class="breadcrumb">
-  <li class="active">全部用户 <kbd><%= @users.count %></kbd></li>
+  <li class="active">全部用户 <kbd><%= @all_users.count %></kbd></li>
 </ol>
 
+<!-- 用户搜索 -->
+<%= search_form_for [:admin,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
+  <div class="form-group">
+    <%= f.search_field :code_or_name_or_email_cont, class: "form-control", placeholder: "输入昵称,姓名或邮箱"  %>
+    <%= f.submit '搜索',class: "btn btn-warning btn-xs" %>
+    <%= link_to('+ 新建用户',new_admin_user_path,class: 'btn btn-primary btn-xs') %>
+  </div>
+<% end -%>
 
-<%= link_to('+ 新建用户',new_admin_user_path,class: 'btn btn-primary btn-xs') %>
+
+
+
+
 
 <table class="table table-hover table-condensed">
   <thead>
@@ -38,3 +49,9 @@
   </tbody>
 
 </table>
+
+
+<!-- 分页 -->
+<div class="text-center">
+  <%= will_paginate @users %>
+</div>

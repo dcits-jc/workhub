@@ -25,6 +25,6 @@ class ProjectWorkflowsController < ApplicationController
   private
 
   def project_workflow_params
-    params.require(:project_workflow).permit(:content,:project_id)
+    params.require(:project_workflow).permit(:content,:project_id,:worktype,:begin_time,:end_time)
   end
 end

@@ -1,11 +1,21 @@
 <!-- 导航栏 -->
 <ol class="breadcrumb">
-  <li class="active">全部团队 <kbd><%= @teams.count %></kbd></li>
+  <li class="active">全部团队 <kbd><%= @all_teams.count %></kbd></li>
 </ol>
 
 
+<!-- 团队搜索 -->
+<%= search_form_for [:admin,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
+  <div class="form-group">
+    <%= f.search_field :name_cont, class: "form-control", placeholder: "输入团队名"  %>
+    <%= f.submit '搜索',class: "btn btn-warning btn-xs" %>
+    <%= link_to('+ 新建团队',new_admin_team_path,class: 'btn btn-primary btn-xs') %>
+  </div>
+<% end -%>
 
-<%= link_to('+ 新建团队',new_admin_team_path,class: 'btn btn-primary btn-xs') %>
+
+
+
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
@@ -27,3 +37,8 @@
   </tbody>
 
 </table>
+
+<!-- 分页 -->
+<div class="text-center">
+  <%= will_paginate @teams %>
+</div>
