@@ -1,36 +1,16 @@
 <%= simple_form_for @project_workflow do |f| %>
-  <!-- 工作类别 -->
-  <label><abbr title="required">*</abbr> 工作类别</label>
-  <%= f.input :worktype,label: false,placeholder: "选择工作类别", collection:[['售前','pre_sale'],['售中','in_sale'],['售后','after_sale'],['供货','supply_service'],['单次服务','single_service'],['集成','si_service']] %>
-
-  <!-- ajax 选择 -->
   <div class="form-group">
-    <label><abbr title="required">*</abbr> 项目名</label>
-    <select data-live-search="true" data-size=10  name="project_workflow[project_id]" id="project_project_workflow_id" class="selectpicker form-control select required" data-live-search-placeholder="输入项目名进行搜索" data-none-selected-text="输入项目名进行搜索">
-    </select>
-  </div>    
+    <!-- ajax 选择 -->
+    <div class="form-group">
+      <label>项目名</label>
+      <select data-live-search="true" data-size=10  name="project_workflow[project_id]" id="project_project_workflow_id" class="selectpicker form-control select required" data-live-search-placeholder="输入项目名进行搜索" data-none-selected-text="输入项目名进行搜索">
+      </select>
+    </div>    
 
 
-  <%= f.input :content,label: '内容',input_html: { class: "form-control", id: "editor",placeholder: "填写具体工作内容"} %>
-  <%#= f.input :description, input_html: { class: "form-control"} %>
-
-
-
-<div class="form-group">
-  <label><abbr title="required">*</abbr> 开始日期</label>
-  <%= f.flatpickr_date_select :begin_time,placeholder: "点击选择日期"%>
-</div>
-<div class="form-group">
-  <label><abbr title="required">*</abbr> 结束日期</label>
-  <%= f.flatpickr_date_select :end_time,placeholder: "点击选择日期"%>  
-</div>
-
-<script>
-    $('.flatpicker_date_select').flatpickr({wrap:true});
-</script>
-
-
-
+    <%= f.input :content,label: '内容',input_html: { class: "form-control"} %>
+    <%#= f.input :description, input_html: { class: "form-control"} %>
+  </div>
   <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交ing..." } %>
 <% end %>
 
@@ -95,29 +75,7 @@ $(document).ready(function(){
 
 
 // 重新绘图 防止 display:none 的问题
-$(".selectpicker").selectpicker();
-
-// 编辑器
-var editor = new Simditor({
-          textarea: $('#editor'),
-          pasteImage: true,
-          toolbar: [
-            'bold',
-            'italic',
-            'underline',
-            'strikethrough',  
-            'color',        
-            'ul',           
-            'blockquote',
-            'code',        
-            'table',
-            'link',
-            // 'image'
-          ],
-          pasteImage: false,
-
-          // upload: {url: '/upload'}
-      });
+$(".selectpicker").selectpicker()
 
 
 

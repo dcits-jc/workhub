@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313092348) do
+ActiveRecord::Schema.define(version: 20180316084136) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "worktype"
+    t.float "hours"
+    t.float "cost"
   end
 
   create_table "projectmanager_relationships", force: :cascade do |t|

@@ -9,6 +9,9 @@
 #  project_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  worktype   :string
+#  hours      :float
+#  cost       :float
 #
 
 require 'test_helper'
