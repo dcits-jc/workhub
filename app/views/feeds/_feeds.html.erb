@@ -4,10 +4,6 @@
   <div class="col-md-12">
     <% @feeds.each do |f| %>
 
-        
-
-
-
         <div class="panel panel-default">
           <div class="panel-heading">
 
@@ -34,15 +30,16 @@
           <div class="panel-body">
 
             <h4>
-              <%= f.feedable.project.name %>
+              <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."><%= f.feedable.project.name %></span>
+              
             </h4>
 
-                       <!-- 具体工作 -->
+          <!-- 具体工作 -->
            <div class="row">
               <div class="col-md-12">
               <blockquote>
-               <p><%= f.feedable.content %></p> 
-               <p><small><em><%= strf(f.feedable.created_at) %></em></small></p>
+               <p><%= simple_format(f.feedable.content) %></p>
+               <p><small><em><%= strf(f.feedable.begin_time) %> ~ <%= strf(f.feedable.end_time) %></em></small></p>
               </blockquote>    
              </div>
            </div>
@@ -100,3 +97,23 @@
     
   </div>
 </div>
+
+
+
+<script>
+// 项目信息
+$(function (){
+  // 绑定触发条件
+  $(".btn-projectinfo").popover({
+      trigger:'hover', //触发方式
+      html: true, // 为true的话，data-content里就能放html代码了
+  });
+});
+
+</script>
+
+
+
+
+
+

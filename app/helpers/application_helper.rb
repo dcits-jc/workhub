@@ -17,12 +17,30 @@ module ApplicationHelper
 
  # 时间格式化
  def strf(time)
-   time.strftime('%Y/%m/%d')
+  if time.present?
+    time.strftime('%Y/%m/%d')
+  else
+    nil
+  end 
+ end
+
+
+ # 时间格式化
+ def strf_pickr(time)
+  if time.present?
+    time.strftime('%Y-%m-%d')
+  else
+    nil
+  end 
  end
 
  # 时间格式化
  def strf_detail(time)
-   time.strftime('%Y/%m/%d %H:%M')
+  if time.present?
+    time.strftime('%Y/%m/%d')
+  else
+    nil
+  end 
  end
 
  # 时间戳的周起始时间
