@@ -21,7 +21,7 @@
                 <small><%= f.user.team.present? ? '#'+f.user.team.name : nil %></small>                 
               </p>
               <p id="user_feeds_time">
-                <em><%= strf_detail(f.created_at) %></em>
+                <em><%= strf_details(f.created_at) %></em>
               </p>
             </div> 
             <!-- 个人信息  -->
@@ -36,10 +36,36 @@
 
           <!-- 具体工作 -->
            <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-1">
+                <p><br></p>
+                <strong><%= f.feedable.hours %>h</strong>
+              </div>
+
+              <div class="col-md-11">
               <blockquote>
+               <p>
+                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
+                 <kbd><%= desc_worktype(f.feedable.worktype) %></kbd> 
+               </p>
                <p><%= simple_format(f.feedable.content) %></p>
-               <p><small><em><%= strf(f.feedable.begin_time) %> ~ <%= strf(f.feedable.end_time) %></em></small></p>
+               <p>
+                  <span class="glyphicon glyphicon-tags" aria-hidden="true"> </span> 
+                  <!-- 厂商 -->
+                  <% if f.feedable.tag_itvendors.present? %>
+                    <% f.feedable.tag_itvendors.each do |v| %>
+                    <code><%= v.name %></code>
+                    <% end %>
+                  <% end %>
+                  <!-- 技术方向 -->
+                  <% if f.feedable.tag_itskills.present? %>
+                    <% f.feedable.tag_itskills.each do |s| %>
+                    <code><%= s.name %></code>
+                    <% end %>
+                  <% end %>
+               </p>
+
+               <p><small><em><%= strf_wday(f.feedable.begin_time) %> ~ <%= strf_wday(f.feedable.end_time) %></em></small></p>
+
               </blockquote>    
              </div>
            </div>

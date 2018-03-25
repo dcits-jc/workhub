@@ -42,6 +42,15 @@ class User < ApplicationRecord
   has_many :manage_projects, through: :projectmanager_relationships, source: :project
 
 
+  # n:m 拥有 it 技能
+  has_many :useritskill_relationships
+  has_many :tag_itskills, through: :useritskill_relationships, source: :tag_itskill
+
+  # n:m 熟悉 it 厂商
+  has_many :useritvendor_relationships
+  has_many :tag_itvendors, through: :useritvendor_relationships, source: :tag_itvendor
+
+
   # 信息流
   has_many :feeds
 
