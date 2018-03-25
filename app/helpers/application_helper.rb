@@ -24,20 +24,35 @@ module ApplicationHelper
   end 
  end
 
-
- # 时间格式化
- def strf_pickr(time)
+ # 细节时间
+ def strf_details(time)
   if time.present?
-    time.strftime('%Y-%m-%d')
+    time.strftime('%Y/%m/%d %H:%M')
   else
     nil
   end 
  end
 
- # 时间格式化
- def strf_detail(time)
+ # 带周提示
+ def strf_wday(time)
   if time.present?
-    time.strftime('%Y/%m/%d')
+    case time.wday
+    when 0
+      wday = '周日'
+    when 1
+      wday = '周一'
+    when 2
+      wday = '周二'
+    when 3
+      wday = '周三'
+    when 4
+      wday = '周日'
+    when 5
+      wday = '周五'
+    when 6
+      wday = '周六'
+    end
+    time.strftime('%Y/%m/%d ' + wday)
   else
     nil
   end 
@@ -52,6 +67,26 @@ module ApplicationHelper
  def week_end(time_cur)
    time_cur.at_end_of_week.strftime('%Y/%m/%d')
  end
+
+
+ # feed显示工作类型对应
+ def desc_worktype(worktype)
+  case worktype
+  when 'pre_sale'
+    '售前'
+  when 'in_sale'
+    '售中'
+  when 'after_sale'
+    '售后'
+  when 'supply_service'
+    '供货'
+  when 'single_service'
+    '单次服务'
+  when 'si_service'
+    '集成'
+  end
+ end
+
 
 
 end
