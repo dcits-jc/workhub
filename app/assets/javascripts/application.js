@@ -17,4 +17,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-select
+//= require flatpickr
+//= require simditor
 //= require_tree .

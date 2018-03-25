@@ -4,7 +4,10 @@ class Admin::ProjectsController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @projects = Project.all
+    @all_projects = Project.all
+    # 项目搜索
+    @q = Project.ransack(params[:q])
+    @projects = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show

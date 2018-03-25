@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313092348) do
+ActiveRecord::Schema.define(version: 20180325064652) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "worktype"
+    t.float "hours"
+    t.float "cost"
+    t.string "other_itvendors"
+    t.string "other_itskills"
   end
 
   create_table "projectmanager_relationships", force: :cascade do |t|
@@ -52,6 +57,52 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.index ["name"], name: "index_projects_on_name", unique: true
   end
 
+  create_table "projectworkflowitskill_relationships", force: :cascade do |t|
+    t.integer "project_workflow_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projectworkflowitvendor_relationships", force: :cascade do |t|
+    t.integer "project_workflow_id"
+    t.integer "tag_itvendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tag_itskills", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tag_itvendors", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
   create_table "teammanager_relationships", force: :cascade do |t|
     t.integer "user_id"
     t.integer "team_id"
@@ -65,6 +116,20 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_teams_on_name", unique: true
+  end
+
+  create_table "useritskill_relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "useritvendor_relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_itvendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

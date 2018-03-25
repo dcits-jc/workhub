@@ -86,6 +86,15 @@ gem 'avatar_magick'
 # 拼音
 gem 'chinese_pinyin'
 
+# 搜索模块
+gem 'ransack'
+# 分页
+gem 'will_paginate'
+# 时间选择模块
+gem 'flatpickr_rails'
+# 编辑器
+gem 'simditor'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

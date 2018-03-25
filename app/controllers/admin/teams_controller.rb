@@ -4,7 +4,10 @@ class Admin::TeamsController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @teams = Team.all
+    @all_teams = Team.all
+    # 团队搜索
+    @q = Team.ransack(params[:q])
+    @teams = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
