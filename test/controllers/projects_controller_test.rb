@@ -2,12 +2,14 @@
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  builder_id  :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string
+#  description     :text
+#  builder_id      :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  binding_team_id :integer
+#  projecttype     :string
 #
 # Indexes
 #

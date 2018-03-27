@@ -92,6 +92,33 @@ class User < ApplicationRecord
     self.save
   end
 
+
+
+  # 该用户对应的厂商交流项目
+  def project_technical_exchange
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'technical_exchange')
+  end
+
+  # 该用户对应的认证项目
+  def project_certification_exam
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'certification_exam')
+  end
+
+  # 该用户对应的技术提升项目
+  def project_tech_improvement
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'tech_improvement')
+  end
+
+  # 该用户对应的部门工作项目
+  def project_team_work
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'team_work')
+  end
+
+  # 该用户对应的休假
+  def project_day_off
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'day_off')
+  end
+
 end
 
 # == Schema Information

@@ -73,9 +73,14 @@ hr{
 
 /* 用户 workflow 表单样式 */
 /* 设置 editor 编辑框高度 */
-#new_project_workflow .simditor-body{
+#ProjectWorkflowModal .simditor-body{
   min-height: 100px;
 }
+
+#ManagementWorkflowModal .simditor-body{
+  min-height: 100px;
+}
+
 /* 设置勾选框样式 */
 span.checkbox.inline {
   display: inline;

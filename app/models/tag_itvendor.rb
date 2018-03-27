@@ -4,6 +4,11 @@ class TagItvendor < ApplicationRecord
   has_many :projectworkflowitvendor_relationships
   has_many :project_workflows, through: :projectworkflowitvendor_relationships, source: :project_workflow
 
+  # n:m 相关管理工作流
+  has_many :managementworkflowitvendor_relationships
+  has_many :management_workflows, through: :managementworkflowitvendor_relationships, source: :management_workflow
+
+
   # n:m 熟悉 it 厂商的用户
   has_many :useritvendor_relationships
   has_many :users, through: :useritvendor_relationships, source: :user

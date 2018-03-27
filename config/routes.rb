@@ -7,12 +7,14 @@ Rails.application.routes.draw do
   resources :feeds do
     collection do
       get :current_week
+      get :history
     end
   end
 
   resources :teams do
     collection do
       get :current_week
+
     end
   end
 
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
 
   # 工作流
   resources :project_workflows
-
+  resources :management_workflows
 
   # 管理员路由
   namespace :admin do

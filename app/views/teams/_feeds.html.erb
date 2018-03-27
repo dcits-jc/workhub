@@ -3,19 +3,16 @@
     <% @all_team_feeds.each do |f| %>
 
         
-
-
-
         <div class="panel panel-default">
           <div class="panel-heading">
 
-
-            <div class="" style="display: inline-block; width: 40px;height: 40px;" id="user_feeds_head_line" >
-                <a href="#" class="thumbnail">
-                  <%= user_avatar(f.user) %>
-                </a>              
+            <!-- 个人信息 -->
+            <div id="user_feeds_head_line" >
+              <a href="#" class="thumbnail">
+                <%= user_avatar(f.user) %>
+              </a>              
             </div>
-            <div style="display: inline-block;" id="user_feeds_info">
+            <div id="user_feeds_info">
               <p id="user_feeds_name">
                 <strong>
                   <%= f.user.name %>
@@ -25,21 +22,55 @@
               <p id="user_feeds_time">
                 <em><%= strf_details(f.created_at) %></em>
               </p>
-            </div>          
+            </div> 
+            <!-- 个人信息  -->
 
           </div>
           <div class="panel-body">
 
             <h4>
-              <%= f.feedable.project.name %>
+              <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."><%= f.feedable.project.name %></span>
+              
             </h4>
 
-                       <!-- 具体工作 -->
+          <!-- 具体工作 -->
            <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-1">
+                <p><br></p>
+                <strong><%= f.feedable.hours %>h</strong>
+              </div>
+
+              <div class="col-md-11">
               <blockquote>
-               <p><%= f.feedable.content %></p> 
-               <p><small><em><%= strf(f.feedable.created_at) %></em></small></p>
+               <p>
+                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
+                 <kbd><%= desc_worktype(f.feedable.worktype) %></kbd> 
+               </p>
+               <p><%= simple_format(f.feedable.content) %></p>
+               <p>
+
+                 <% if f.feedable.tag_itvendors.present? or f.feedable.tag_itskills.present? %>
+
+                  <span class="glyphicon glyphicon-tags" aria-hidden="true"> </span> 
+                  <!-- 厂商 -->
+                  <% if f.feedable.tag_itvendors.present? %>
+                    <% f.feedable.tag_itvendors.each do |v| %>
+                    <code><%= v.name %></code>
+                    <% end %>
+                  <% end %>
+                  
+                  <!-- 技术方向 -->
+                  <% if f.feedable.tag_itskills.present? %>
+                    <% f.feedable.tag_itskills.each do |s| %>
+                    <code><%= s.name %></code>
+                    <% end %>
+                  <% end %>
+
+                <% end %>
+               </p>
+
+               <p><small><em><%= strf_wday(f.feedable.begin_time) %> ~ <%= strf_wday(f.feedable.end_time) %></em></small></p>
+
               </blockquote>    
              </div>
            </div>

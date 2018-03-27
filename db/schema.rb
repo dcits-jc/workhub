@@ -10,12 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325064652) do
+ActiveRecord::Schema.define(version: 20180326181438) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
     t.string "feedable_type"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "management_workflows", force: :cascade do |t|
+    t.datetime "begin_time"
+    t.datetime "end_time"
+    t.text "content"
+    t.integer "project_id"
+    t.string "worktype"
+    t.float "hours"
+    t.float "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "other_itvendors"
+    t.string "other_itskills"
+  end
+
+  create_table "managementworkflowitskill_relationships", force: :cascade do |t|
+    t.integer "management_workflow_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "managementworkflowitvendor_relationships", force: :cascade do |t|
+    t.integer "management_workflow_id"
+    t.integer "tag_itvendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "other_workflows", force: :cascade do |t|
+    t.datetime "begin_time"
+    t.datetime "end_time"
+    t.text "content"
+    t.integer "otherwork_id"
+    t.string "worktype"
+    t.float "hours"
+    t.float "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "otherworkflowitskills", force: :cascade do |t|
+    t.integer "other_workflow_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "otherworkflowitvendors", force: :cascade do |t|
+    t.integer "other_workflow_id"
+    t.integer "tag_itvendor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,6 +108,8 @@ ActiveRecord::Schema.define(version: 20180325064652) do
     t.integer "builder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "binding_team_id"
+    t.string "projecttype"
     t.index ["name"], name: "index_projects_on_name", unique: true
   end
 

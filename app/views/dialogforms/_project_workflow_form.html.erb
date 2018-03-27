@@ -1,22 +1,24 @@
 
 <%= simple_form_for @project_workflow do |f| %>
-  <!-- 工作类别 -->
-  <label><abbr title="required">*</abbr> 工作类别</label>
-  <%= f.input :worktype,label: false,placeholder: "选择工作类别", collection:[['售前','pre_sale'],['售中','in_sale'],['售后','after_sale'],['供货','supply_service'],['单次服务','single_service'],['集成','si_service']] %>
-
+  <p class="text-left alert alert-warning"><small>如果系统中无法找到相关项目,请点击 <%= link_to('新建项目',new_project_path) %></small></p>
   <!-- ajax 选择 -->
   <div class="form-group">
     <label><abbr title="required">*</abbr> 项目名</label>
     <select data-live-search="true" data-size=10  name="project_workflow[project_id]" id="project_project_workflow_id" class="selectpicker form-control select required" data-live-search-placeholder="输入项目名进行搜索" data-none-selected-text="输入项目名进行搜索">
     </select>
-    <p class="text-right"><small>如果系统中无相关项目,请点击 <%= link_to('新建项目',new_project_path) %></small></p>
-    
-    
-    
+    <!-- <div class="alert alert-warning" role="alert"> -->
+      
+    <!-- </div> -->    
   </div>    
 
 
-  <%= f.input :content,label: '内容',input_html: { class: "form-control", id: "editor",placeholder: "填写具体工作内容"} %>
+  <!-- 工作类别 -->
+  <label><abbr title="required">*</abbr> 工作类别</label>
+  <%= f.input :worktype,label: false,placeholder: "选择工作类别", collection:[['售前','pre_sale'],['售中','in_sale'],['售后','after_sale'],['供货','supply_service'],['单次服务','single_service'],['集成','si_service']] %>
+
+
+
+  <%= f.input :content,label: '内容',input_html: { class: "form-control", id: "project_editor",placeholder: "填写具体工作内容"} %>
   <%#= f.input :description, input_html: { class: "form-control"} %>
 
 
@@ -31,13 +33,13 @@
 
   <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_created_at[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
 
-  <%= f.input :other_itvendors,label: false,placeholder: "其他厂商(以逗号','分割)"  %>
+  <%= f.input :other_itvendors,label: false,placeholder: "其他厂商 (以逗号 ',' 分割)"  %>
 
 
   <label id="workflow_skills_label">技术方向</label>
   <%= f.association :tag_itskills,label: false,collection: TagItskill.order_by_created_at[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
 
-  <%= f.input :other_itskills,label: false,placeholder: "其他方向(以逗号','分割)"  %>
+  <%= f.input :other_itskills,label: false,placeholder: "其他方向 (以逗号 ',' 分割)"  %>
 
   </div>
 
@@ -45,36 +47,22 @@
 
 
 
+  <div class="form-group">
+    <label><abbr title="required">*</abbr> 开始日期</label>
+    <%= f.flatpickr_date_select :begin_time,placeholder: "点击选择日期",id: 'flatpickr_begin_time'%>
+  </div>
+  <div class="form-group">
+    <label><abbr title="required">*</abbr> 结束日期</label>
+    <%= f.flatpickr_date_select :end_time,placeholder: "点击选择日期",id: 'flatpickr_end_time'%>  
+  </div>
 
 
 
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-  <label><abbr title="required">*</abbr> 开始日期</label>
-  <%= f.flatpickr_date_select :begin_time,placeholder: "点击选择日期",id: 'flatpickr_begin_time'%>
-</div>
-<div class="form-group">
-  <label><abbr title="required">*</abbr> 结束日期</label>
-  <%= f.flatpickr_date_select :end_time,placeholder: "点击选择日期",id: 'flatpickr_end_time'%>  
-</div>
-
-
-
-
-
-  <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
 <% end %>
 
 
@@ -156,7 +144,7 @@ $('.flatpicker_date_select').flatpickr({
 
 // 编辑器
 var editor = new Simditor({
-          textarea: $('#editor'),
+          textarea: $('#project_editor'),
           pasteImage: true,
           toolbar: [
             'bold',
