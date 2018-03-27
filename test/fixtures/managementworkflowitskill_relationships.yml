@@ -12,18 +12,11 @@ two: {}
 
 # == Schema Information
 #
-# Table name: projects
+# Table name: managementworkflowitskill_relationships
 #
-#  id              :integer          not null, primary key
-#  name            :string
-#  description     :text
-#  builder_id      :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  binding_team_id :integer
-#  projecttype     :string
-#
-# Indexes
-#
-#  index_projects_on_name  (name) UNIQUE
+#  id                     :integer          not null, primary key
+#  management_workflow_id :integer
+#  tag_itskill_id         :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #

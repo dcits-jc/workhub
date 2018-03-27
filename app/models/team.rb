@@ -9,6 +9,8 @@ class Team < ApplicationRecord
   has_many :teammanager_relationships
   has_many :managers, through: :teammanager_relationships, source: :user
 
+  # 绑定的项目1:n
+  has_many :binding_projects, class_name: 'Project',foreign_key: "binding_team_id",dependent: :destroy
 
   # 增加成员
   def join!(user)
@@ -30,6 +32,23 @@ class Team < ApplicationRecord
       scoped
     end
   end
+
+  # 建立绑定的相关管理项目
+  def create_binding_managementprojects!(user)
+    managementproject_dict = {
+      '厂商交流' => 'technical_exchange',
+      '认证考试' => 'certification_exam',
+      '技术提升' => 'tech_improvement',
+      '部门工作' => 'team_work',
+      '休假' => 'day_off'
+    }
+    managementproject_dict.each do |m|
+      p = Project.create(name: self.name+'_'+m[0], binding_team_id: self.id,projecttype: m[1],builder_id: user.id)
+      self.binding_projects << p
+    end
+
+  end
+
 
 end
 

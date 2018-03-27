@@ -49,6 +49,9 @@
                </p>
                <p><%= simple_format(f.feedable.content) %></p>
                <p>
+
+                 <% if f.feedable.tag_itvendors.present? or f.feedable.tag_itskills.present? %>
+
                   <span class="glyphicon glyphicon-tags" aria-hidden="true"> </span> 
                   <!-- 厂商 -->
                   <% if f.feedable.tag_itvendors.present? %>
@@ -56,12 +59,15 @@
                     <code><%= v.name %></code>
                     <% end %>
                   <% end %>
+                  
                   <!-- 技术方向 -->
                   <% if f.feedable.tag_itskills.present? %>
                     <% f.feedable.tag_itskills.each do |s| %>
                     <code><%= s.name %></code>
                     <% end %>
                   <% end %>
+
+                <% end %>
                </p>
 
                <p><small><em><%= strf_wday(f.feedable.begin_time) %> ~ <%= strf_wday(f.feedable.end_time) %></em></small></p>

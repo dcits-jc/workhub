@@ -17,6 +17,14 @@ class Project < ApplicationRecord
   # 1:n 对应工作流
   has_many :project_workflows
 
+  # 1:n 对应工作流
+  has_many :management_workflows
+  
+
+  # 1:n 绑定团队
+  belongs_to :binding_team, class_name: "Team", foreign_key: "binding_team_id",optional: true
+
+
   # 加入成员
   def join!(user)
     self.members << user
@@ -44,12 +52,14 @@ end
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  builder_id  :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string
+#  description     :text
+#  builder_id      :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  binding_team_id :integer
+#  projecttype     :string
 #
 # Indexes
 #

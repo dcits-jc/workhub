@@ -4,6 +4,11 @@ class TagItskill < ApplicationRecord
   has_many :projectworkflowitskill_relationships
   has_many :project_workflows, through: :projectworkflowitskill_relationships, source: :project_workflow
 
+
+  # n:m 相关管理工作流
+  has_many :managementworkflowitskill_relationships
+  has_many :management_workflows, through: :managementworkflowitskill_relationships, source: :management_workflow
+
   # n:m 拥有 it 技能的用户
   has_many :useritskill_relationships
   has_many :users, through: :useritskill_relationships, source: :user
