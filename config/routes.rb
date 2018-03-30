@@ -14,12 +14,13 @@ Rails.application.routes.draw do
   resources :teams do
     collection do
       get :current_week
-
+      get :history
     end
   end
 
   resources :projects
 
+  resources :users
 
   # 工作流
   resources :project_workflows

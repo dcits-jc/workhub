@@ -27,9 +27,14 @@
           </p>
         </div>          
         <div class="pull-right">
-          <strong>本周工作量 <u><span class="lead">(26h/40h)</span> </u></strong>
+          <strong>当周工作量 <u><span class="lead">(
+            <% if @current_week_workloads == 0 %>
+              <span style="color: #f00">0h</span>
+            <% else %>
+              <%= @current_week_workloads %>h
+            <% end %>
+          / 40h )</span> </u></strong>
         </div>
-
       </div>
       
     </div>
@@ -43,14 +48,14 @@
 
 
     <!-- 本周的 feeds -->
-    <%= render 'feeds' %>
+    <%= render 'common/feeds' %>
 
   </div>
 
 
   <!-- 右侧边 -->
   <div class="col-md-3 hidden-xs hidden-sm">
-    <%= render 'history' %>
+    <%= render 'common/history_sidebar' %>
   </div>
 
 </div>

@@ -31,7 +31,11 @@ class User < ApplicationRecord
   # 1:n 创建项目
   has_many :projects
   # 改名一对多关系为 build_projects : builder
-  has_many :build_projects, class_name: "Project"
+  has_many :build_projects, class_name: "Project",foreign_key: "builder_id"
+
+
+  # 改名一对多关系为 build_projects :  sales
+  has_many :sale_projects, class_name: "Project",foreign_key: "sales_id"
 
   # n:m 参与项目
   has_many :projectparticipated_relationships
