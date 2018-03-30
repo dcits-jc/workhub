@@ -111,6 +111,37 @@ module ApplicationHelper
   end
  end
 
+ # feed显示项目类型编号
+ def desc_projecttype(projecttype)
+  case projecttype
+  when 'temp_project'
+    '临时项目'
+  when 'si_project'
+    '集成'
+  when 'sipresale_project'
+    '集成售前'
+  when 'supply_project'
+    '供货'
+  when 'solutionpresale_project'
+    '解决方案售前'
+  when 'singleservice_project'
+    '单次服务'
+  when 'operation_project'
+    '运维'
+  when 'technical_exchange'
+    '厂商交流'
+  when 'certification_exam'
+    '认证考试'
+  when 'tech_improvement'
+    '技术提升'
+  when 'team_work'
+    '部门工作'
+  when 'day_off'
+    '休假'
+  else
+    '其他类型'
+  end
+ end
 
 
 end

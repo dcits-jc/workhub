@@ -11,7 +11,7 @@ class ManagementWorkflow < ApplicationRecord
   belongs_to :project, optional: true
 
   # 与 feed 流 1:1
-  has_one :feed, as: :feedable
+  has_one :feed, as: :feedable, dependent: :destroy
 
 
   # 加入标签

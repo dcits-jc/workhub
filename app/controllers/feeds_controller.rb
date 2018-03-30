@@ -20,6 +20,13 @@ class FeedsController < ApplicationController
     @management_workflow = ManagementWorkflow.new
 
     @feeds = current_user.feeds.order_by_recent
+    
+    # 本周工作量计算
+    loads = 0
+    @feeds.each do |f|
+      loads = loads + f.feedable.hours
+    end
+    @current_week_workloads = loads
   end
 
 
@@ -46,10 +53,15 @@ class FeedsController < ApplicationController
     # 非项目工作流
     @management_workflow = ManagementWorkflow.new
 
-
-
-
     @feeds = current_user.feeds.where('created_at > ? and created_at < ?',start_date,end_date)
+
+    # 本周工作量计算
+    loads = 0
+    @feeds.each do |f|
+      loads = loads + f.feedable.hours
+    end
+    @current_week_workloads = loads
+
   end
 
 

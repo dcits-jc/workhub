@@ -43,7 +43,7 @@ class Team < ApplicationRecord
       '休假' => 'day_off'
     }
     managementproject_dict.each do |m|
-      p = Project.create(name: self.name+'_'+m[0], binding_team_id: self.id,projecttype: m[1],builder_id: user.id)
+      p = Project.create(name: self.name+'_'+m[0], binding_team_id: self.id,projecttype: m[1],builder_id: user.id,sales_id: user.id)
       self.binding_projects << p
     end
 

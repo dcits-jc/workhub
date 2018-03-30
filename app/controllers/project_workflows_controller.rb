@@ -38,6 +38,8 @@ class ProjectWorkflowsController < ApplicationController
 
 
     if @project_workflow.save
+      # 加入当前用户作为成员
+      @project_workflow.project.join!(current_user)
       # 建立 feed 流
       feed_create!(@project_workflow,current_user)
       flash[:notice] = "提交成功!"

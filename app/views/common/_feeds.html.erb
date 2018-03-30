@@ -1,16 +1,17 @@
+
+
 <div class="row">
   <div class="col-md-12">
-    <% @all_team_feeds.each do |f| %>
+    <% @feeds.each do |f| %>
 
-        
         <div class="panel panel-default">
           <div class="panel-heading">
 
             <!-- 个人信息 -->
             <div id="user_feeds_head_line" >
-              <a href="#" class="thumbnail">
+              <%= link_to user_path(f.user),class: "thumbnail" do %>
                 <%= user_avatar(f.user) %>
-              </a>              
+              <% end %>
             </div>
             <div id="user_feeds_info">
               <p id="user_feeds_name">
@@ -28,11 +29,6 @@
           </div>
           <div class="panel-body">
 
-            <h4>
-              <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."><%= f.feedable.project.name %></span>
-              
-            </h4>
-
           <!-- 具体工作 -->
            <div class="row">
               <div class="col-md-1">
@@ -44,7 +40,8 @@
               <blockquote>
                <p>
                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
-                 <kbd><%= desc_worktype(f.feedable.worktype) %></kbd> 
+                 <kbd><%= desc_worktype(f.feedable.worktype) %></kbd>
+                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" title="编号 <%= f.feedable.project.code %>" data-content="<p>部门 <kbd><%= f.feedable.project.sales.team.name %></kbd><br>销售 <code><%= f.feedable.project.sales.name %></code></p>"><%= f.feedable.project.name %></span> 
                </p>
                <p><%= simple_format(f.feedable.content) %></p>
                <p>
@@ -83,48 +80,26 @@
     <% end %>
 
 
-
-
-
-
-
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <p>
-              <small> <kbd>AT9AH70098A1</kbd> # <kbd>运营商BU-中央区事业部</kbd> # <kbd>施美琳</kbd></small>
-            </p>
-            <h4>
-              第六代面板生产线IT系统建设项目
-            </h4>
-          </div>
-          <div class="panel-body">
-
-           <!-- 具体工作 -->
-           <div class="row">
-              <div class="col-md-12">
-               <p><small><em>2018/03/05 ~ 2018/03/11</em></small></p>
-             </div>
-             <div class="col-md-1" >
-                <p><br></p>
-                <strong>18.5h</strong>
-             </div>
-             <div class="col-md-11">
-              <blockquote>
-                <p><span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>  <kbd>售中</kbd> </p>
-               <p>调试配置华为SDN控制器，实现有线网802.1x认证。</p> 
-                <p>
-                  <span class="glyphicon glyphicon-tags" aria-hidden="true"> </span> 
-                  <code>华为</code>
-                  <code>网络</code>
-                </p>
-              </blockquote>    
-             </div>
-           </div>
-           <!-- ? -->
-
-          </div>
-        </div>
-
     
   </div>
 </div>
+
+
+
+<script>
+// 项目信息
+$(function (){
+  // 绑定触发条件
+  $(".btn-projectinfo").popover({
+      trigger:'hover', //触发方式
+      html: true, // 为true的话，data-content里就能放html代码了
+  });
+});
+
+</script>
+
+
+
+
+
+

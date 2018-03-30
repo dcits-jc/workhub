@@ -10,13 +10,14 @@
 
         <div class="row">
           <% @all_team_users.each do |u| %>
-
             <div class="col-md-12">
 
-              <%= user_avatar(u,{style: "width: 20px;height: 20px;"}) %>
-              <strong><%= u.name %></strong>                 
+              <%= link_to user_path(u) do %>
+                <%= user_avatar(u,{style: "width: 20px;height: 20px;"}) %>
+                <strong><%= u.name %></strong> 
+              <% end %>
+                
             </div>
-
           <% end %>
         </div>
 

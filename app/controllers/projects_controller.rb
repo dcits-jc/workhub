@@ -3,12 +3,24 @@ class ProjectsController < ApplicationController
   layout 'user'
   def index
     @projects = current_user.participated_projects
+    # binding.pry
   end
 
   def show
     @project = Project.find(params[:id])
     @members = @project.members
     @managers = @project.managers
+
+    # 历史周
+    @history_weeks = weekindex(Time.now, @project.created_at)
+    
+    # binding.pry
+    @feeds =[]
+    @project_workflows_hoursum = 0
+    @project.project_workflows.each do |w|
+      @feeds.unshift(w.feed)
+      @project_workflows_hoursum = @project_workflows_hoursum + w.hours
+    end
   end
 
   def edit
@@ -22,20 +34,44 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    # 搜索项目经理
+    pm_user = User.find(@project.pm_id)
+    sales_user = @project.sales
+    @project.pm_id = nil
     # 记录创建者
     @project.builder = current_user
-    # 同时将创建者设置成管理员
-    @project.join_manager!(current_user)
-    # 加入这个创建者
-    @project.join!(current_user)
-    if @project.save
+
+    # 如果不是临时项目,而且不是12位
+    if project_params[:projecttype]!='temp_project' and check_code?(project_params[:code]) == false
+      # binding.pry
+      flash[:alert] = "项目号有误!"
+      render :new        
+    elsif @project.save
+
+      # 销售加进项目
+      @project.join!(sales_user)
+      # 也加入 pm
+      @project.join!(pm_user)
+      # 加入这个创建者
+      @project.join!(current_user)
+
+      # 同时将项目经理设置成项目经理
+      @project.join_manager!(pm_user)
+
       flash[:notice] = "项目建立成功!"
       redirect_to projects_path
     else
       flash[:alert] = "项目建立失败!"
       render :new
     end
+
+
+
   end
+
+
+
+
 
   def update
     @project = Project.find(params[:id])
@@ -84,7 +120,23 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description,:new_member,:new_manager)
+    params.require(:project).permit(:name, :description,:projecttype,:code,:sales_id,:new_member,:new_manager,:pm_id,:project_class,:customer_name,:customer_contact_name,:customer_contact_phone,:customer_contact_email,:area,:begin_time,:end_time)
+  end
+
+
+  # 检查是否项目号是12位
+  def check_code?(code)
+    if code.present?
+      if Project.find_by_code(code).present?
+        return false
+      elsif code.length == 12
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
   end
 
 
