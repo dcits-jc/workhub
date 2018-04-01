@@ -20,7 +20,7 @@
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
-      <td>昵称</td>
+      <td>itcode</td>
       <td>姓名</td>
       <td>用户邮箱</td>
       <td>操作</td>
@@ -30,7 +30,7 @@
     <% @users.each do |u| %>
     <tr>
       <td>
-        <strong><%= link_to(u.code,admin_user_path(u)) %></strong>
+        <strong><%= link_to(u.itcode,admin_user_path(u)) %></strong>
         <!-- 如果是管理员,则显示管理员提示 -->
         <% if u.is_admin? %>
           <code>管理员</code>
