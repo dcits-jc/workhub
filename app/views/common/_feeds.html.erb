@@ -28,7 +28,9 @@
 
             <!-- 删除按钮 -->
             <div class="pull-right">
-              <small><%= link_to('删除',feed_path(f),method: 'Delete',data: { confirm: "确认删除该条工作流" })  %></small>
+              <% if f.user == current_user %>
+                <small><%= link_to('删除',feed_path(f),method: 'Delete',data: { confirm: "确认删除该条工作流" })  %></small>
+              <% end %>
             </div>
 
           </div>

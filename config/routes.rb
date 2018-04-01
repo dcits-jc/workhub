@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   # 管理员路由
   namespace :admin do
+    resources :feeds
     resources :users do
       member do
         post :reset_password
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
     end
     resources :teams
     resources :projects
+
   end
   
 
