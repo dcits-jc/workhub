@@ -1,0 +1,113 @@
+
+<%= simple_form_for @management_workflow do |f| %>
+  <!-- 工作类别 -->
+  <label><abbr title="required">*</abbr> 工作类别</label>
+  <%= f.input :worktype,label: false,placeholder: "选择工作类别", collection:[['厂商交流','technical_exchange'],['认证考试','certification_exam'],['技术提升','tech_improvement'],['部门工作','team_work'],['休假','day_off']] %>
+
+  <%= f.input :content,label: '内容',input_html: { class: "form-control", id: "management_workflow_editor",placeholder: "填写具体工作内容"} %>
+  <%#= f.input :description, input_html: { class: "form-control"} %>
+
+
+
+
+
+  <div id="work_display_form">
+
+  <!-- 多选框 -->
+
+  <label id="workflow_companies_label">涉及厂商</label>
+
+  <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_created_at[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
+
+  <%= f.input :other_itvendors,label: false,placeholder: "其他厂商 (以逗号 ',' 分割)"  %>
+
+
+  <label id="workflow_skills_label">技术方向</label>
+  <%= f.association :tag_itskills,label: false,collection: TagItskill.order_by_created_at[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
+
+  <%= f.input :other_itskills,label: false,placeholder: "其他方向 (以逗号 ',' 分割)"  %>
+
+  </div>
+
+  <%= f.input :hours,label: '工作量(小时)', input_html: { class: "form-control"},placeholder: '输入数字' %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="form-group">
+  <label><abbr title="required">*</abbr> 开始日期</label>
+  <%= f.flatpickr_date_select :begin_time,placeholder: "点击选择日期",id: 'flatpickr_begin_time'%>
+</div>
+<div class="form-group">
+  <label><abbr title="required">*</abbr> 结束日期</label>
+  <%= f.flatpickr_date_select :end_time,placeholder: "点击选择日期",id: 'flatpickr_end_time'%>  
+</div>
+
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+    <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
+  </div>
+
+
+
+  
+<% end %>
+
+
+
+
+<script>
+// 设置当前时间
+var nowTime = new Date();
+nowTimeFormat = nowTime.getFullYear()+'-'+(nowTime.getMonth()+1)+'-'+nowTime.getDate()
+// 日期选择器
+$('.flatpicker_date_select').flatpickr({
+  wrap: true,
+  defaultDate: nowTimeFormat
+});
+
+
+
+
+// 编辑器
+var editor = new Simditor({
+          textarea: $('#management_workflow_editor'),
+          pasteImage: true,
+          toolbar: [
+            'bold',
+            'italic',
+            'underline',
+            'strikethrough',  
+            'color',        
+            'ul',           
+            'blockquote',
+            'code',        
+            'table',
+            'link',
+            // 'image'
+          ],
+          pasteImage: false,
+
+          // upload: {url: '/upload'}
+      });
+
+
+
+</script>

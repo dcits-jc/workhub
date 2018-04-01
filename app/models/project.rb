@@ -1,9 +1,19 @@
 class Project < ApplicationRecord
   # 名字唯一验证
   validates :name, presence: true, uniqueness: true
+  # 必须有类型
+  validates :projecttype, presence: true
+  # 必须有对应销售
+  validates :sales_id, presence: true
+  # code 必须12位
+  # validates :code, length: { is: 12 }, presence: false
 
   # 拥有一个创建者
   belongs_to :builder, class_name: 'User', foreign_key: 'builder_id'
+
+  # 拥有一个对应的销售
+  belongs_to :sales, class_name: 'User', foreign_key: 'sales_id'
+
 
   # n:m 参与项目
   has_many :projectparticipated_relationships
@@ -15,18 +25,30 @@ class Project < ApplicationRecord
 
 
   # 1:n 对应工作流
-  has_many :project_workflows
+  has_many :project_workflows, dependent: :destroy
+
+  # 1:n 对应工作流
+  has_many :management_workflows, dependent: :destroy
+  
+
+  # 1:n 绑定团队
+  belongs_to :binding_team, class_name: "Team", foreign_key: "binding_team_id",optional: true
+
 
   # 加入成员
   def join!(user)
-    self.members << user
-    self.save
+    if !(self.members.include?(user))
+      self.members << user
+      self.save      
+    end
   end
 
   # 加入管理员
   def join_manager!(user)
-    self.managers << user
-    self.save
+    if !(self.managers.include?(user))
+      self.managers << user
+      self.save
+    end
   end
 
   # 搜索常规项目
@@ -44,12 +66,25 @@ end
 #
 # Table name: projects
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  builder_id  :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                     :integer          not null, primary key
+#  name                   :string
+#  description            :text
+#  builder_id             :integer
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  binding_team_id        :integer
+#  projecttype            :string
+#  sales_id               :integer
+#  code                   :string
+#  pm_id                  :integer
+#  project_class          :string
+#  customer_name          :string
+#  customer_contact_name  :string
+#  customer_contact_phone :string
+#  customer_contact_email :string
+#  area                   :string
+#  begin_time             :datetime
+#  end_time               :datetime
 #
 # Indexes
 #

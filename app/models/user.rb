@@ -31,7 +31,11 @@ class User < ApplicationRecord
   # 1:n 创建项目
   has_many :projects
   # 改名一对多关系为 build_projects : builder
-  has_many :build_projects, class_name: "Project"
+  has_many :build_projects, class_name: "Project",foreign_key: "builder_id"
+
+
+  # 改名一对多关系为 build_projects :  sales
+  has_many :sale_projects, class_name: "Project",foreign_key: "sales_id"
 
   # n:m 参与项目
   has_many :projectparticipated_relationships
@@ -90,6 +94,33 @@ class User < ApplicationRecord
   def cancel_admin!
     self.is_admin = false
     self.save
+  end
+
+
+
+  # 该用户对应的厂商交流项目
+  def project_technical_exchange
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'technical_exchange')
+  end
+
+  # 该用户对应的认证项目
+  def project_certification_exam
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'certification_exam')
+  end
+
+  # 该用户对应的技术提升项目
+  def project_tech_improvement
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'tech_improvement')
+  end
+
+  # 该用户对应的部门工作项目
+  def project_team_work
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'team_work')
+  end
+
+  # 该用户对应的休假
+  def project_day_off
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'day_off')
   end
 
 end

@@ -3,9 +3,13 @@ class Feed < ApplicationRecord
   belongs_to :user
 
   # 隶属于某个可以作为 feed流的对象
-  belongs_to :feedable, polymorphic: true
+  belongs_to :feedable, polymorphic: true, dependent: :destroy
 
   scope :order_by_recent, -> { order("updated_at DESC") }
+
+
+  
+
 
 end
 
@@ -19,4 +23,6 @@ end
 #  user_id       :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  begin_time    :datetime
+#  end_time      :datetime
 #

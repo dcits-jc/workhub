@@ -4,12 +4,13 @@
           <!-- 历史周链接 -->
           <% @history_weeks.each do |w| %>
             <!-- 如果就是当前周就高亮显示 -->
-            <% if week_begin(w) == week_begin(@current_time) %>
+            <% if week_begin(w) == week_begin(@current_time) and params['start_date'].blank? %>
               <li role="presentation" class="active">
             <% else %>
-              <li role="presentation">
+              <li role="presentation" class="<%= active_history(w.at_beginning_of_week,w.at_end_of_week) %>">
             <% end %>
-                <a href="#"><%= week_begin(w) %>~<%= week_end(w) %></a>
+                <!-- 历史链接 -->
+                <%= link_to(week_begin(w)+'~'+week_end(w),week_teams_path({start_date: w.at_beginning_of_week,end_date: w.at_end_of_week}))%>
               </li>              
           <% end %>
 

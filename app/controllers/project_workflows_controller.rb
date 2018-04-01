@@ -12,7 +12,6 @@ class ProjectWorkflowsController < ApplicationController
   def create
     @project_workflow = ProjectWorkflow.new(project_workflow_params)
     
-
     # 两次','去重
     itvendors = dry_tsstring(@project_workflow.other_itvendors)
     # 如果这个厂商没找到,就新建这个厂商,最终加入隶属
@@ -39,6 +38,8 @@ class ProjectWorkflowsController < ApplicationController
 
 
     if @project_workflow.save
+      # 加入当前用户作为成员
+      @project_workflow.project.join!(current_user)
       # 建立 feed 流
       feed_create!(@project_workflow,current_user)
       flash[:notice] = "提交成功!"

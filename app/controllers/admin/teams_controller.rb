@@ -31,6 +31,8 @@ class Admin::TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
+      # 同时建立相关的部门项目
+      @team.create_binding_managementprojects!(current_user)
       flash[:notice] = "团队建立成功!"
       redirect_to admin_teams_path
     else

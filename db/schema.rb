@@ -10,12 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325064652) do
+ActiveRecord::Schema.define(version: 20180401084307) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
     t.string "feedable_type"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "begin_time"
+    t.datetime "end_time"
+  end
+
+  create_table "management_workflows", force: :cascade do |t|
+    t.datetime "begin_time"
+    t.datetime "end_time"
+    t.text "content"
+    t.integer "project_id"
+    t.string "worktype"
+    t.float "hours"
+    t.float "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "other_itvendors"
+    t.string "other_itskills"
+  end
+
+  create_table "managementworkflowitskill_relationships", force: :cascade do |t|
+    t.integer "management_workflow_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "managementworkflowitvendor_relationships", force: :cascade do |t|
+    t.integer "management_workflow_id"
+    t.integer "tag_itvendor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,6 +84,19 @@ ActiveRecord::Schema.define(version: 20180325064652) do
     t.integer "builder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "binding_team_id"
+    t.string "projecttype"
+    t.integer "sales_id"
+    t.string "code"
+    t.integer "pm_id"
+    t.string "project_class"
+    t.string "customer_name"
+    t.string "customer_contact_name"
+    t.string "customer_contact_phone"
+    t.string "customer_contact_email"
+    t.string "area"
+    t.datetime "begin_time"
+    t.datetime "end_time"
     t.index ["name"], name: "index_projects_on_name", unique: true
   end
 
@@ -83,24 +126,6 @@ ActiveRecord::Schema.define(version: 20180325064652) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id"
-    t.string "taggable_type"
-    t.integer "taggable_id"
-    t.string "tagger_type"
-    t.integer "tagger_id"
-    t.string "context", limit: 128
-    t.datetime "created_at"
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "teammanager_relationships", force: :cascade do |t|

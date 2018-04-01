@@ -6,22 +6,24 @@ Rails.application.routes.draw do
   # 信息流
   resources :feeds do
     collection do
-      get :current_week
+      get :week
     end
   end
 
+  # 团队信息流
   resources :teams do
     collection do
-      get :current_week
+      get :week
     end
   end
 
   resources :projects
 
+  resources :users
 
   # 工作流
   resources :project_workflows
-
+  resources :management_workflows
 
   # 管理员路由
   namespace :admin do
