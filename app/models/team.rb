@@ -2,6 +2,9 @@ class Team < ApplicationRecord
   # 名字唯一验证
   validates :name, presence: true, uniqueness: true
 
+  # 建立后要建立对应的四种部门类型工作
+  # after_create :create_binding_managementprojects!()
+
   # 一个团队拥有多个成员
   has_many :users
 
@@ -35,6 +38,10 @@ class Team < ApplicationRecord
 
   # 建立绑定的相关管理项目
   def create_binding_managementprojects!(user)
+    # 如果用户不存在就填写管理员
+    if user.blank?
+      user = (User.where(is_admin: true)).first
+    end
     managementproject_dict = {
       '厂商交流' => 'technical_exchange',
       '认证考试' => 'certification_exam',

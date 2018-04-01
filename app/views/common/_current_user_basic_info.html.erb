@@ -8,7 +8,7 @@
     </a>        
 
     <!-- 用户名和用户昵称 -->
-    <h2><%= current_user.name %>#<%= current_user.code %></h2>
+    <h2><%= current_user.name %>#<%= current_user.itcode %></h2>
     <% if current_user.is_admin? %>
       <h3><code>管理员</code></h3> 
     <% end %>  
