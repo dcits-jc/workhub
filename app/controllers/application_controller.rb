@@ -27,9 +27,9 @@ class ApplicationController < ActionController::Base
 
 
 
-  # 发送信息
+  # 建立 feed
   def feed_create!(feedable,user)
-    Feed.create(feedable_id: feedable.id, feedable_type: feedable.class,user_id: user.id)
+    Feed.create(feedable_id: feedable.id, feedable_type: feedable.class,user_id: user.id,begin_time: feedable.begin_time,end_time: feedable.end_time)
   end
 
 
