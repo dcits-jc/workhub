@@ -6,15 +6,14 @@ Rails.application.routes.draw do
   # 信息流
   resources :feeds do
     collection do
-      get :current_week
-      get :history
+      get :week
     end
   end
 
+  # 团队信息流
   resources :teams do
     collection do
-      get :current_week
-      get :history
+      get :week
     end
   end
 

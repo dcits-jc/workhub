@@ -1,52 +1,36 @@
 class TeamsController < ApplicationController
   layout 'user'
 
-  # 当前团队
-  def current_week
-    # 设置当前时间
-    @current_time = Time.now
-
+  def week
     # 当前团队
     @current_team = current_user.team
 
     # 历史周
     @history_weeks = weekindex(Time.now, @current_team.created_at)
 
-    # 进阶查询(筛选出所有这个团队成员的 feeds)
-    # team_feeds = Feed.includes(:user).where('created_at > ? and created_at < ? and users.team == ?',start_date,end_date,@current_team.id)
+    # 如果参数存在,则用参数的
+    if params[:start_date].present? and params[:end_date].present?
+      start_date = params[:start_date]
+      end_date = params[:end_date]  
+    # 不存在的话就显示当周的    
+    else
+      start_date = Time.now.at_beginning_of_week
+      end_date = Time.now.at_end_of_week    
+    end
 
-    team_feeds = Feed.includes(:user).where(users: {team: @current_team})
-
-    # 倒叙排列
-    @feeds = team_feeds.order("feeds.updated_at DESC")
-
-    # 所有团队成员
-    @all_team_users = @current_team.users
-  end
-
-
-  # 历史区间
-  def history
-    # 当前团队
-    @current_team = current_user.team
-
-    # 历史周
-    @history_weeks = weekindex(Time.now, @current_team.created_at)
-    
-    start_date = params[:start_date]
-    end_date = params[:end_date]
 
     # 设置当前时间
     @current_time = Time.now
     # 历史周
     @history_weeks = weekindex(Time.now, current_user.created_at)
 
+    # 先检索出这段时间该团队所有的 feeds endtime
+    team_feeds = Feed.includes(:user).where( users: { team_id: @current_team.id },feeds: { end_time: start_date..end_date })
 
-    team_feeds = Feed.includes(:user).where('feeds.created_at > ? and feeds.created_at < ?',start_date,end_date)
-
+    # 最后排序
     @feeds = team_feeds.order("feeds.updated_at DESC")
 
-    # 本周工作量计算
+    # 当周工作量计算
     loads = 0
     @feeds.each do |f|
       loads = loads + f.feedable.hours
@@ -56,6 +40,7 @@ class TeamsController < ApplicationController
 
     # 所有团队成员
     @all_team_users = @current_team.users
+
   end
 
 end

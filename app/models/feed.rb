@@ -23,4 +23,6 @@ end
 #  user_id       :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  begin_time    :datetime
+#  end_time      :datetime
 #

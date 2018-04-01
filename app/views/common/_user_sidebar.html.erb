@@ -6,10 +6,10 @@
   <div class="col-md-12">
 
     <div class="list-group">
-      <%= link_to("我的工作",current_week_feeds_path,class: "list-group-item "+active_class('feeds')) %>
+      <%= link_to("我的工作",week_feeds_path,class: "list-group-item "+active_class('feeds')) %>
       <%= link_to("我的项目",projects_path,class: "list-group-item "+active_class('projects')) %>
       <% if current_user.team.present? %>
-        <%= link_to("我的团队",current_week_teams_path,class: "list-group-item "+active_class('teams')) %>
+        <%= link_to("我的团队",week_teams_path,class: "list-group-item "+active_class('teams')) %>
       <% end %>
       
       
