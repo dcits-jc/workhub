@@ -10,10 +10,12 @@ class User < ApplicationRecord
 
   # 邮箱唯一验证
   validates :email, presence: true, uniqueness: true
-  # 昵称唯一验证
+  # 编号唯一验证
   validates :code, presence: true, uniqueness: true
   # 名字必须填写验证
   validates :name, presence: true
+  # itcode必须填写验证
+  validates :itcode, presence: true, uniqueness: true
 
 
   # 建立后要做一些初始化操作

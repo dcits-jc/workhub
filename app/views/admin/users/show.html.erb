@@ -26,21 +26,44 @@
         </a>            
       </div>
       <div class="col-md-10 col-sm-8 col-xs-12">
-        <p>昵称: <%= @user.code %></p>
-        <p>姓名: <%= @user.name %></p>
-        <p>邮箱: <%= @user.email %></p>
-        <p>当前团队: 
-          <% if @user.team.present? %>
-          
-            <%= link_to admin_team_path(@user.team) do %>
-            </kbd>
-              <%= @user.team.name %>
-            </kbd>
-            <% end %>
-          <% else %>
-            <span class="alert-warning">不在任何团队中</span> 
-          <% end %>  
-        </p>        
+        <table>
+          <tr>
+            <td>编号:</td>
+            <td><%= @user.code %></td>
+          </tr>
+          <tr>
+            <td>姓名:</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>itcode:</td>
+            <td><%= @user.itcode %></td>
+          </tr>
+          <tr>
+            <td>邮箱:</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td>当前团队:</td>
+            <td>
+              <% if @user.team.present? %>
+              
+                <%= link_to admin_team_path(@user.team) do %>
+                </kbd>
+                  <%= @user.team.name %>
+                </kbd>
+                <% end %>
+              <% else %>
+                <span class="alert-warning">不在任何团队中</span> 
+              <% end %>                
+            </td>
+          </tr>
+
+        </table>
+       
+
+
+
       </div>
     </div>
 
