@@ -5,11 +5,7 @@ class Feed < ApplicationRecord
   # 隶属于某个可以作为 feed流的对象
   belongs_to :feedable, polymorphic: true, dependent: :destroy
 
-  scope :order_by_recent, -> { order("updated_at DESC") }
-
-
-  
-
+  scope :order_by_recent, -> { order("created_at DESC") }
 
 end
 
