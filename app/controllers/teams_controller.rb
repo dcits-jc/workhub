@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
     team_feeds = Feed.includes(:user).where( users: { team_id: @current_team.id },feeds: { end_time: start_date..end_date })
 
     # 最后排序
-    @feeds = team_feeds.order("feeds.updated_at DESC")
+    @feeds = team_feeds.order("feeds.created_at DESC")
 
     # 当周工作量计算
     loads = 0

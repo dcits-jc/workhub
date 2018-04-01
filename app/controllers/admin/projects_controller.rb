@@ -14,6 +14,18 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @members = @project.members
     @managers = @project.managers
+    
+    # 历史周
+    @history_weeks = weekindex(Time.now, @project.created_at)
+    
+    # binding.pry
+    @feeds =[]
+    @project_workflows_hoursum = 0
+    @project.project_workflows.each do |w|
+      @feeds.unshift(w.feed)
+      @project_workflows_hoursum = @project_workflows_hoursum + w.hours
+    end
+
   end
 
   def edit
