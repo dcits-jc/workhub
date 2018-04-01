@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401084307) do
+ActiveRecord::Schema.define(version: 20180401151026) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 20180401084307) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "team_type"
     t.index ["name"], name: "index_teams_on_name", unique: true
   end
 
