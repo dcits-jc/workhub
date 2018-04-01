@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'feeds#current_week'  
+  root 'feeds#week'  
 
   # 信息流
   resources :feeds do
@@ -19,7 +19,11 @@ Rails.application.routes.draw do
 
   resources :projects
 
-  resources :users
+  resources :users do
+    member do
+      get :week
+    end
+  end
 
   # 工作流
   resources :project_workflows
