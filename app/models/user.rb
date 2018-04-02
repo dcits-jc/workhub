@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
 
   # 建立后要做一些初始化操作
-  after_create :user_itinit!
+  # after_create :user_itinit!
 
 
   # 挂载头像
@@ -74,13 +74,13 @@ class User < ApplicationRecord
     end
   end
 
-  # 用户初始化
-  def user_itinit!
-    # 将团队名字换成 id
-    self.team = Team.find_by_name(self.team_name)
-    self.team_name = nil
-    self.save
-  end
+  # # 用户初始化
+  # def user_itinit!
+  #   # 将团队名字换成 id
+  #   self.team = Team.find_by_name(self.team_name)
+  #   self.team_name = nil
+  #   self.save
+  # end
 
 
 
@@ -168,7 +168,6 @@ end
 #  password_resetting     :boolean          default(TRUE)
 #  avatar_attachment      :string
 #  itcode                 :string
-#  team_name              :string
 #  entry_time             :string
 #  area_name              :string
 #  status                 :string
