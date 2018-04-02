@@ -93,3 +93,14 @@ span.checkbox.inline {
 span.zero_alert{
   color: #f00
 }
+
+/* 当工作量为0时候提示 */
+img.level_sign{
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+}
+
+span.level_info{
+  vertical-align: sub;
+}

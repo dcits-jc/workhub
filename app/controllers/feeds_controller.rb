@@ -14,11 +14,11 @@ class FeedsController < ApplicationController
     @current_time = Time.now
 
     if params[:start_date].present? and params[:end_date].present?
-      start_date = params[:start_date]
-      end_date = params[:end_date]
+      @start_date = Time.parse(params[:start_date])
+      @end_date = Time.parse(params[:end_date])
     else
-      start_date = @current_time.at_beginning_of_week
-      end_date = @current_time.at_end_of_week
+      @start_date = @current_time.at_beginning_of_week
+      @end_date = @current_time.at_end_of_week
     end
 
     # 历史周
@@ -29,7 +29,7 @@ class FeedsController < ApplicationController
     # 非项目工作流
     @management_workflow = ManagementWorkflow.new
 
-    @feeds = current_user.feeds.where(end_time: start_date..end_date).order("feeds.created_at DESC")
+    @feeds = current_user.feeds.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
 
     # 本周工作量计算
     loads = 0
