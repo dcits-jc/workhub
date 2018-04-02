@@ -1151,6 +1151,7 @@ user_arrary.each do |u|
   u.delete(:team_name)
   user = User.create(u)
   user.team = team
+  user.save
   puts u[:name] + " created!!"
 end
 
