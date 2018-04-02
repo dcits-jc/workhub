@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
     # 如果不是临时项目,而且不是12位
     if project_params[:projecttype]!='temp_project' and check_code?(project_params[:code]) == false
       # binding.pry
-      flash[:alert] = "项目号有误!"
+      flash[:alert] = "请填写12位项目号或修改项目号!"
       render :new        
     elsif @project.save
 
