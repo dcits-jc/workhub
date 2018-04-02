@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">项目号</Data></Cell>
+        <Cell><Data ss:Type="String">项目名</Data></Cell>
+        <Cell><Data ss:Type="String">事业部</Data></Cell>
+        <Cell><Data ss:Type="String">销售</Data></Cell>
+        <Cell><Data ss:Type="String">工作类型</Data></Cell>
+        <Cell><Data ss:Type="String">工作内容描述</Data></Cell>
+        <Cell><Data ss:Type="String">涉及厂商</Data></Cell>
+        <Cell><Data ss:Type="String">技术方向</Data></Cell>
+        <Cell><Data ss:Type="String">工作量(小时)</Data></Cell>
+        <Cell><Data ss:Type="String">开始时间</Data></Cell>
+        <Cell><Data ss:Type="String">结束时间</Data></Cell>
+      </Row>
+
+      <% @feeds.each do |feed| %>
+          <% itvendors_arrary =[] %>
+          <% if feed.feedable.tag_itvendors.present? %>
+            <% feed.feedable.tag_itvendors.each do |v| %>
+              <%= itvendors_arrary.push(v.name) %>
+            <% end %>
+          <% end %>
+
+          <% itskills_arrary =[] %>
+          <% if feed.feedable.tag_itskills.present? %>
+            <% feed.feedable.tag_itskills.each do |s| %>
+              <%= itskills_arrary.push(s.name) %>
+            <% end %>
+          <% end %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= feed.feedable.project.code %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= feed.feedable.project.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.team.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= desc_worktype(feed.feedable.worktype) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= strip_tags(feed.feedable.content) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= itvendors_arrary %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= itskills_arrary %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= feed.feedable.hours %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= strf(feed.feedable.begin_time) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= strf(feed.feedable.end_time) %></Data></Cell>
+        </Row>
+
+      <% end %>
+
+    </Table>
+  </Worksheet>
+</Workbook>

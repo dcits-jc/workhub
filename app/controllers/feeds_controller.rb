@@ -38,6 +38,16 @@ class FeedsController < ApplicationController
     end
     @current_week_workloads = loads
     
+    # 数据导出
+    respond_to do |format|
+      format.html
+      format.xls{ 
+        # 设置文件名
+        headers["Content-Disposition"]="attachment; filename=周报导出("+@start_date.strftime('%Y-%m-%d')+"~"+@end_date.strftime('%Y-%m-%d')+").xls"
+      }  
+    end
+
+    
   end
 
 

@@ -10,6 +10,9 @@
           <%= strf(@start_date) %> ~ <%= strf(@end_date) %>  
         </small>
       </li>
+      <%= link_to week_feeds_path(start_date: @start_date,end_date: @end_date,format: "xls"),class: 'pull-right',title: '导出工作量'  do%>
+        <span class="glyphicon glyphicon-save"></span>
+      <% end %>
     </ol>
 
     <!-- 按钮与表单 -->

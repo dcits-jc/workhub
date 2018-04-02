@@ -25,6 +25,16 @@ class ProjectsController < ApplicationController
       @project_workflows_hoursum = @project_workflows_hoursum + w.hours
       @project_workflows_costsum = @project_workflows_costsum + w.cost
     end
+
+    # 数据导出
+    respond_to do |format|
+      format.html
+      format.xls{ 
+        # 设置文件名
+        headers["Content-Disposition"]="attachment; filename=工作量导出("+@project.name+"#"+@project.code+").xls"
+      }  
+    end
+
   end
 
   def edit
