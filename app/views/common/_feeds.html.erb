@@ -1,0 +1,112 @@
+
+
+<div class="row">
+  <div class="col-md-12">
+    <% @feeds.each do |f| %>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+
+            <!-- 个人信息 -->
+            <div id="user_feeds_head_line" >
+              <%= link_to user_path(f.user),class: "thumbnail" do %>
+                <%= user_avatar(f.user) %>
+              <% end %>
+            </div>
+            <div id="user_feeds_info">
+              <p id="user_feeds_name">
+                <strong>
+                  <%= f.user.name %>
+                </strong>
+                <small><%= f.user.team.present? ? '#'+f.user.team.name : nil %></small>                 
+              </p>
+              <p id="user_feeds_time">
+                <em><%= strf_details(f.created_at) %></em>
+              </p>
+            </div> 
+            <!-- 个人信息  -->
+
+            <!-- 删除按钮 -->
+            <div class="pull-right">
+              <% if f.user == current_user %>
+                <small><%= link_to('删除',feed_path(f),method: 'Delete',data: { confirm: "确认删除该条工作流" })  %></small>
+              <% end %>
+            </div>
+
+          </div>
+          <div class="panel-body">
+
+          <!-- 具体工作 -->
+           <div class="row">
+              <div class="col-md-1">
+                <p><br></p>
+                <strong><%= f.feedable.hours %>h</strong>
+              </div>
+
+              <div class="col-md-11">
+              <blockquote>
+               <p>
+                <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
+                 <kbd><%= desc_worktype(f.feedable.worktype) %></kbd>
+                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" title="项目号 <%= f.feedable.project.code %>" data-content="<p><span class='glyphicon glyphicon-user'></span> <code><%= f.feedable.project.sales.name %></code><br><kbd><%= f.feedable.project.sales.team.name %></kbd></p>"><%= f.feedable.project.name %></span> 
+               </p>
+               <p><%= simple_format(f.feedable.content) %></p>
+               <p>
+
+                 <% if f.feedable.tag_itvendors.present? or f.feedable.tag_itskills.present? %>
+
+                  <span class="glyphicon glyphicon-tags" aria-hidden="true"> </span> 
+                  <!-- 厂商 -->
+                  <% if f.feedable.tag_itvendors.present? %>
+                    <% f.feedable.tag_itvendors.each do |v| %>
+                    <code><%= v.name %></code>
+                    <% end %>
+                  <% end %>
+                  
+                  <!-- 技术方向 -->
+                  <% if f.feedable.tag_itskills.present? %>
+                    <% f.feedable.tag_itskills.each do |s| %>
+                    <code><%= s.name %></code>
+                    <% end %>
+                  <% end %>
+
+                <% end %>
+               </p>
+
+               <p><small><em><%= strf_wday(f.feedable.begin_time) %> ~ <%= strf_wday(f.feedable.end_time) %></em></small></p>
+
+              </blockquote>    
+             </div>
+           </div>
+           <!-- ? -->
+
+          </div>
+        </div>
+
+
+    <% end %>
+
+
+    
+  </div>
+</div>
+
+
+
+<script>
+// 项目信息
+$(function (){
+  // 绑定触发条件
+  $(".btn-projectinfo").popover({
+      trigger:'hover', //触发方式
+      html: true, // 为true的话，data-content里就能放html代码了
+  });
+});
+
+</script>
+
+
+
+
+
+

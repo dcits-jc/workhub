@@ -86,6 +86,15 @@ gem 'avatar_magick'
 # 拼音
 gem 'chinese_pinyin'
 
+# 搜索模块
+gem 'ransack'
+# 分页
+gem 'will_paginate'
+# 时间选择模块
+gem 'flatpickr_rails'
+# 编辑器
+gem 'simditor'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -104,6 +113,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem "capistrano", "~> 3.4"
+  gem "capistrano-rvm"
+  gem "capistrano-rails"
+  gem "capistrano-passenger"
 end
 
 

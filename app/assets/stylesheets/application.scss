@@ -12,13 +12,19 @@
  *
  *= require_tree .
  *= require_self
+ *= require flatpickr
+ *= require simditor
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-select";
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
+
+
 
 /* 整体颜色浅色 */
 body{
@@ -65,3 +71,25 @@ hr{
 
 
 
+/* 用户 workflow 表单样式 */
+/* 设置 editor 编辑框高度 */
+#ProjectWorkflowModal .simditor-body{
+  min-height: 100px;
+}
+
+#ManagementWorkflowModal .simditor-body{
+  min-height: 100px;
+}
+
+/* 设置勾选框样式 */
+span.checkbox.inline {
+  display: inline;
+  /*padding: 1em;*/
+  margin: 1em;
+}
+
+
+/* 当工作量为0时候提示 */
+span.zero_alert{
+  color: #f00
+}

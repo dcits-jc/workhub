@@ -5,18 +5,71 @@
 </ol>
 
 
-<h2><%= @project.name %></kbd></h2>
+<h2><%= @project.name %>(<%= @project_workflows_hoursum %>h)</h2>
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 描述
+    <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 基本信息
      <%= link_to edit_project_path(@project),class: ' pull-right',type: 'button' do %>
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
      <% end %>
     </h3>
   </div>
   <div class="panel-body">
-    <%= @project.description %>
+    <table>
+      <tr>
+        <td>项目号:</td>
+        <td><%= @project.code %></td>
+      </tr>
+      <tr>
+        <td>项目类型:</td>
+        <td><%= desc_projecttype(@project.projecttype) %></td>
+      </tr>
+      <tr>
+        <td>项目级别:</td>
+        <td><%= @project.project_class %></td>
+      </tr>
+      <tr>
+        <td>销售:</td>
+        <td><code><%=  @project.sales.name %></code></td>
+      </tr>
+      <tr>
+        <td>建立者:</td>
+        <td><code><%=  @project.builder.name %></code></td>
+      </tr>  
+      <tr>
+        <td>事业部:</td>
+        <td><kbd><%=  @project.sales.team.name %></kbd></td>
+      </tr>
+      <tr>
+        <td>时间:</td>
+        <td><%= strf(@project.begin_time) %> ~ <%= strf(@project.end_time) %></td>
+      </tr>
+      <tr>
+        <td>区域</td>
+        <td><%= @project.area %></td>
+      </tr>
+      <tr>
+        <td>客户名称:</td>
+        <td><%= @project.customer_name %></td>
+      </tr>
+      <tr>
+        <td>用户联系人:</td>
+        <td><%= @project.customer_contact_name %></td>
+      </tr>
+      <tr>
+        <td>用户联系电话:</td>
+        <td><%= @project.customer_contact_phone %></td>
+      </tr>
+      <tr>
+        <td>用户联系邮箱:</td>
+        <td><%= @project.customer_contact_email %></td>
+      </tr>
+      <tr>
+        <td>项目简介:</td>
+        <td><%= @project.description %></td>
+      </tr>
+    </table>    
   </div>
 </div>
 
@@ -24,7 +77,7 @@
 <!-- 管理员 -->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> 管理员 <kbd><%= @managers.count %></kbd>
+    <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> 项目经理 <kbd><%= @managers.count %></kbd>
       <a href="" class="pull-right" data-toggle="modal" data-target="#newManager">
          <i class="fa fa-user-plus" aria-hidden="true"></i>
       </a>
@@ -55,11 +108,23 @@
 </div>
 
 
-<%= link_to('编辑',edit_project_path(@project),class: 'btn btn-primary btn-xs') %>
-<%= link_to('删除',project_path(@project), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
+<%#= link_to('编辑',edit_project_path(@project),class: 'btn btn-primary btn-xs') %>
+<%#= link_to('删除',project_path(@project), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
 
 <!-- 新增管理员模态框 -->
 <%= render 'form_manager_add'  %>
 <!-- 新增成员模态框 -->
 <%= render 'form_member_add'  %>
+
+
+
+<%= render "common/feeds" %>
+
+
+
+
+
+
+
+
 

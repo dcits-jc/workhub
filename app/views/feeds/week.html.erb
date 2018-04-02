@@ -1,0 +1,54 @@
+<div class="row">
+  <!-- 首部信息 -->
+  <div class="col-md-9">
+
+    <!-- 导航栏 -->
+    <ol class="breadcrumb">
+      <!-- 周开始与结束时间 -->
+      <li class="active">
+        <small>
+          <%= week_begin(@current_time) %> ~ <%= week_end(@current_time) %>  
+        </small>
+      </li>
+    </ol>
+
+    <!-- 按钮与表单 -->
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="pull-left">
+          <p> 
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ProjectWorkflowModal"> + 项目类工作</button>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#ManagementWorkflowModal"> + 其他工作</button>
+          </p>
+        </div>          
+        <div class="pull-right">
+          <strong>当周工作量 <u><span class="lead">(
+            <% if @current_week_workloads == 0 %>
+              <span class="zero_alert">0h</span>
+            <% else %>
+              <%= @current_week_workloads %>h
+            <% end %>
+          / 40h )</span> </u></strong>
+        </div>
+
+      </div>
+      
+    </div>
+    
+    <!-- 模态框 -->
+    <%= render 'dialogforms/project_workflow_dialog.html.erb' %>
+    <!-- 模态框 -->
+    <%= render 'dialogforms/management_workflow_dialog.html.erb' %>
+
+    <!-- 本周的 feeds -->
+    <%= render 'common/feeds' %>
+
+  </div>
+
+  <!-- 右侧边 -->
+  <div class="col-md-3 hidden-xs hidden-sm">
+    <%= render 'user_history' %>
+  </div>
+
+</div>

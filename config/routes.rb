@@ -1,30 +1,37 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'feeds#current_week'  
+  root 'feeds#week'  
 
   # 信息流
   resources :feeds do
     collection do
-      get :current_week
+      get :week
     end
   end
 
+  # 团队信息流
   resources :teams do
     collection do
-      get :current_week
+      get :week
     end
   end
 
   resources :projects
 
+  resources :users do
+    member do
+      get :week
+    end
+  end
 
   # 工作流
   resources :project_workflows
-
+  resources :management_workflows
 
   # 管理员路由
   namespace :admin do
+    resources :feeds
     resources :users do
       member do
         post :reset_password
@@ -34,6 +41,7 @@ Rails.application.routes.draw do
     end
     resources :teams
     resources :projects
+
   end
   
 

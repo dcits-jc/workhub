@@ -11,8 +11,11 @@
     <tr>
       <td>项目名</td>
       <td>成员数</td>
+      
+      <td>销售</td>
+      <td>项目经理</td>
       <td>创建者</td>
-      <td>项目描述</td>
+      <!-- <td>项目描述</td> -->
     </tr>
   </thead>
   <tbody>
@@ -20,8 +23,17 @@
     <tr>
       <td><strong><%= link_to(p.name,project_path(p)) %></strong></td>
       <td><kbd><%= p.members.count %></kbd> </td>
+      
+ 
+      <td><code><%= p.sales.name %></code></td>
+      
+      <td>
+        <% p.managers.each do |m| %>
+          <code><%= m.name %></code>
+        <% end %>
+      </td>
       <td><code><%= p.builder.name %></code></td>
-      <td> <small> <%= p.description %></small></td>
+      
     </tr>
     <% end %>
   </tbody>

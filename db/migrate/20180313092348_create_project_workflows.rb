@@ -12,6 +12,8 @@ class CreateProjectWorkflows < ActiveRecord::Migration[5.1]
       # 关联项目
       t.integer :project_id
 
+
+
       t.timestamps
     end
   end

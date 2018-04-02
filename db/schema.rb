@@ -10,12 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313092348) do
+ActiveRecord::Schema.define(version: 20180401152403) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
     t.string "feedable_type"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "begin_time"
+    t.datetime "end_time"
+  end
+
+  create_table "management_workflows", force: :cascade do |t|
+    t.datetime "begin_time"
+    t.datetime "end_time"
+    t.text "content"
+    t.integer "project_id"
+    t.string "worktype"
+    t.float "hours"
+    t.float "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "other_itvendors"
+    t.string "other_itskills"
+  end
+
+  create_table "managementworkflowitskill_relationships", force: :cascade do |t|
+    t.integer "management_workflow_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "managementworkflowitvendor_relationships", force: :cascade do |t|
+    t.integer "management_workflow_id"
+    t.integer "tag_itvendor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +57,11 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "worktype"
+    t.float "hours"
+    t.float "cost"
+    t.string "other_itvendors"
+    t.string "other_itskills"
   end
 
   create_table "projectmanager_relationships", force: :cascade do |t|
@@ -49,7 +84,48 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.integer "builder_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "binding_team_id"
+    t.string "projecttype"
+    t.integer "sales_id"
+    t.string "code"
+    t.integer "pm_id"
+    t.string "project_class"
+    t.string "customer_name"
+    t.string "customer_contact_name"
+    t.string "customer_contact_phone"
+    t.string "customer_contact_email"
+    t.string "area"
+    t.datetime "begin_time"
+    t.datetime "end_time"
     t.index ["name"], name: "index_projects_on_name", unique: true
+  end
+
+  create_table "projectworkflowitskill_relationships", force: :cascade do |t|
+    t.integer "project_workflow_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projectworkflowitvendor_relationships", force: :cascade do |t|
+    t.integer "project_workflow_id"
+    t.integer "tag_itvendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tag_itskills", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tag_itvendors", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teammanager_relationships", force: :cascade do |t|
@@ -64,7 +140,22 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "team_type"
     t.index ["name"], name: "index_teams_on_name", unique: true
+  end
+
+  create_table "useritskill_relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_itskill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "useritvendor_relationships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_itvendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,6 +180,13 @@ ActiveRecord::Schema.define(version: 20180313092348) do
     t.boolean "is_admin", default: false
     t.boolean "password_resetting", default: true
     t.string "avatar_attachment"
+    t.string "itcode"
+    t.string "team_name"
+    t.string "entry_time"
+    t.string "area_name"
+    t.string "status"
+    t.string "worktype"
+    t.string "cost_center"
     t.index ["code"], name: "index_users_on_code", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

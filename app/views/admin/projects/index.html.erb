@@ -4,28 +4,47 @@
 </ol>
 
 
+<!-- 团队搜索 -->
 
-<%= link_to('+ 新建项目',new_admin_project_path,class: 'btn btn-primary btn-xs') %>
+<%= search_form_for [:admin,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
+  <div class="form-group">
+    <%= f.search_field :name_cont, class: "form-control", placeholder: "输入项目名"  %>
+    <%= f.submit '搜索',class: "btn btn-warning btn-xs" %>
+    <%= link_to('+ 新建项目',new_admin_project_path,class: 'btn btn-primary btn-xs') %>
+  </div>
+<% end %>
+
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
       <td>项目名</td>
       <td>成员数</td>
       <td>创建者</td>
-      <td>项目描述</td>
+      <td>销售</td>
+      <td>项目经理</td>
       <td>操作</td>
     </tr>
   </thead>
+
   <tbody>
     <% @projects.each do |p| %>
     <tr>
       <td><strong><%= link_to(p.name,admin_project_path(p)) %></strong></td>
       <td><kbd><%= p.members.count %></kbd> </td>
-      <td><code><%= link_to(p.builder.name,admin_user_path(p.builder)) %></code></td>
-      <td> <small> <%= p.description %></small></td>
+      <td><small><%= p.sales.name %> </small> </td>
+      <td>
+        <% p.managers.each do |m| %>
+          <code><%= m.name %></code>
+        <% end %>
+      </td>  
       <td><%= link_to('编辑',edit_admin_project_path(p)) %>  | <%= link_to('删除',admin_project_path(p), method: 'DELETE', data: { confirm: "确认删除该项目?" }) %> </td>
     </tr>
     <% end %>
   </tbody>
 
 </table>
+
+<!-- 分页 -->
+<div class="text-center">
+  <%= will_paginate @projects %>
+</div>

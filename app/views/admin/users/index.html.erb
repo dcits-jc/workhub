@@ -1,15 +1,27 @@
 <!-- 导航栏 -->
 <ol class="breadcrumb">
-  <li class="active">全部用户 <kbd><%= @users.count %></kbd></li>
+  <li class="active">全部用户 <kbd><%= @all_users.count %></kbd></li>
 </ol>
 
+<!-- 用户搜索 -->
+<%= search_form_for [:admin,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
+  <div class="form-group">
+    <%= f.search_field :code_or_name_or_email_cont, class: "form-control", placeholder: "输入昵称,姓名或邮箱"  %>
+    <%= f.submit '搜索',class: "btn btn-warning btn-xs" %>
+    <%= link_to('+ 新建用户',new_admin_user_path,class: 'btn btn-primary btn-xs') %>
+  </div>
+<% end -%>
 
-<%= link_to('+ 新建用户',new_admin_user_path,class: 'btn btn-primary btn-xs') %>
+
+
+
+
 
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
-      <td>昵称</td>
+      <td></td>
+      <td>itcode</td>
       <td>姓名</td>
       <td>用户邮箱</td>
       <td>操作</td>
@@ -18,8 +30,9 @@
   <tbody>
     <% @users.each do |u| %>
     <tr>
+      <td><%= user_avatar(u,{style: "width: 20px;height: 20px;"}) %></td>
       <td>
-        <strong><%= link_to(u.code,admin_user_path(u)) %></strong>
+        <strong><%= link_to(u.itcode,admin_user_path(u)) %></strong>
         <!-- 如果是管理员,则显示管理员提示 -->
         <% if u.is_admin? %>
           <code>管理员</code>
@@ -38,3 +51,9 @@
   </tbody>
 
 </table>
+
+
+<!-- 分页 -->
+<div class="text-center">
+  <%= will_paginate @users %>
+</div>

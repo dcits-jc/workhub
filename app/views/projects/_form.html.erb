@@ -1,8 +1,206 @@
 <%= simple_form_for @project do |p| %>
   <div class="form-group">
-    <%= p.input :name,label: '项目名', input_html: { class: "form-control"} %>
+    <%= p.input :name,label: '项目名', input_html: { class: "form-control"},placeholder: "例: ****机构****项目" %>
+
+    <!-- 选择项目类型 -->
+    <%= p.input :projecttype,label: '项目类型',placeholder: "选择项目类别",collection:[['临时项目','temp_project'],['供货','supply_project'],['集成','si_project'],['售前','presale_project'],['集成售前','sipresale_project'],['解决方案售前','solutionpresale_project'],['服务','service_project'],['单次服务','singleservice_project'],['服务运维','serviceoperation_project'],['复杂集成/灾备','complexsi_project']],selected: 'si_project',id: 'project_projecttype' %>
+
+
+    <!-- 输入项目号 -->
+    <div id='project_code'>
+      <label><abbr title="required">*</abbr> 项目号</label>
+      <%= p.input :code,label: false,placeholder: "输入项目号" %>
+    </div>
+
+    <div class="form-group">
+      <label><abbr title="required">*</abbr> 销售</label>
+      <select data-live-search="true" data-size=10  name="project[sales_id]" id="sales_id" class="selectpicker form-control select required" data-live-search-placeholder="输入用户名或昵称进行搜索" data-none-selected-text="点击输入用户名">
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label><abbr title="required">*</abbr> 项目经理</label>
+      <select data-live-search="true" data-size=10  name="project[pm_id]" id="pm_id" class="selectpicker form-control select required" data-live-search-placeholder="输入用户名或昵称进行搜索" data-none-selected-text="点击输入用户名">
+      </select>
+    </div>
+
+
+    <div class="form-group">
+      <label><abbr title="required">*</abbr> 开始日期</label>
+      <%= p.flatpickr_date_select :begin_time,placeholder: "点击选择日期",id: 'flatpickr_begin_time'%>
+    </div>
+
+    <div class="form-group">
+      <label><abbr title="required">*</abbr> 结束日期</label>
+      <%= p.flatpickr_date_select :end_time,placeholder: "点击选择日期",id: 'flatpickr_end_time'%>  
+    </div>
+
+
+
+    <%= p.input :project_class,label: '项目级别',collection:[['A','A'],['B','B'],['C','C'],['D','D']],selected: 'C', input_html: { class: "form-control"} %>
+
+    <%= p.input :customer_name,label: '客户名称',placeholder: "****机构", input_html: { class: "form-control"} %>
+
+    <%= p.input :customer_contact_name,label: '用户联系人',placeholder: "用户联系人", input_html: { class: "form-control"} %>
+
+    <%= p.input :customer_contact_phone,label: '用户联系电话',placeholder: "用户联系电话", input_html: { class: "form-control"} %>
+
+    <%= p.input :customer_contact_email,label: '用户联系邮箱',placeholder: "用户联系邮箱", input_html: { class: "form-control"} %>
+
+    <%= p.input :area,label: '区域',placeholder: "例: 北京", input_html: { class: "form-control"} %>
+
+
+
     <%= p.input :description,label: '项目简介', input_html: { class: "form-control"} %>
+
+
   </div>
   <%= link_to('取消',admin_projects_path,class: "btn btn-default btn-xs") %>
   <%= p.submit "提交", class: "btn btn-primary btn-xs", data: { disable_with: "提交中..." } %>
 <% end %>
+
+
+<script>
+
+
+
+$(document).ready(function(){
+  // 设置 keyup 延时
+  var last;
+  // 动态ajax调整下拉框
+  $("#sales_id").on('shown.bs.select',function(e){
+      $('#sales_id').prev().find("input").keyup(function(event){
+        // 建立时间戳
+        last = event.timeStamp;
+        // 设置延时500ms 执行 keyup事件
+        setTimeout(function() {
+          if(last-event.timeStamp==0){
+
+            // 增加 id
+            $('#sales_id').prev().find("input").attr('id',"sales_id_input");
+            // 设置启动 ajax 最少字符数
+            if ($('#sales_id_input').val().length>0) {
+
+                  // console.log($('#sales_id_input').val()); //获取输入框值输出到控制台  
+
+                  $.ajax({
+                    // get请求地址
+                        url: "/api/v1/users/" + $('#sales_id_input').val(),
+                        dataType: "json",
+                        success: function (data) {
+                          data_arrary = data['data'];
+                          // console.log(data_arrary)
+                          // 如果是正常的搜到了
+                          if (data['stat']==1) {
+
+                          $('.selectpicker').html("");
+                            for (var i = 0; i < data_arrary.length; i++) {
+                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].code + "</option>");
+                            };
+                            // 缺一不可
+                            $('#sales_id').selectpicker('refresh');
+                            $('#sales_id').selectpicker('render');
+
+                          } else {
+                            $('.selectpicker').html("");
+                            $('.selectpicker').append("<option value=0>未找到</option>");
+                          }
+                      }
+                  });
+                }
+          }
+          // body...
+        },500)
+
+      })  
+  });
+
+
+
+  // 动态ajax调整下拉框
+  $("#pm_id").on('shown.bs.select',function(e){
+      $('#pm_id').prev().find("input").keyup(function(event){
+        // 建立时间戳
+        last = event.timeStamp;
+        // 设置延时500ms 执行 keyup事件
+        setTimeout(function() {
+          if(last-event.timeStamp==0){
+
+            // 增加 id
+            $('#pm_id').prev().find("input").attr('id',"pm_id_input");
+            // 设置启动 ajax 最少字符数
+            if ($('#pm_id_input').val().length>0) {
+
+                  // console.log($('#pm_id_input').val()); //获取输入框值输出到控制台  
+
+                  $.ajax({
+                    // get请求地址
+                        url: "/api/v1/users/" + $('#pm_id_input').val(),
+                        dataType: "json",
+                        success: function (data) {
+                          data_arrary = data['data'];
+                          // console.log(data_arrary)
+                          // 如果是正常的搜到了
+                          if (data['stat']==1) {
+
+                          $('.selectpicker').html("");
+                            for (var i = 0; i < data_arrary.length; i++) {
+                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].code + "</option>");
+                            };
+                            // 缺一不可
+                            $('#pm_id').selectpicker('refresh');
+                            $('#pm_id').selectpicker('render');
+
+                          } else {
+                            $('.selectpicker').html("");
+                            $('.selectpicker').append("<option value=0>未找到</option>");
+                          }
+                      }
+                  });
+                }
+          }
+          // body...
+        },500)
+
+      })  
+  });
+
+
+
+});
+
+
+// 重新绘图 防止 display:none 的问题
+$(".selectpicker").selectpicker()
+
+// 如果选项卡选中了什么
+$('#project_projecttype').change(function() {
+
+  /* Act on the event */
+  console.log($(this).val());
+  // 如果是临时项目
+  if ($(this).val()=='temp_project') {
+    // 隐藏项目号
+    $('#project_code').addClass('hidden');
+  }else{
+    // 显示项目号
+    $('#project_code').removeClass('hidden')
+  }
+});  
+
+
+
+
+
+
+// 设置当前时间
+var nowTime = new Date();
+nowTimeFormat = nowTime.getFullYear()+'-'+(nowTime.getMonth()+1)+'-'+nowTime.getDate()
+// 日期选择器
+$('.flatpicker_date_select').flatpickr({
+  wrap: true,
+  defaultDate: nowTimeFormat
+});
+
+
+</script>

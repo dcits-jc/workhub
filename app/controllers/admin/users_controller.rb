@@ -4,7 +4,10 @@ class Admin::UsersController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @users = User.all
+    @all_users = User.all
+    # 用户搜索
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
@@ -22,14 +25,17 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.name = user_params[:name].strip
+    @user.code = user_params[:code].strip
     @user.password = ENV["user_default_password"]
     @user.password_confirmation = ENV["user_default_password"]
-    code_user = User.find_by_code(user_params[:code])
+    code_user = User.find_by_code(@user.code)
     # 如果用户已经存在
     if code_user.present?
       flash[:alert] = "昵称已存在!"
       render :new
     else
+      # binding.pry
       if @user.save
         flash[:notice] = "用户建立成功!"
         redirect_to admin_users_path

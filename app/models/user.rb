@@ -10,10 +10,16 @@ class User < ApplicationRecord
 
   # 邮箱唯一验证
   validates :email, presence: true, uniqueness: true
-  # 昵称唯一验证
+  # 编号唯一验证
   validates :code, presence: true, uniqueness: true
   # 名字必须填写验证
   validates :name, presence: true
+  # itcode必须填写验证
+  validates :itcode, presence: true, uniqueness: true
+
+
+  # 建立后要做一些初始化操作
+  after_create :user_itinit!
 
 
   # 挂载头像
@@ -31,7 +37,11 @@ class User < ApplicationRecord
   # 1:n 创建项目
   has_many :projects
   # 改名一对多关系为 build_projects : builder
-  has_many :build_projects, class_name: "Project"
+  has_many :build_projects, class_name: "Project",foreign_key: "builder_id"
+
+
+  # 改名一对多关系为 build_projects :  sales
+  has_many :sale_projects, class_name: "Project",foreign_key: "sales_id"
 
   # n:m 参与项目
   has_many :projectparticipated_relationships
@@ -40,6 +50,15 @@ class User < ApplicationRecord
   # n:m 管理项目
   has_many :projectmanager_relationships
   has_many :manage_projects, through: :projectmanager_relationships, source: :project
+
+
+  # n:m 拥有 it 技能
+  has_many :useritskill_relationships
+  has_many :tag_itskills, through: :useritskill_relationships, source: :tag_itskill
+
+  # n:m 熟悉 it 厂商
+  has_many :useritvendor_relationships
+  has_many :tag_itvendors, through: :useritvendor_relationships, source: :tag_itvendor
 
 
   # 信息流
@@ -54,6 +73,16 @@ class User < ApplicationRecord
       scoped
     end
   end
+
+  # 用户初始化
+  def user_itinit!
+    # 将团队名字换成 id
+    self.team = Team.find_by_name(self.team_name)
+    self.team_name = nil
+    self.save
+  end
+
+
 
   # 全名
   def name_pinyin
@@ -81,6 +110,33 @@ class User < ApplicationRecord
   def cancel_admin!
     self.is_admin = false
     self.save
+  end
+
+
+
+  # 该用户对应的厂商交流项目
+  def project_technical_exchange
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'technical_exchange')
+  end
+
+  # 该用户对应的认证项目
+  def project_certification_exam
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'certification_exam')
+  end
+
+  # 该用户对应的技术提升项目
+  def project_tech_improvement
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'tech_improvement')
+  end
+
+  # 该用户对应的部门工作项目
+  def project_team_work
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'team_work')
+  end
+
+  # 该用户对应的休假
+  def project_day_off
+    Project.find_by(binding_team_id: self.team_id,projecttype: 'day_off')
   end
 
 end
@@ -111,6 +167,13 @@ end
 #  is_admin               :boolean          default(FALSE)
 #  password_resetting     :boolean          default(TRUE)
 #  avatar_attachment      :string
+#  itcode                 :string
+#  team_name              :string
+#  entry_time             :string
+#  area_name              :string
+#  status                 :string
+#  worktype               :string
+#  cost_center            :string
 #
 # Indexes
 #
