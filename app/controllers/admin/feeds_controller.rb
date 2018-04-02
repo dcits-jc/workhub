@@ -4,7 +4,31 @@ class Admin::FeedsController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @feeds = Feed.all.order_by_recent.paginate(:page => params[:page], :per_page => 20)
+    # 设置当前时间
+    @current_time = Time.now
+
+    if params[:start_date].present? and params[:end_date].present?
+      @start_date = Time.parse(params[:start_date])
+      @end_date = Time.parse(params[:end_date])
+    else
+      @start_date = @current_time.at_beginning_of_week
+      @end_date = @current_time.at_end_of_week
+    end
+
+    # 历史周
+    @history_weeks = weekindex(Time.now, current_user.created_at)
+
+    @feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
+
+    # 数据导出
+    respond_to do |format|
+      format.html
+      format.xls{ 
+        # 设置文件名
+        headers["Content-Disposition"]="attachment; filename=周报导出("+@start_date.strftime('%Y-%m-%d')+"~"+@end_date.strftime('%Y-%m-%d')+").xls"
+      }  
+    end
+
   end
 
 end
