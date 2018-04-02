@@ -1147,7 +1147,10 @@ end
 
 # 建立用户
 user_arrary.each do |u|
-  User.create(u)
+  team = Team.find_by_name(u[:team_name])
+  u.delete(:team_name)
+  user = User.create(u)
+  user.team = team
   puts u[:name] + " created!!"
 end
 
@@ -1192,7 +1195,7 @@ end
 
 # 技能
 tgitskill_arrary.each do |s|
-  TagItskill.create(v)
-  puts v[:name] + ' created!!'
+  TagItskill.create(s)
+  puts s[:name] + ' created!!'
 end
 
