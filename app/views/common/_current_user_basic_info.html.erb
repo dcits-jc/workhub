@@ -8,21 +8,21 @@
     </a>        
 
     <!-- 用户名和用户昵称 -->
-    <h2><%= current_user.name %>#<%= current_user.code %></h2>
+    <h2><%= current_user.name %>#<%= current_user.itcode %></h2>
     <% if current_user.is_admin? %>
       <h3><code>管理员</code></h3> 
     <% end %>  
 
-    <p><%= current_user.team.present? ? current_user.team.name : nil %></p>
+    <h4><%= current_user.team.present? ? current_user.team.name : nil %></h4>
     <p>部门经理</p>  
 
          
-    <p>
+<!--     <p>
       <span class="glyphicon glyphicon-tag" aria-hidden="true"> </span> <kbd>网络</kbd> <kbd>服务器</kbd>
     </p>
     <p>
       <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span> <kbd>华为</kbd> <kbd>思科</kbd>
-    </p> 
+    </p>  -->
     <hr>
   </div>
 

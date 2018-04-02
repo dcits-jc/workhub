@@ -29,3 +29,7 @@
 # 忽略测试上传的图片
 /public/uploads/tmp
 /public/uploads/user
+
+
+/config/database.yml
+/config/secrets.yml

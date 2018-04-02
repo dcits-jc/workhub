@@ -35,6 +35,9 @@ class Project < ApplicationRecord
   belongs_to :binding_team, class_name: "Team", foreign_key: "binding_team_id",optional: true
 
 
+  # 排序
+  scope :order_by_recent, -> { order("created_at DESC") }
+
   # 加入成员
   def join!(user)
     if !(self.members.include?(user))

@@ -26,6 +26,13 @@
             </div> 
             <!-- 个人信息  -->
 
+            <!-- 删除按钮 -->
+            <div class="pull-right">
+              <% if f.user == current_user %>
+                <small><%= link_to('删除',feed_path(f),method: 'Delete',data: { confirm: "确认删除该条工作流" })  %></small>
+              <% end %>
+            </div>
+
           </div>
           <div class="panel-body">
 
@@ -41,7 +48,7 @@
                <p>
                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
                  <kbd><%= desc_worktype(f.feedable.worktype) %></kbd>
-                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" title="编号 <%= f.feedable.project.code %>" data-content="<p>部门 <kbd><%= f.feedable.project.sales.team.name %></kbd><br>销售 <code><%= f.feedable.project.sales.name %></code></p>"><%= f.feedable.project.name %></span> 
+                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" title="项目号 <%= f.feedable.project.code %>" data-content="<p><span class='glyphicon glyphicon-user'></span> <code><%= f.feedable.project.sales.name %></code><br><kbd><%= f.feedable.project.sales.team.name %></kbd></p>"><%= f.feedable.project.name %></span> 
                </p>
                <p><%= simple_format(f.feedable.content) %></p>
                <p>

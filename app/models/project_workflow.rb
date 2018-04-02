@@ -23,6 +23,8 @@ class ProjectWorkflow < ApplicationRecord
   has_many :projectworkflowitvendor_relationships
   has_many :tag_itvendors, through: :projectworkflowitvendor_relationships, source: :tag_itvendor
 
+
+
   # 加入 it技能
   def join_tag_itskills(tag)
     self.tag_itskills << tag

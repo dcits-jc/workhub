@@ -10,10 +10,16 @@ class User < ApplicationRecord
 
   # 邮箱唯一验证
   validates :email, presence: true, uniqueness: true
-  # 昵称唯一验证
+  # 编号唯一验证
   validates :code, presence: true, uniqueness: true
   # 名字必须填写验证
   validates :name, presence: true
+  # itcode必须填写验证
+  validates :itcode, presence: true, uniqueness: true
+
+
+  # 建立后要做一些初始化操作
+  after_create :user_itinit!
 
 
   # 挂载头像
@@ -67,6 +73,16 @@ class User < ApplicationRecord
       scoped
     end
   end
+
+  # 用户初始化
+  def user_itinit!
+    # 将团队名字换成 id
+    self.team = Team.find_by_name(self.team_name)
+    self.team_name = nil
+    self.save
+  end
+
+
 
   # 全名
   def name_pinyin
@@ -151,6 +167,13 @@ end
 #  is_admin               :boolean          default(FALSE)
 #  password_resetting     :boolean          default(TRUE)
 #  avatar_attachment      :string
+#  itcode                 :string
+#  team_name              :string
+#  entry_time             :string
+#  area_name              :string
+#  status                 :string
+#  worktype               :string
+#  cost_center            :string
 #
 # Indexes
 #

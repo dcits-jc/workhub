@@ -10,7 +10,8 @@ class Api::V1::ProjectsController < ApplicationController
             {
               id: project.id,
               name: project.name,
-              description: project.description
+              code: project.code,
+              sales_name: project.sales.name
             }
           }
         }  

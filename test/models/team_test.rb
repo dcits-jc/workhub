@@ -15,6 +15,7 @@ end
 #  description :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  team_type   :string
 #
 # Indexes
 #

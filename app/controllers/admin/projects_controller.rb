@@ -4,16 +4,28 @@ class Admin::ProjectsController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @all_projects = Project.all
+    @all_projects = Project.all.order_by_recent
     # 项目搜索
     @q = Project.ransack(params[:q])
-    @projects = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)
+    @projects = @q.result(distinct: true).order_by_recent.paginate(:page => params[:page], :per_page => 20)
   end
 
   def show
     @project = Project.find(params[:id])
     @members = @project.members
     @managers = @project.managers
+    
+    # 历史周
+    @history_weeks = weekindex(Time.now, @project.created_at)
+    
+    # binding.pry
+    @feeds =[]
+    @project_workflows_hoursum = 0
+    @project.project_workflows.each do |w|
+      @feeds.unshift(w.feed)
+      @project_workflows_hoursum = @project_workflows_hoursum + w.hours
+    end
+
   end
 
   def edit

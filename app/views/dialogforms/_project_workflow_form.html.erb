@@ -102,7 +102,7 @@ $(document).ready(function(){
 
                           $('.selectpicker').html("");
                             for (var i = 0; i < data_arrary.length; i++) {
-                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name + "</option>");
+                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>");
                             };
                             // 缺一不可
                             $('#project_project_workflow_id').selectpicker('refresh');

@@ -32,6 +32,13 @@ end
 #  is_admin               :boolean          default(FALSE)
 #  password_resetting     :boolean          default(TRUE)
 #  avatar_attachment      :string
+#  itcode                 :string
+#  team_name              :string
+#  entry_time             :string
+#  area_name              :string
+#  status                 :string
+#  worktype               :string
+#  cost_center            :string
 #
 # Indexes
 #
