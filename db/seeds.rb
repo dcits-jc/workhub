@@ -1103,51 +1103,96 @@ project_arrary = [
 ]
 
 
+# 供应商
+tagitvendor_arrary = [
+  {name: '华为'},
+  {name: '思科'},
+  {name: 'IBM'},
+  {name: 'H3C'},
+  {name: 'EMC'},
+  {name: '锐捷'},
+  {name: 'Oracle'},
+  {name: '浪潮'},
+  {name: '中兴'},
+  {name: '烽火'}
+]
 
-# 建立团队
-team_arrary.each do |t|
-  Team.create(t)
-  puts t[:name] + " created!!"
+
+# 技能
+tgitskill_arrary = [
+  {name: '云计算'},
+  {name: '大数据'},
+  {name: '物联网'},
+  {name: '移动互联网'},
+  {name: '网络'},
+  {name: '存储'},
+  {name: '服务器'},
+  {name: '虚拟化'},
+  {name: '小型机'},
+  {name: '容灾'},
+  {name: '机房'},
+  {name: '弱电'},
+  {name: '安防'},
+  {name: '视频语音'},
+  {name: '项目管理'}
+]
+
+
+
+# # 建立团队
+# team_arrary.each do |t|
+#   Team.create(t)
+#   puts t[:name] + " created!!"
+# end
+
+# # 建立用户
+# user_arrary.each do |u|
+#   User.create(u)
+#   puts u[:name] + " created!!"
+# end
+
+
+
+# # 找个管理员
+# admin_user = (User.where(is_admin: true)).first
+
+# # 为所有团队建立绑定项目
+# Team.find_each do |t|
+#   t.create_binding_managementprojects!(admin_user)
+#   puts t[:name] + " binding project created!!"
+# end
+
+
+
+# #建立所有的临时项目
+# project_arrary.each do |p|
+#   # 提取 pm
+#   pm_user = User.find_by_itcode(p[:pm_itcode])
+#   sales_user = User.find_by_itcode(p[:sales_itcode])
+#   p.delete(:pm_itcode)
+#   p.delete(:sales_itcode)
+#   # 指定销售与建立者(管理员)
+#   p[:sales_id] = sales_user.id
+#   p[:builder_id] = admin_user.id
+#   project = Project.create(p)
+#   # 销售加入成员
+#   project.join!(sales_user)
+#   # pm加入成员
+#   project.join!(pm_user)
+#   # pm 加入管理员
+#   project.join_manager!(pm_user)
+#   puts p[:name] + ' created!!'
+# end
+
+# 供应商
+tagitvendor_arrary.each do |v|
+  TagItvendor.create(v)
+  puts v[:name] + ' created!!'
 end
 
-# 建立用户
-user_arrary.each do |u|
-  User.create(u)
-  puts u[:name] + " created!!"
+# 技能
+tgitskill_arrary.each do |s|
+  TagItskill.create(v)
+  puts v[:name] + ' created!!'
 end
-
-
-
-# 找个管理员
-admin_user = (User.where(is_admin: true)).first
-
-# 为所有团队建立绑定项目
-Team.find_each do |t|
-  t.create_binding_managementprojects!(admin_user)
-  puts t[:name] + " binding project created!!"
-end
-
-
-
-#建立所有的临时项目
-project_arrary.each do |p|
-  # 提取 pm
-  pm_user = User.find_by_itcode(p[:pm_itcode])
-  sales_user = User.find_by_itcode(p[:sales_itcode])
-  p.delete(:pm_itcode)
-  p.delete(:sales_itcode)
-  # 指定销售与建立者(管理员)
-  p[:sales_id] = sales_user.id
-  p[:builder_id] = admin_user.id
-  project = Project.create(p)
-  # 销售加入成员
-  project.join!(sales_user)
-  # pm加入成员
-  project.join!(pm_user)
-  # pm 加入管理员
-  project.join_manager!(pm_user)
-  puts p[:name] + ' created!!'
-end
-
-
 
