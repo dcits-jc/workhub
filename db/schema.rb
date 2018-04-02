@@ -181,7 +181,6 @@ ActiveRecord::Schema.define(version: 20180401152403) do
     t.boolean "password_resetting", default: true
     t.string "avatar_attachment"
     t.string "itcode"
-    t.string "team_name"
     t.string "entry_time"
     t.string "area_name"
     t.string "status"
