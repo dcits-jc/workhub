@@ -48,7 +48,7 @@
                <p>
                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
                  <kbd><%= desc_worktype(f.feedable.worktype) %></kbd>
-                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="right" title="项目号 <%= f.feedable.project.code %>" data-content="<p><span class='glyphicon glyphicon-user'></span> <code><%= f.feedable.project.sales.name %></code><br><kbd><%= f.feedable.project.sales.team.name %></kbd></p>"><%= f.feedable.project.name %></span> 
+                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="bottom" title="项目号 <%= f.feedable.project.code %>" data-content="<p><span class='glyphicon glyphicon-user'></span> <code><%= f.feedable.project.sales.name %></code><br><kbd><%= f.feedable.project.sales.team.name %></kbd></p>"><%= f.feedable.project.name %></span> 
                </p>
                <p><%= simple_format(f.feedable.content) %></p>
                <p>

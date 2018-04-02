@@ -11,6 +11,9 @@ class ProjectWorkflowsController < ApplicationController
 
   def create
     @project_workflow = ProjectWorkflow.new(project_workflow_params)
+
+    # 将终止时间+23.59小时
+    @project_workflow.end_time = @project_workflow.end_time+1.day-1.second
     
     # 两次','去重
     itvendors = dry_tsstring(@project_workflow.other_itvendors)
