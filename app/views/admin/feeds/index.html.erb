@@ -1,6 +1,29 @@
-<%= render 'common/feeds' %>
+<div class="row">
+  <!-- 首部信息 -->
+  <div class="col-md-9">
 
-<!-- 分页 -->
-<div class="text-center">
-  <%= will_paginate @feeds %>
+    <!-- 导航栏 -->
+    <ol class="breadcrumb">
+      <!-- 周开始与结束时间 -->
+      <li class="active">
+        <small>
+          <%= strf(@start_date) %> ~ <%= strf(@end_date) %>  
+        </small>
+      </li>
+      <%= link_to admin_feeds_path(start_date: @start_date,end_date: @end_date,format: "xls"),class: 'pull-right',title: '导出工作量'  do%>
+        <span class="glyphicon glyphicon-save"></span>
+      <% end %>
+    </ol>
+
+
+    <!-- 本周的 feeds -->
+    <%= render 'common/feeds' %>
+
+  </div>
+
+  <!-- 右侧边 -->
+  <div class="col-md-3 hidden-xs hidden-sm">
+    <%= render 'admin_history' %>
+  </div>
+
 </div>

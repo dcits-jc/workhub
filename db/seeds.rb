@@ -1103,6 +1103,184 @@ project_arrary = [
 ]
 
 
+
+usercost_arrary = [
+  {itcode:"zhancy",level:"中级",cost:"1500"},
+  {itcode:"liussb",level:"中级",cost:"1500"},
+  {itcode:"huangsheng",level:"高级",cost:"1500"},
+  {itcode:"hegha",level:"高级",cost:"1200"},
+  {itcode:"cuijwa",level:"中级",cost:"900"},
+  {itcode:"zhangzhend",level:"高级",cost:"1200"},
+  {itcode:"liyjs",level:"高级",cost:"1200"},
+  {itcode:"yangqmc",level:"中级",cost:"900"},
+  {itcode:"mengwd",level:"高级",cost:"1500"},
+  {itcode:"linsongb",level:"高级",cost:"2000"},
+  {itcode:"zhangjianau",level:"中级",cost:"1800"},
+  {itcode:"wuyln",level:"中级",cost:"1800"},
+  {itcode:"wangmhc",level:"中级",cost:"1800"},
+  {itcode:"handjb",level:"高级",cost:"2000"},
+  {itcode:"liumgb",level:"初级",cost:"900"},
+  {itcode:"hepengc",level:"",cost:"0"},
+  {itcode:"hujwe",level:"",cost:"0"},
+  {itcode:"tongkaia",level:"",cost:"0"},
+  {itcode:"zhusle",level:"",cost:"0"},
+  {itcode:"houxhb",level:"",cost:"0"},
+  {itcode:"pengmha",level:"",cost:"0"},
+  {itcode:"hujn",level:"初级",cost:"600"},
+  {itcode:"zhuywd",level:"初级",cost:"600"},
+  {itcode:"liumgb",level:"中级",cost:"900"},
+  {itcode:"hejce",level:"初级",cost:"600"},
+  {itcode:"chenydf",level:"初级",cost:"600"},
+  {itcode:"yangfj",level:"专家",cost:"1500"},
+  {itcode:"songlja",level:"专家",cost:"1500"},
+  {itcode:"quliang",level:"高级",cost:"1200"},
+  {itcode:"liuszb",level:"专家",cost:"3000"},
+  {itcode:"huangxu",level:"高级",cost:"1500"},
+  {itcode:"luyid",level:"高级",cost:"1200"},
+  {itcode:"tianxl",level:"专家",cost:"2000"},
+  {itcode:"zhangjra",level:"高级",cost:"1200"},
+  {itcode:"sunzqa",level:"高级",cost:"1500"},
+  {itcode:"malq",level:"中级",cost:"1200"},
+  {itcode:"dongxyb",level:"中级",cost:"1500"},
+  {itcode:"linsenb",level:"高级",cost:"1500"},
+  {itcode:"zhengweic",level:"高级",cost:"2000"},
+  {itcode:"lishf",level:"高级",cost:"2200"},
+  {itcode:"niepeng",level:"中级",cost:"1500"},
+  {itcode:"fengzhong",level:"高级",cost:"1500"},
+  {itcode:"huangybc",level:"高级",cost:"1200"},
+  {itcode:"guanzb",level:"高级",cost:"1200"},
+  {itcode:"wangqiangai",level:"高级",cost:"1200"},
+  {itcode:"huyongd",level:"中级",cost:"1200"},
+  {itcode:"aizy",level:"中级",cost:"1000"},
+  {itcode:"liyingw",level:"初级",cost:"900"},
+  {itcode:"zouwj",level:"中级",cost:"1200"},
+  {itcode:"lilongl",level:"高级",cost:"1200"},
+  {itcode:"sunfmb",level:"高级",cost:"1500"},
+  {itcode:"zhanghma",level:"高级",cost:"1500"},
+  {itcode:"quyi",level:"高级",cost:"1200"},
+  {itcode:"wanghaoo",level:"高级",cost:"1500"},
+  {itcode:"caogs",level:"中级",cost:"1200"},
+  {itcode:"songleib",level:"高级",cost:"1200"},
+  {itcode:"zhangquand",level:"高级",cost:"1500"},
+  {itcode:"jinliang",level:"专家",cost:"2000"},
+  {itcode:"wangyuec",level:"高级",cost:"1500"},
+  {itcode:"zhangbin",level:"专家",cost:"2000"},
+  {itcode:"liujyy",level:"中级",cost:"900"},
+  {itcode:"zhangjingaq",level:"高级",cost:"1500"},
+  {itcode:"sutaoa",level:"高级",cost:"1500"},
+  {itcode:"wuweim",level:"高级",cost:"1200"},
+  {itcode:"zhangwzc",level:"高级",cost:"2000"},
+  {itcode:"fangmeng",level:"中级",cost:"1200"},
+  {itcode:"chengxinc",level:"中级",cost:"900"},
+  {itcode:"wendan",level:"高级",cost:"1200"},
+  {itcode:"yangfengg",level:"初级",cost:"600"},
+  {itcode:"hanymc",level:"高级",cost:"1800"},
+  {itcode:"wangkbb",level:"中级",cost:"900"},
+  {itcode:"xutao",level:"高级",cost:"1200"},
+  {itcode:"xuzx",level:"专家",cost:"2000"},
+  {itcode:"chenzwc",level:"高级",cost:"1200"},
+  {itcode:"sungn",level:"高级",cost:"1200"},
+  {itcode:"liqingd",level:"高级",cost:"1200"},
+  {itcode:"gaohq",level:"中级",cost:"900"},
+  {itcode:"wangchaor",level:"高级",cost:"1200"},
+  {itcode:"zhangdcb",level:"高级",cost:"1200"},
+  {itcode:"chaiwc",level:"高级",cost:"1200"},
+  {itcode:"yangfengb",level:"中级",cost:"900"},
+  {itcode:"huzfb",level:"中级",cost:"900"},
+  {itcode:"tianmina",level:"初级",cost:"600"},
+  {itcode:"sangjn",level:"专家",cost:"2000"},
+  {itcode:"zhuwga",level:"专家",cost:"2000"},
+  {itcode:"jiangjn",level:"中级",cost:"900"},
+  {itcode:"wangchaor",level:"高级",cost:"1200"},
+  {itcode:"wutaog",level:"高级",cost:"1200"},
+  {itcode:"chenzhanc",level:"中级",cost:"900"},
+  {itcode:"zhaoruif",level:"高级",cost:"1200"},
+  {itcode:"menghr",level:"中级",cost:"900"},
+  {itcode:"zhugyc",level:"高级",cost:"1200"},
+  {itcode:"xiaocgc",level:"中级",cost:"900"},
+  {itcode:"caixcd",level:"高级",cost:"1200"},
+  {itcode:"pengsf",level:"高级",cost:"1200"},
+  {itcode:"wangxybf",level:"高级",cost:"1500"},
+  {itcode:"yuancla",level:"高级",cost:"1200"},
+  {itcode:"qixya",level:"初级",cost:"800"},
+  {itcode:"taosqb",level:"高级",cost:"1200"},
+  {itcode:"wanghwo",level:"中级",cost:"900"},
+  {itcode:"hanxxd",level:"中级",cost:"900"},
+  {itcode:"maoxsa",level:"初级",cost:"600"},
+  {itcode:"mengfda",level:"中级",cost:"900"},
+  {itcode:"tangliange",level:"中级",cost:"900"},
+  {itcode:"chenqii",level:"中级",cost:"900"},
+  {itcode:"zhouxcb",level:"初级",cost:"600"},
+  {itcode:"zhaolif",level:"中级",cost:"900"},
+  {itcode:"xiangyub",level:"初级",cost:"600"},
+  {itcode:"xuchene",level:"初级",cost:"600"},
+  {itcode:"pengsf",level:"高级",cost:"1200"},
+  {itcode:"zhangkunp",level:"中级",cost:"900"},
+  {itcode:"wanghuiae",level:"高级",cost:"1200"},
+  {itcode:"guobind",level:"初级",cost:"600"},
+  {itcode:"hefeig",level:"中级",cost:"900"},
+  {itcode:"yuanyd",level:"专家",cost:"2000"},
+  {itcode:"yanges",level:"高级",cost:"1500"},
+  {itcode:"liangchaob",level:"初级",cost:"1000"},
+  {itcode:"fengduan",level:"专家",cost:"2000"},
+  {itcode:"zhangzhengj",level:"中级",cost:"900"},
+  {itcode:"liucyj",level:"专家",cost:"2000"},
+  {itcode:"gaolid",level:"中级",cost:"1200"},
+  {itcode:"lvsy",level:"高级",cost:"1200"},
+  {itcode:"liuxf",level:"高级",cost:"1200"},
+  {itcode:"wangjp",level:"高级",cost:"1200"},
+  {itcode:"lixea",level:"高级",cost:"1500"},
+  {itcode:"chengzs",level:"中级",cost:"900"},
+  {itcode:"guoxyk",level:"初级",cost:"900"},
+  {itcode:"hedm",level:"高级",cost:"1800"},
+  {itcode:"jiazfa",level:"高级",cost:"1500"},
+  {itcode:"yangap",level:"专家",cost:"2000"},
+  {itcode:"zhangydb",level:"高级",cost:"2000"},
+  {itcode:"zuokx",level:"中级",cost:"1200"},
+  {itcode:"pengxy",level:"高级",cost:"1200"},
+  {itcode:"zhaoliangi",level:"高级",cost:"1800"},
+  {itcode:"sunxua",level:"中级",cost:"1200"},
+  {itcode:"qikf",level:"专家",cost:"2000"},
+  {itcode:"zhangxina",level:"专家",cost:"2000"},
+  {itcode:"tenglj",level:"专家",cost:"2000"},
+  {itcode:"fanxfc",level:"中级",cost:"1200"},
+  {itcode:"zhaotiana",level:"中级",cost:"1200"},
+  {itcode:"liaohwa",level:"中级",cost:"900"},
+  {itcode:"guoxyk",level:"中级",cost:"900"},
+  {itcode:"liucdb",level:"中级",cost:"1200"},
+  {itcode:"chenjhf",level:"中级",cost:"1200"},
+  {itcode:"liuzlf",level:"中级",cost:"1500"},
+  {itcode:"zhaoxud",level:"专家",cost:"2000"},
+  {itcode:"lizhenu",level:"高级",cost:"1800"},
+  {itcode:"wangdian",level:"初级",cost:"600"},
+  {itcode:"zhanghqi",level:"初级",cost:"600"},
+  {itcode:"lizhenu",level:"高级",cost:"1800"},
+  {itcode:"zhulg",level:"初级",cost:"600"},
+  {itcode:"qinyha",level:"初级",cost:"600"},
+  {itcode:"lipfi",level:"中级",cost:"900"},
+  {itcode:"fengxdd",level:"专家",cost:"2000"},
+  {itcode:"zhaoxjf",level:"中级",cost:"900"},
+  {itcode:"zhaodqa",level:"",cost:"0"},
+  {itcode:"leina",level:"",cost:"0"},
+  {itcode:"zhaolla",level:"",cost:"0"},
+  {itcode:"yangfj",level:"",cost:"0"},
+  {itcode:"liuxw",level:"",cost:"0"},
+  {itcode:"zhangbol",level:"",cost:"0"},
+  {itcode:"guosqb",level:"",cost:"0"},
+  {itcode:"wangqunb",level:"",cost:"0"},
+  {itcode:"gaojh",level:"",cost:"0"},
+  {itcode:"guojca",level:"",cost:"0"},
+  {itcode:"wanggangac",level:"",cost:"0"},
+  {itcode:"daiyla",level:"",cost:"0"},
+  {itcode:"xiachuan",level:"",cost:"0"},
+  {itcode:"liugwc",level:"",cost:"0"},
+  {itcode:"lvjiand",level:"",cost:"0"},
+  {itcode:"luohjc",level:"",cost:"0"},
+  {itcode:"wangxbt",level:"",cost:"0"}
+]
+
+
+
 # 供应商
 tagitvendor_arrary = [
   {name: '华为'},
@@ -1139,64 +1317,71 @@ tgitskill_arrary = [
 
 
 
-# 建立团队
-team_arrary.each do |t|
-  Team.create(t)
-  puts t[:name] + " created!!"
-end
+# # 建立团队
+# team_arrary.each do |t|
+#   Team.create(t)
+#   puts t[:name] + " created!!"
+# end
 
-# 建立用户
-user_arrary.each do |u|
-  team = Team.find_by_name(u[:team_name])
-  u.delete(:team_name)
-  user = User.create(u)
-  user.team = team
+# # 建立用户
+# user_arrary.each do |u|
+#   team = Team.find_by_name(u[:team_name])
+#   u.delete(:team_name)
+#   user = User.create(u)
+#   user.team = team
+#   user.save
+#   puts u[:name] + " created!!"
+# end
+
+
+
+# # 找个管理员
+# admin_user = (User.where(is_admin: true)).first
+
+# # 为所有团队建立绑定项目
+# Team.find_each do |t|
+#   t.create_binding_managementprojects!(admin_user)
+#   puts t[:name] + " binding project created!!"
+# end
+
+
+
+# #建立所有的临时项目
+# project_arrary.each do |p|
+#   # 提取 pm
+#   pm_user = User.find_by_itcode(p[:pm_itcode])
+#   sales_user = User.find_by_itcode(p[:sales_itcode])
+#   p.delete(:pm_itcode)
+#   p.delete(:sales_itcode)
+#   # 指定销售与建立者(管理员)
+#   p[:sales_id] = sales_user.id
+#   p[:builder_id] = admin_user.id
+#   project = Project.create(p)
+#   # 销售加入成员
+#   project.join!(sales_user)
+#   # pm加入成员
+#   project.join!(pm_user)
+#   # pm 加入管理员
+#   project.join_manager!(pm_user)
+#   puts p[:name] + ' created!!'
+# end
+
+# 更新用户成本
+usercost_arrary.each do |u|
+  user = User.find_by_itcode(u[:itcode])
+  user.update(u)
   user.save
-  puts u[:name] + " created!!"
 end
 
+# # 供应商
+# tagitvendor_arrary.each do |v|
+#   TagItvendor.create(v)
+#   puts v[:name] + ' created!!'
+# end
 
-
-# 找个管理员
-admin_user = (User.where(is_admin: true)).first
-
-# 为所有团队建立绑定项目
-Team.find_each do |t|
-  t.create_binding_managementprojects!(admin_user)
-  puts t[:name] + " binding project created!!"
-end
-
-
-
-#建立所有的临时项目
-project_arrary.each do |p|
-  # 提取 pm
-  pm_user = User.find_by_itcode(p[:pm_itcode])
-  sales_user = User.find_by_itcode(p[:sales_itcode])
-  p.delete(:pm_itcode)
-  p.delete(:sales_itcode)
-  # 指定销售与建立者(管理员)
-  p[:sales_id] = sales_user.id
-  p[:builder_id] = admin_user.id
-  project = Project.create(p)
-  # 销售加入成员
-  project.join!(sales_user)
-  # pm加入成员
-  project.join!(pm_user)
-  # pm 加入管理员
-  project.join_manager!(pm_user)
-  puts p[:name] + ' created!!'
-end
-
-# 供应商
-tagitvendor_arrary.each do |v|
-  TagItvendor.create(v)
-  puts v[:name] + ' created!!'
-end
-
-# 技能
-tgitskill_arrary.each do |s|
-  TagItskill.create(s)
-  puts s[:name] + ' created!!'
-end
+# # 技能
+# tgitskill_arrary.each do |s|
+#   TagItskill.create(s)
+#   puts s[:name] + ' created!!'
+# end
 
