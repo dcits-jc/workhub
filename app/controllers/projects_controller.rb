@@ -16,10 +16,14 @@ class ProjectsController < ApplicationController
     
     # binding.pry
     @feeds =[]
+    # 核算总计工时
     @project_workflows_hoursum = 0
+    # 合计总计发生成本
+    @project_workflows_costsum = 0
     @project.project_workflows.each do |w|
       @feeds.unshift(w.feed)
       @project_workflows_hoursum = @project_workflows_hoursum + w.hours
+      @project_workflows_costsum = @project_workflows_costsum + w.cost
     end
   end
 

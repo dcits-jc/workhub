@@ -11,6 +11,8 @@
     <%= f.input :code,label: '编号', input_html: { class: "form-control"} %>
     <%= f.input :itcode,label: 'itcode', input_html: { class: "form-control"} %>
     <%= f.input :name,label: '真实姓名', input_html: { class: "form-control"} %>
+    <%= f.input :level,label: '评级',collection:['专家','高级','中级','初级'], input_html: { class: "form-control"} %>
+    <%= f.input :cost,label: '收费标准', input_html: { class: "form-control"} %>
 
 
 

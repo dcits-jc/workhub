@@ -10,12 +10,12 @@ class TeamsController < ApplicationController
 
     # 如果参数存在,则用参数的
     if params[:start_date].present? and params[:end_date].present?
-      start_date = params[:start_date]
-      end_date = params[:end_date]  
+      @start_date = Time.parse(params[:start_date])
+      @end_date = Time.parse(params[:end_date])
     # 不存在的话就显示当周的    
     else
-      start_date = Time.now.at_beginning_of_week
-      end_date = Time.now.at_end_of_week    
+      @start_date = Time.now.at_beginning_of_week
+      @end_date = Time.now.at_end_of_week    
     end
 
 
@@ -25,7 +25,7 @@ class TeamsController < ApplicationController
     @history_weeks = weekindex(Time.now, current_user.created_at)
 
     # 先检索出这段时间该团队所有的 feeds endtime
-    team_feeds = Feed.includes(:user).where( users: { team_id: @current_team.id },feeds: { end_time: start_date..end_date })
+    team_feeds = Feed.includes(:user).where( users: { team_id: @current_team.id },feeds: { end_time: @start_date..@end_date })
 
     # 最后排序
     @feeds = team_feeds.order("feeds.created_at DESC")

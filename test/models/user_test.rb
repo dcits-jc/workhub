@@ -38,6 +38,8 @@ end
 #  status                 :string
 #  worktype               :string
 #  cost_center            :string
+#  level                  :string
+#  cost                   :integer
 #
 # Indexes
 #
