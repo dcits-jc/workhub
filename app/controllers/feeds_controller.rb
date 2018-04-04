@@ -33,11 +33,17 @@ class FeedsController < ApplicationController
 
     # 本周工作量计算
     loads = 0
+    
     @feeds.each do |f|
       loads = loads + f.feedable.hours
     end
+
     @current_week_workloads = loads
     
+    # 检索最近参与过5个项目
+    @last_projects = current_user.participated_projects.reverse[0..4]
+
+
     # 数据导出
     respond_to do |format|
       format.html
