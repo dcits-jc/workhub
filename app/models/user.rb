@@ -71,7 +71,7 @@ class User < ApplicationRecord
   # 搜索用户
   def self.search(search)
     if search
-      where('name LIKE ? or code LIKE ?',"%#{search}%","%#{search}%")
+      where('name LIKE ? or itcode LIKE ?',"%#{search}%","%#{search}%")
     else
       scoped
     end

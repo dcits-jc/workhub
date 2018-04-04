@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   resources :landingpage do
     collection do
       get :demo
+      get :faq
     end
   end
 

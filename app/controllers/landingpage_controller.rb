@@ -6,4 +6,9 @@ class LandingpageController < ApplicationController
     
   end
 
+  # faq
+  def faq
+    
+  end
+  
 end
