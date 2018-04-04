@@ -1371,6 +1371,7 @@ usercost_arrary.each do |u|
   user = User.find_by_itcode(u[:itcode])
   user.update(u)
   user.save
+  puts user.name + ' update cost!!'
 end
 
 # # 供应商
