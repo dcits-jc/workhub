@@ -95,6 +95,8 @@ gem 'flatpickr_rails'
 # 编辑器
 gem 'simditor'
 
+# markdown
+gem 'markdown-rails', '~> 0.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
