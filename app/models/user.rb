@@ -6,10 +6,10 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # 禁用用户注册
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  # devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   # 邮箱唯一验证
   validates :email, presence: true, uniqueness: true
