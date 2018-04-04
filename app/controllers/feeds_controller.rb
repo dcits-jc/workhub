@@ -14,11 +14,11 @@ class FeedsController < ApplicationController
     @current_time = Time.now
 
     if params[:start_date].present? and params[:end_date].present?
-      start_date = params[:start_date]
-      end_date = params[:end_date]
+      @start_date = Time.parse(params[:start_date])
+      @end_date = Time.parse(params[:end_date])
     else
-      start_date = @current_time.at_beginning_of_week
-      end_date = @current_time.at_end_of_week
+      @start_date = @current_time.at_beginning_of_week
+      @end_date = @current_time.at_end_of_week
     end
 
     # 历史周
@@ -29,14 +29,30 @@ class FeedsController < ApplicationController
     # 非项目工作流
     @management_workflow = ManagementWorkflow.new
 
-    @feeds = current_user.feeds.where(end_time: start_date..end_date).order("feeds.created_at DESC")
+    @feeds = current_user.feeds.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
 
     # 本周工作量计算
     loads = 0
+    
     @feeds.each do |f|
       loads = loads + f.feedable.hours
     end
+
     @current_week_workloads = loads
+    
+    # 检索最近参与过5个项目
+    @last_projects = current_user.participated_projects.reverse[0..4]
+
+
+    # 数据导出
+    respond_to do |format|
+      format.html
+      format.xls{ 
+        # 设置文件名
+        headers["Content-Disposition"]="attachment; filename=周报导出("+@start_date.strftime('%Y-%m-%d')+"~"+@end_date.strftime('%Y-%m-%d')+").xls"
+      }  
+    end
+
     
   end
 

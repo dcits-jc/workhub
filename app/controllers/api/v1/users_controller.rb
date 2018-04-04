@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApiController
           data: @users.map{ |user|
             {
               id: user.id,
-              code: user.code,
+              itcode: user.itcode,
               name: user.name
             }
           }

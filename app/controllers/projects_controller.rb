@@ -16,11 +16,25 @@ class ProjectsController < ApplicationController
     
     # binding.pry
     @feeds =[]
+    # 核算总计工时
     @project_workflows_hoursum = 0
+    # 合计总计发生成本
+    @project_workflows_costsum = 0
     @project.project_workflows.each do |w|
       @feeds.unshift(w.feed)
       @project_workflows_hoursum = @project_workflows_hoursum + w.hours
+      @project_workflows_costsum = @project_workflows_costsum + w.cost
     end
+
+    # 数据导出
+    respond_to do |format|
+      format.html
+      format.xls{ 
+        # 设置文件名
+        headers["Content-Disposition"]="attachment; filename=工作量导出("+@project.name+"#"+@project.code+").xls"
+      }  
+    end
+
   end
 
   def edit
@@ -35,37 +49,40 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     # 搜索项目经理
-    pm_user = User.find(@project.pm_id)
-    sales_user = @project.sales
-    @project.pm_id = nil
-    # 记录创建者
-    @project.builder = current_user
-
-    # 如果不是临时项目,而且不是12位
-    if project_params[:projecttype]!='temp_project' and check_code?(project_params[:code]) == false
-      # binding.pry
-      flash[:alert] = "项目号有误!"
+    if project_params[:pm_id].blank? or @project[:sales].blank?
+      flash[:alert] = "请选择项目经理与销售!"
       render :new        
-    elsif @project.save
-
-      # 销售加进项目
-      @project.join!(sales_user)
-      # 也加入 pm
-      @project.join!(pm_user)
-      # 加入这个创建者
-      @project.join!(current_user)
-
-      # 同时将项目经理设置成项目经理
-      @project.join_manager!(pm_user)
-
-      flash[:notice] = "项目建立成功!"
-      redirect_to projects_path
     else
-      flash[:alert] = "项目建立失败!"
-      render :new
+      pm_user = User.find(@project.pm_id)
+      sales_user = @project.sales
+      @project.pm_id = nil
+      # 记录创建者
+      @project.builder = current_user
+
+      # 如果不是临时项目,而且不是12位
+      if project_params[:projecttype]!='temp_project' and check_code?(project_params[:code]) == false
+        # binding.pry
+        flash[:alert] = "请填写12位项目号或修改项目号!"
+        render :new        
+      elsif @project.save
+
+        # 销售加进项目
+        @project.join!(sales_user)
+        # 也加入 pm
+        @project.join!(pm_user)
+        # 加入这个创建者
+        @project.join!(current_user)
+
+        # 同时将项目经理设置成项目经理
+        @project.join_manager!(pm_user)
+
+        flash[:notice] = "项目建立成功!"
+        redirect_to projects_path
+      else
+        flash[:alert] = "项目建立失败!"
+        render :new
+      end
     end
-
-
 
   end
 

@@ -57,7 +57,10 @@ class Project < ApplicationRecord
   # 搜索常规项目
   def self.search(search)
     if search
-      where('name LIKE ?',"%#{search}%")
+      where("projecttype <> 'technical_exchange' and projecttype <> 'certification_exam' and projecttype <> 'tech_improvement' and projecttype <> 'team_work' and projecttype <> 'day_off'").where('name LIKE ? or code LIKE ?',"%#{search}%","%#{search}%")
+      # where('name LIKE ? or code LIKE ? and projecttype <> "technical_exchange" and projecttype <> ? and projecttype <> ? and projecttype <> ? and projecttype <> ?',"%#{search}%","%#{search}%",'technical_exchange','certification_exam','tech_improvement','team_work','day_off')
+      # where('name LIKE ? or code LIKE ? and projecttype <> "technical_exchange" and projecttype <> "certification_exam" and projecttype <> "tech_improvement" and projecttype <> "team_work" and projecttype <> "day_off"',"%#{search}%","%#{search}%")
+      # where('name LIKE ? or code LIKE ?',"%#{search}%","%#{search}%")
     else
       scoped
     end

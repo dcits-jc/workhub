@@ -76,7 +76,7 @@ $(document).ready(function(){
 
                           $('.selectpicker').html("");
                             for (var i = 0; i < data_arrary.length; i++) {
-                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].code + "</option>");
+                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].itcode + "</option>");
                             };
                             // 缺一不可
                             $('#new_member').selectpicker('refresh');

@@ -11,7 +11,13 @@ class ProjectWorkflowsController < ApplicationController
 
   def create
     @project_workflow = ProjectWorkflow.new(project_workflow_params)
+
+    # 将终止时间+23.59小时
+    @project_workflow.end_time = @project_workflow.end_time+1.day-1.second
     
+    # 核算人天
+    @project_workflow.cost = current_user.cost * @project_workflow.hours / 8
+
     # 两次','去重
     itvendors = dry_tsstring(@project_workflow.other_itvendors)
     # 如果这个厂商没找到,就新建这个厂商,最终加入隶属

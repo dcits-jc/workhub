@@ -12,6 +12,13 @@ class ManagementWorkflowsController < ApplicationController
 
   def create
     @management_workflow = ManagementWorkflow.new(management_workflow_params)
+    
+    # 将终止时间+23.59小时
+    @management_workflow.end_time = @management_workflow.end_time+1.day-1.second
+
+    # 核算人天
+    @management_workflow.cost = current_user.cost * @management_workflow.hours / 8
+
     # 根据工作类别选择对应管理项目
     case management_workflow_params[:worktype]
     when 'technical_exchange'

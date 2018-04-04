@@ -5,6 +5,14 @@
   <div class="form-group">
     <label><abbr title="required">*</abbr> 项目名</label>
     <select data-live-search="true" data-size=10  name="project_workflow[project_id]" id="project_project_workflow_id" class="selectpicker form-control select required" data-live-search-placeholder="输入项目名进行搜索" data-none-selected-text="输入项目名进行搜索">
+      
+      <!-- 最近几个参与的历史项目 -->
+      <% if @last_projects.present? %>
+        <% @last_projects.each do |p| %>
+          <option><%= p.sales.name %>#<%= p.code %>#<%= p.name %></option>
+        <% end %>
+      <% end %>
+
     </select>
     <!-- <div class="alert alert-warning" role="alert"> -->
       
