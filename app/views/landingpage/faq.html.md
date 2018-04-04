@@ -22,7 +22,6 @@
 如果系统中无该项目,则点击`新建项目` ,填写相关项目信息,其中带星号的是必填项,如果不是 '临时项目' 必须填写项目号!
 ![daily-demo-2-anewproject.gif](https://i.loli.net/2018/04/05/5ac4ffd644d71.gif)
 
-
 - 其他工作
   - 厂商交流
   - 认证考试
@@ -34,15 +33,18 @@
 ![daily-demo-2-amanageflow.gif](https://i.loli.net/2018/04/04/5ac4f008a65bf.gif)
 
 
-
-
-
-# 历史项目和团队
+## 历史项目和团队
 
 可以通过"我的项目"查找到之前参与过的历史项目,可以到我的团队中查看团队的工作进展,可以查看其它人的周报记录.
 
 ![daily-demo-3-myproject.gif](https://i.loli.net/2018/04/04/5ac4e8c000e24.gif)
 
+# 其他问题
+如有其他问题,请在微信群里 @游民梁超
+
+# 移动端访问
+扫描二维码下载移动端访问
+![daily二维码.png](https://i.loli.net/2018/04/05/5ac50125efa01.png)
 
 
 
