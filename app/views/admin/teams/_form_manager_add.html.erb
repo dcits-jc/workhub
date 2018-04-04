@@ -74,17 +74,17 @@ $(document).ready(function(){
                           // 如果是正常的搜到了
                           if (data['stat']==1) {
 
-                          $('.selectpicker').html("");
+                          $('#new_manager').html("");
                             for (var i = 0; i < data_arrary.length; i++) {
-                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].code + "</option>");
+                                $('#new_manager').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].itcode + "</option>");
                             };
                             // 缺一不可
                             $('#new_manager').selectpicker('refresh');
                             $('#new_manager').selectpicker('render');
 
                           } else {
-                            $('.selectpicker').html("");
-                            $('.selectpicker').append("<option value=0>未找到</option>");
+                            $('#new_manager').html("");
+                            $('#new_manager').append("<option value=0>未找到</option>");
                           }
                       }
                   });
@@ -107,7 +107,7 @@ $(document).ready(function(){
 
 
 // 重新绘图 防止 display:none 的问题
-$(".selectpicker").selectpicker()
+$("#new_manager").selectpicker()
 
 
 
