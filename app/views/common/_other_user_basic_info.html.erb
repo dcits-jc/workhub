@@ -16,6 +16,34 @@
     <h4><%= @user.team.present? ? @user.team.name : nil %></h4>
     <p>部门经理</p>  
 
+
+    <!-- 显示当前用户等级-->
+    <% if @user.level.present? %>
+      <% case @user.level %>
+      <% when '专家' %>
+        <p>
+          <img src="https://i.loli.net/2018/04/02/5ac1f652ae848.png" alt="s.png" title="s.png" class="level_sign" />
+          <span class="level_info"><em>专家</em></span>
+        </p> 
+      <% when '高级' %>
+        <p>
+          <img src="https://i.loli.net/2018/04/02/5ac1f652a5eb6.png" alt="A.png" title="A.png" class="level_sign" />
+          <span class="level_info"><em>高级</em></span>
+        </p>
+      <% when '中级' %>
+        <p>
+          <img src="https://i.loli.net/2018/04/02/5ac1f652a5f3d.png" alt="b.png" title="b.png" class="level_sign" />
+          <span class="level_info"><em>中级</em></span>
+        </p> 
+      <% when '初级' %>
+        <p>
+          <img src="https://i.loli.net/2018/04/02/5ac1f652a6134.png" alt="c.png" title="c.png" class="level_sign" />
+          <span class="level_info"><em>初级</em></span>
+        </p>          
+      <% end %>
+
+      <!-- 显示当前用户等级-->
+    <% end %>
          
 <!--     <p>
       <span class="glyphicon glyphicon-tag" aria-hidden="true"> </span> <kbd>网络</kbd> <kbd>服务器</kbd>
