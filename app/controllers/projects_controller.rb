@@ -48,13 +48,14 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+    binding.pry
     # 搜索项目经理
-    if project_params[:pm_id].blank? or @project[:sales].blank?
+    if project_params[:pm_id].blank? or project_params[:sales_id].blank?
       flash[:alert] = "请选择项目经理与销售!"
       render :new        
     else
       pm_user = User.find(@project.pm_id)
-      sales_user = @project.sales
+      sales_user = User.find(@project.sales_id)
       @project.pm_id = nil
       # 记录创建者
       @project.builder = current_user
