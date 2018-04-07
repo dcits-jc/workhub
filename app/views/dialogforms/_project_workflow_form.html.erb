@@ -9,7 +9,7 @@
       <!-- 最近几个参与的历史项目 -->
       <% if @last_projects.present? %>
         <% @last_projects.each do |p| %>
-          <option><%= p.sales.name %>#<%= p.code %>#<%= p.name %></option>
+          <option  value=<%= p.id %> ><%= p.sales.name %>#<%= p.code %>#<%= p.name %></option>
         <% end %>
       <% end %>
 
