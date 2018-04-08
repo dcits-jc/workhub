@@ -14,7 +14,7 @@
     <% end %>  
 
     <h4><%= @user.team.present? ? @user.team.name : nil %></h4>
-    <p>部门经理</p>  
+    <p><%= current_user.title %></p>  
 
 
     <!-- 显示当前用户等级-->
