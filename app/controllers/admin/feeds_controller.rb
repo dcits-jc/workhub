@@ -18,7 +18,7 @@ class Admin::FeedsController < ApplicationController
     # 历史周
     @history_weeks = weekindex(Time.now, current_user.created_at)
 
-    @feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
+    @feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC").paginate(:page => params[:page], :per_page => 20)
 
     # 数据导出
     respond_to do |format|

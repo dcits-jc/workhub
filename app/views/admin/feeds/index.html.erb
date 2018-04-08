@@ -19,6 +19,11 @@
     <!-- 本周的 feeds -->
     <%= render 'common/feeds' %>
 
+    <!-- 分页 -->
+    <div class="text-center">
+      <%= will_paginate @feeds %>
+    </div>
+
   </div>
 
   <!-- 右侧边 -->
