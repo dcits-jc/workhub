@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    binding.pry
+    # binding.pry
     # 搜索项目经理
     if project_params[:pm_id].blank? or project_params[:sales_id].blank?
       flash[:alert] = "请选择项目经理与销售!"
