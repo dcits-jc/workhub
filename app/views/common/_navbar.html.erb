@@ -23,14 +23,19 @@
 
         <ul class="nav navbar-nav navbar-right">
           
+      <% if current_user.present? %>
+
           <!-- 在移动端显示 -->
           <li><%= link_to("我的工作",week_feeds_path,class: "visible-xs-block "+active_class('feeds')) %></li>
           <li><%= link_to("我的项目",projects_path,class: "visible-xs-block "+active_class('projects')) %></li>
-          <% if current_user.present? %>
-            <% if current_user.team.present? %>
-              <li><%= link_to("我的团队",week_teams_path,class: "visible-xs-block "+active_class('teams')) %></li>
-            <% end %>
+          
+          <% if current_user.team.present? %>
+            <li><%= link_to("我的团队",week_teams_path,class: "visible-xs-block "+active_class('teams')) %></li>
           <% end %>
+                  
+
+      <% end %>
+
 
 
           <!-- 在移动端隐藏 -->
@@ -48,7 +53,14 @@
                       <!-- 如果是管理员则显示管理中心按钮 -->
                       <% if current_user.is_admin? %>
                           <!-- <li><%#= link_to('demo页',demo_landingpage_index_path) %></li> -->
-                          <li><%= link_to("管理中心",admin_users_path)  %></li>
+                          <li><%= link_to("管理中心",admin_feeds_path)  %></li>
+
+                          <!-- 管理员选项卡 -->
+                          <li><%= link_to('工作流',admin_feeds_path, class: "visible-xs-block "+active_class('feeds') ) %></li>
+                          <li><%= link_to('用户管理',admin_users_path, class: "visible-xs-block "+active_class('users') ) %></li>
+                          <li><%= link_to('团队管理',admin_teams_path, class: "visible-xs-block "+active_class('teams')) %></li>
+                          <li><%= link_to('项目管理',admin_projects_path, class: "visible-xs-block "+active_class('projects')) %></li> 
+
                       <% end %>
                       <li> <%= link_to("登出", destroy_user_session_path, method: :delete) %> </li>
                   </ul>
