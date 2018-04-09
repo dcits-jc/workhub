@@ -19,11 +19,16 @@
 
 
 
+
+
+
+
+
       <div class="collapse navbar-collapse" id="navbar-collapse-menu">
 
         <ul class="nav navbar-nav navbar-right">
           
-      <% if current_user.present? %>
+        <% if current_user.present? %>
 
           <!-- 在移动端显示 -->
           <li><%= link_to("我的工作",week_feeds_path,class: "visible-xs-block "+active_class('feeds')) %></li>
@@ -32,11 +37,21 @@
           <% if current_user.team.present? %>
             <li><%= link_to("我的团队",week_teams_path,class: "visible-xs-block "+active_class('teams')) %></li>
           <% end %>
-                  
 
-      <% end %>
+        <% end %>
 
 
+          <!-- 搜索框 -->
+<!--           <form class="navbar-form navbar-left">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="搜索人,项目,相关技术...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">搜索</button>
+              </span>
+            </div>
+          </form> -->
+          <!-- 搜索框 -->
+          
 
           <!-- 在移动端隐藏 -->
           <li><%= link_to 'FAQ', faq_landingpage_index_path,class: "hidden-xs ",target: '_blank' %></li>
