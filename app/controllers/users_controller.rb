@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
 
 
-    @feeds = @user.feeds.where(end_time: start_date..end_date)
+    @feeds = @user.feeds.where(end_time: start_date..end_date).order("feeds.created_at DESC")
     
     # 本周工作量计算
     loads = 0
