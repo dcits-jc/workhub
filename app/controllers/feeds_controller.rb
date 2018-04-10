@@ -31,6 +31,9 @@ class FeedsController < ApplicationController
 
     @feeds = current_user.feeds.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
 
+    # 导出的数据
+    @export_feeds = @feeds
+    
     # 本周工作量计算
     loads = 0
     

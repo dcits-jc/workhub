@@ -30,6 +30,9 @@ class TeamsController < ApplicationController
     # 最后排序
     @feeds = team_feeds.order("feeds.created_at DESC")
 
+    # 导出的数据
+    @export_feeds = @feeds
+
     # 当周工作量计算
     loads = 0
     @feeds.each do |f|
