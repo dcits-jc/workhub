@@ -13,7 +13,7 @@
                 <%#= link_to(week_begin(w)+'~'+week_end(w),week_user_path({id: @user,start_date: w.at_beginning_of_week,end_date: w.at_end_of_week}))%>
 
                 <!-- 历史链接 -->
-                <%= link_to(week_begin(w)+'~'+week_end(w),week_user_path(@user,{start_date: w.at_beginning_of_week,end_date: w.at_end_of_week}))%>
+                <%= link_to(week_begin(w)+'~'+week_end(w),user_path(@user,{start_date: w.at_beginning_of_week,end_date: w.at_end_of_week}))%>
               </li>              
           <% end %>
 
