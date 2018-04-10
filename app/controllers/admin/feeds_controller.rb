@@ -20,6 +20,10 @@ class Admin::FeedsController < ApplicationController
 
     @feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC").paginate(:page => params[:page], :per_page => 20)
 
+    # 导出的数据不分页
+    @export_feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
+
+
     # 数据导出
     respond_to do |format|
       format.html

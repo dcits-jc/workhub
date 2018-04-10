@@ -22,7 +22,7 @@
         <Cell><Data ss:Type="String">结束时间</Data></Cell>
       </Row>
 
-      <% @feeds.each do |feed| %>
+      <% @export_feeds.each do |feed| %>
           <% itvendors_arrary =[] %>
           <% if feed.feedable.tag_itvendors.present? %>
             <% feed.feedable.tag_itvendors.each do |v| %>
