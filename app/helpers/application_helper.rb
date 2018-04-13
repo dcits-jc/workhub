@@ -60,7 +60,7 @@ module ApplicationHelper
     when 3
       wday = '周三'
     when 4
-      wday = '周日'
+      wday = '周四'
     when 5
       wday = '周五'
     when 6
