@@ -1,6 +1,6 @@
 <%= simple_form_for @project do |p| %>
   <div class="form-group">
-    <%= p.input :name,label: '项目名', input_html: { class: "form-control"},placeholder: "例: ****机构****项目" %>
+    <%= p.input :name,label: '项目名', input_html: { class: "form-control"},placeholder: "例: ****公司****项目" %>
 
     <!-- 选择项目类型 -->
     <%= p.input :projecttype,label: '项目类型',placeholder: "选择项目类别",collection:[['临时项目','temp_project'],['供货','supply_project'],['集成','si_project'],['售前','presale_project'],['集成售前','sipresale_project'],['解决方案售前','solutionpresale_project'],['服务','service_project'],['单次服务','singleservice_project'],['服务运维','serviceoperation_project'],['复杂集成/灾备','complexsi_project']],selected: 'si_project',id: 'project_projecttype' %>
@@ -39,7 +39,7 @@
 
     <%= p.input :project_class,label: '项目级别',collection:[['A - 复杂','A'],['B - 普通','B'],['C - 简单','C'],['D - 单次服务','D']],selected: 'C', input_html: { class: "form-control"} %>
 
-    <%= p.input :customer_name,label: '客户名称',placeholder: "****机构", input_html: { class: "form-control"} %>
+    <%= p.input :customer_name,label: '客户名称',placeholder: "****公司", input_html: { class: "form-control"} %>
 
     <%= p.input :customer_contact_name,label: '用户联系人',placeholder: "用户联系人", input_html: { class: "form-control"} %>
 
