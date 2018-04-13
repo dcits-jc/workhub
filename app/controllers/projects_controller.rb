@@ -67,7 +67,7 @@ class ProjectsController < ApplicationController
       # 如果不是临时项目,而且不是12位
       if project_params[:projecttype]!='temp_project' and check_code?(project_params[:code]) == false
         # binding.pry
-        flash[:alert] = "请填写12位项目号或修改项目号!"
+        flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
         render :new        
       elsif @project.save
 
@@ -151,7 +151,8 @@ class ProjectsController < ApplicationController
     if code.present?
       if Project.find_by_code(code).present?
         return false
-      elsif code.length == 12
+      # 正则匹配字母或者数字
+      elsif code.length == 12 and code =~ /^[A-Z0-9]+$/
         return true
       else
         return false
