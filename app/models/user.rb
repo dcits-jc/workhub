@@ -28,6 +28,12 @@ class User < ApplicationRecord
   # 挂载头像
   mount_uploader :avatar_attachment, AvatarAttachmentUploader
 
+  # 挂载其他文件
+  mount_uploader :resume_attachment, AttachmentUploader
+  mount_uploader :idcard_attachment, AttachmentUploader
+  mount_uploader :degree_attachment, AttachmentUploader  
+
+
   # 团队关系
   # 一个用户只隶属于同一个团队
   belongs_to :team, optional: true
@@ -178,6 +184,10 @@ end
 #  cost_center            :string
 #  level                  :string
 #  cost                   :integer
+#  resume_attachment      :string
+#  idcard_attachment      :string
+#  degree                 :string
+#  degree_attachment      :string
 #
 # Indexes
 #

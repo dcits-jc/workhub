@@ -37,25 +37,40 @@
             <td><code>¥ <%= @user.cost %> 人/天</code></td>
           </tr>
 
-          <tr>
-            <td>技术简历:</td>
-            <td>
-              <kbd>有</kbd>
-            </td>
-          </tr>
 
           <tr>
             <td>学历证书:</td>
             <td>
-              <kbd>无</kbd>
+              <% if @user.degree_attachment.present? %>
+                <kbd>已上传</kbd>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
             </td>
           </tr>
+
+
+          <tr>
+            <td>技术简历:</td>
+            <td>
+              <% if @user.resume_attachment.present? %>
+                <kbd>已上传</kbd>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
+            </td>
+          </tr>
+
 
 
           <tr>
             <td>身份证:</td>
             <td>
-              <kbd>无</kbd>
+              <% if @user.idcard_attachment.present? %>
+                <kbd>已上传</kbd>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
             </td>
           </tr>
 
