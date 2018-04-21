@@ -98,6 +98,12 @@ gem 'simditor'
 # markdown
 gem 'markdown-rails', '~> 0.2.1'
 
+
+# 七牛插件
+gem 'carrierwave-qiniu', '~> 1.1.5'
+gem 'qiniu-rs'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -49,9 +49,9 @@
               <% if @user.team.present? %>
               
                 <%= link_to admin_team_path(@user.team) do %>
-                </kbd>
+       
                   <%= @user.team.name %>
-                </kbd>
+       
                 <% end %>
               <% else %>
                 <span class="alert-warning">不在任何团队中</span> 
