@@ -49,9 +49,9 @@
               <% if @user.team.present? %>
               
                 <%= link_to admin_team_path(@user.team) do %>
-                </kbd>
+       
                   <%= @user.team.name %>
-                </kbd>
+       
                 <% end %>
               <% else %>
                 <span class="alert-warning">不在任何团队中</span> 
@@ -68,6 +68,52 @@
             <td><code>¥ <%= @user.cost %> 人/天</code></td>
           </tr>
 
+
+          <tr>
+            <td>学历:</td>
+            <td>
+              <kbd><%= @user.degree %></kbd>
+            </td>
+          </tr>
+          
+          <tr>
+            <td><h5>--附件--</h5></td>
+
+          </tr>
+
+          <tr>
+            <td>学历学位证书:</td>
+            <td>
+              <% if @user.degree_attachment.present? %>
+                <kbd>已上传</kbd>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>技术简历:</td>
+            <td>
+              <% if @user.resume_attachment.present? %>
+                <kbd>已上传</kbd>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>身份证:</td>
+            <td>
+              <% if @user.idcard_attachment.present? %>
+                <kbd>已上传</kbd>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
+            </td>
+          </tr>
+
         </table>
        
 
@@ -81,6 +127,10 @@
 
   </div>
 </div>
+
+
+
+
 
 
 

@@ -1,0 +1,2 @@
+module Wechatpage::UsersHelper
+end

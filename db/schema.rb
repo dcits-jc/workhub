@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402104422) do
+ActiveRecord::Schema.define(version: 20180421100428) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
@@ -188,6 +188,10 @@ ActiveRecord::Schema.define(version: 20180402104422) do
     t.string "cost_center"
     t.string "level"
     t.integer "cost"
+    t.string "resume_attachment"
+    t.string "idcard_attachment"
+    t.string "degree"
+    t.string "degree_attachment"
     t.index ["code"], name: "index_users_on_code", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

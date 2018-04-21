@@ -1,0 +1,33 @@
+<div class="col-md-12 col-xs-10 col-xs-offset-1">
+  <h3 class="text-center">技术人员搜索</h3>
+  <!-- 用户搜索 -->
+  <%= search_form_for [:wechatpage,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
+    <div class="input-group">
+      <%= f.search_field :itcode_or_name_or_email_cont, class: "form-control", placeholder: "输入itcode,姓名或邮箱"  %>
+      <span class="input-group-btn">
+        <%= f.submit '搜索',class: "btn btn-default" %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+
+
+
+<%= link_to user_has_resume_wechatpage_users_path,class: "col-md-4 col-xs-4 btn-lg btn btn-default" do %>
+  <i class="fa fa-id-badge" aria-hidden="true"></i>
+  <h6>简历</h6>
+<% end %>
+
+<%= link_to user_degree_choice_wechatpage_users_path,class: "col-md-4 col-xs-4 btn-lg btn btn-default" do %>
+  <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+  <h6>学位证书</h6>
+<% end %>
+<%= link_to user_has_idcard_wechatpage_users_path,class: "col-md-4 col-xs-4 btn-lg btn btn-default" do %>
+  <i class="fa fa-id-card-o" aria-hidden="true"></i>
+  <h6>身份证</h6>
+<% end %>
+
+
+
+
