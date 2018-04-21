@@ -17,6 +17,7 @@
 
 
 
+
     <!-- ajax 选择 -->
     <div class="form-group">
       <label>隶属团队</label>
@@ -24,6 +25,35 @@
       </select>
     </div>    
 
+
+
+    <%= f.input :degree,label: '学历',collection:['大专','本科','硕士','博士'], input_html: { class: "form-control"} %>
+
+    <label>学历学位证书</label>
+    <% if @user.degree_attachment.present? %>
+      <kbd>已上传</kbd>
+    <% else %>
+      <code>未上传</code>
+    <% end %>
+    <%= f.input :degree_attachment ,label: false %>
+
+
+    <label>简历</label>
+    <% if @user.resume_attachment.present? %>
+      <kbd>已上传</kbd>
+    <% else %>
+      <code>未上传</code>
+    <% end %>
+    <%= f.input :resume_attachment ,label: false%>
+
+
+    <label>身份证</label>
+    <% if @user.idcard_attachment.present? %>
+      <kbd>已上传</kbd>
+    <% else %>
+      <code>未上传</code>
+    <% end %>
+    <%= f.input :idcard_attachment ,label: false %>    
 
 
   </div>

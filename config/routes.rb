@@ -73,6 +73,16 @@ Rails.application.routes.draw do
     resources :users do
       collection do
         get :user_search 
+
+        # 学历选择
+        get :user_degree_choice
+
+        get :user_has_idcard
+        get :user_has_resume
+        get :user_degree_college 
+        get :user_degree_university 
+        get :user_degree_master 
+        get :user_degree_doctor 
       end
     end
   end

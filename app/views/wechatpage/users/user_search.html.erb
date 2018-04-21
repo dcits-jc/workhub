@@ -12,18 +12,22 @@
 </div>
 
 
-<div class="col-md-4 col-xs-4 btn-lg btn btn-default">
+
+
+<%= link_to user_has_resume_wechatpage_users_path,class: "col-md-4 col-xs-4 btn-lg btn btn-default" do %>
   <i class="fa fa-id-badge" aria-hidden="true"></i>
   <h6>简历</h6>
-</div>
-<div class="col-md-4 col-xs-4 btn-lg btn btn-default">
+<% end %>
+
+<%= link_to user_degree_choice_wechatpage_users_path,class: "col-md-4 col-xs-4 btn-lg btn btn-default" do %>
   <i class="fa fa-graduation-cap" aria-hidden="true"></i>
   <h6>学位证书</h6>
-</div>
-<div class="col-md-4 col-xs-4 btn-lg btn btn-default">
+<% end %>
+<%= link_to user_has_idcard_wechatpage_users_path,class: "col-md-4 col-xs-4 btn-lg btn btn-default" do %>
   <i class="fa fa-id-card-o" aria-hidden="true"></i>
   <h6>身份证</h6>
-</div>
+<% end %>
+
 
 
 

@@ -40,6 +40,10 @@ end
 #  cost_center            :string
 #  level                  :string
 #  cost                   :integer
+#  resume_attachment      :string
+#  idcard_attachment      :string
+#  degree                 :string
+#  degree_attachment      :string
 #
 # Indexes
 #
