@@ -6,11 +6,11 @@
 <!-- 用户搜索 -->
 <%= search_form_for [:admin,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
   <div class="form-group">
-    <%= f.search_field :code_or_name_or_email_cont, class: "form-control", placeholder: "输入昵称,姓名或邮箱"  %>
+    <%= f.search_field :itcode_or_name_or_email_cont, class: "form-control", placeholder: "输入昵称,姓名或邮箱"  %>
     <%= f.submit '搜索',class: "btn btn-warning btn-xs" %>
     <%= link_to('+ 新建用户',new_admin_user_path,class: 'btn btn-primary btn-xs') %>
   </div>
-<% end -%>
+<% end %>
 
 
 

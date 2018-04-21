@@ -69,6 +69,14 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :wechatpage do
+    resources :users do
+      collection do
+        get :user_search 
+      end
+    end
+  end
+
 
   # 头像动态生成
   get "avatar/:size/:background/:text" => Dragonfly.app.endpoint { |params, app|

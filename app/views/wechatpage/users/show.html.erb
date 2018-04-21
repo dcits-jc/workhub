@@ -1,0 +1,62 @@
+        <table>
+          <tr>
+            <td>编号:</td>
+            <td><%= @user.code %></td>
+          </tr>
+          <tr>
+            <td>姓名:</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>itcode:</td>
+            <td><%= @user.itcode %></td>
+          </tr>
+          <tr>
+            <td>邮箱:</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td>当前团队:</td>
+            <td>
+              <% if @user.team.present? %>
+                <kbd>
+                  <%= @user.team.name %>
+                </kbd>
+              <% else %>
+                <span class="alert-warning">不在任何团队中</span> 
+              <% end %>                
+            </td>
+          </tr>
+
+          <tr>
+            <td>评级:</td>
+            <td><%= @user.level %></td>
+          </tr>
+          <tr>
+            <td>收费标准:</td>
+            <td><code>¥ <%= @user.cost %> 人/天</code></td>
+          </tr>
+
+          <tr>
+            <td>技术简历:</td>
+            <td>
+              <kbd>有</kbd>
+            </td>
+          </tr>
+
+          <tr>
+            <td>学历证书:</td>
+            <td>
+              <kbd>无</kbd>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>身份证:</td>
+            <td>
+              <kbd>无</kbd>
+            </td>
+          </tr>
+
+        </table>
