@@ -10,7 +10,7 @@
 
 
           <% @children_teams.each do |t| %>
-            <%= link_to(t.name,week_teams_path({team_id: t})) %><kbd><%= t.users.count %></kbd> 
+            <p><%= link_to(t.name,week_teams_path({team_id: t})) %><kbd><%= t.users.count %></kbd> </p>          
           <% end %>
 
       </div>
