@@ -17,6 +17,11 @@
   </div>
   <div class="panel-body">
     <p>上级部门: <kbd><%= @team.parent.present? ? @team.parent.name : nil %></kbd></p>
+    <p>下级部门: 
+      <% @team.children.each do |t| %>
+      <kbd><%= t.name %></kbd>
+      <% end %>
+    </p>
     <%= @team.description %>
   </div>
 </div>
