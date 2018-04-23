@@ -16,6 +16,7 @@
     </h3>
   </div>
   <div class="panel-body">
+    <p>上级部门: <kbd><%= @team.parent.present? ? @team.parent.name : nil %></kbd></p>
     <%= @team.description %>
   </div>
 </div>
