@@ -15,6 +15,11 @@ class Team < ApplicationRecord
   # 绑定的项目1:n
   has_many :binding_projects, class_name: 'Project',foreign_key: "binding_team_id",dependent: :destroy
 
+  # 设置树型隶属关系
+  belongs_to :parent, class_name: "Team", optional: true
+  has_many :children, class_name: "Team", foreign_key: "parent_id"
+
+
   # 增加成员
   def join!(user)
     self.users << user
@@ -35,6 +40,17 @@ class Team < ApplicationRecord
       scoped
     end
   end
+
+
+  # 上级部门与下级部门是否存在
+  def has_parent?
+    parent.present?
+  end
+
+  def has_children?
+    children.exists?
+  end
+
 
   # 建立绑定的相关管理项目
   def create_binding_managementprojects!(user)
@@ -69,6 +85,7 @@ end
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  team_type   :string
+#  parent_id   :integer
 #
 # Indexes
 #

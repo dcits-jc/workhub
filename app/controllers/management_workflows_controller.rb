@@ -16,6 +16,12 @@ class ManagementWorkflowsController < ApplicationController
     # 将终止时间+23.59小时
     @management_workflow.end_time = @management_workflow.end_time+1.day-1.second
 
+    # 如果用户成本没有,则设置为0
+    if current_user.cost.blank?
+      current_user.cost = 0
+      current_user.save
+    end
+
     # 核算人天
     @management_workflow.cost = current_user.cost * @management_workflow.hours / 8
 
