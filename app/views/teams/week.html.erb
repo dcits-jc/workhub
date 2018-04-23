@@ -33,7 +33,9 @@
   <!-- 右侧边 -->
   <div class="col-md-3 hidden-xs hidden-sm">
     <%= render 'team_users' %>
-    <%= render 'team_children' %>
+    <% if @current_team.children.present? %>
+      <%= render 'team_children' %>
+    <% end %>
     <%= render 'team_history' %>
   </div>
 
