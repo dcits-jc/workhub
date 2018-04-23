@@ -89,7 +89,7 @@ class Admin::TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :description,:new_member,:new_manager)
+    params.require(:team).permit(:name, :description,:new_member,:new_manager,:parent_id)
   end
   
 

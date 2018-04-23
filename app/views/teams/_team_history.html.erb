@@ -10,7 +10,7 @@
               <li role="presentation" class="<%= active_history(w.at_beginning_of_week,w.at_end_of_week) %>">
             <% end %>
                 <!-- 历史链接 -->
-                <%= link_to(week_begin(w)+'~'+week_end(w),week_teams_path({start_date: w.at_beginning_of_week,end_date: w.at_end_of_week}))%>
+                <%= link_to(week_begin(w)+'~'+week_end(w),week_teams_path({start_date: w.at_beginning_of_week,end_date: w.at_end_of_week,team_id: @current_team}))%>
               </li>              
           <% end %>
 
