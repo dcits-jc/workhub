@@ -85,7 +85,7 @@
             <td>学历学位证书:</td>
             <td>
               <% if @user.degree_attachment.present? %>
-                <kbd>已上传</kbd>
+                <%=link_to("下载",@user.degree_attachment_url,class: " glyphicon glyphicon-save",target: "_blank" ,download: '') %>
               <% else %>
                 <code>未上传<code>
               <% end %>
@@ -96,7 +96,7 @@
             <td>技术简历:</td>
             <td>
               <% if @user.resume_attachment.present? %>
-                <kbd>已上传</kbd>
+                <%=link_to("下载",@user.resume_attachment_url,class: " glyphicon glyphicon-save",target: "_blank" ,download: '') %>
               <% else %>
                 <code>未上传<code>
               <% end %>
@@ -107,7 +107,7 @@
             <td>身份证:</td>
             <td>
               <% if @user.idcard_attachment.present? %>
-                <kbd>已上传</kbd>
+                <%= link_to("下载",@user.idcard_attachment_url,class: " glyphicon glyphicon-save",target: "_blank" ,download: '') %>
               <% else %>
                 <code>未上传<code>
               <% end %>
