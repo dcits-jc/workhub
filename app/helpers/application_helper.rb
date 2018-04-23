@@ -144,4 +144,10 @@ module ApplicationHelper
  end
 
 
+ # 生成七牛私库 url
+ def quniuurl_pri(file_url)
+   Qiniu::Auth.authorize_download_url(file_url)
+ end
+
+
 end
