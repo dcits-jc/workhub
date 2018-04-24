@@ -22,7 +22,7 @@
 <!--         <td>
           <strong><%#= link_to(u.itcode,wechatpage_user_path(u)) %></strong>
         </td> -->
-        <td><small> <%= u.name %></small></td>
+        <td><small><%= link_to(u.name,wechatpage_user_path(u)) %></small></td>
         <%= user_check_uploadfile(u.idcard_attachment) %>
         <%= user_check_uploadfile(u.degree_attachment) %>
         <td class="alert-danger text-center">X</td>
