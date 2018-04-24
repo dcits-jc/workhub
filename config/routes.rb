@@ -40,7 +40,12 @@ Rails.application.routes.draw do
       end
     end
     resources :teams
-    resources :projects
+    resources :projects do
+      member do
+        post :set_disabled
+        post :set_enabled
+      end
+    end
 
   end
   
