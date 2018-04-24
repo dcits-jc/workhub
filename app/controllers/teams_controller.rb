@@ -34,6 +34,14 @@ class TeamsController < ApplicationController
     # 先检索出这段时间该团队所有的 feeds endtime
     team_feeds = Feed.includes(:user).where( users: { team_id: @current_team.id },feeds: { end_time: @start_date..@end_date })
 
+    # # 如果当前团队有子团队
+    # if @current_team.has_children?
+      
+    # else
+      
+    # end
+
+
     # 最后排序
     @feeds = team_feeds.order("feeds.created_at DESC")
 

@@ -17,6 +17,7 @@
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
+      <td></td>
       <td>项目名</td>
       <td>成员数</td>
       <td>销售</td>
@@ -27,7 +28,15 @@
 
   <tbody>
     <% @projects.each do |p| %>
-    <tr>
+
+    <% if p.enabled?  %>
+      <tr>
+        <td></td>
+    <% else %>
+      <tr class="alert alert-danger">
+        <td><span class="glyphicon glyphicon-ban-circle"></span></td>
+    <% end %>
+
       <td><strong><%= link_to(p.name,admin_project_path(p)) %></strong></td>
       <td><kbd><%= p.members.count %></kbd> </td>
       <td><small><%= p.sales.name %> </small> </td>

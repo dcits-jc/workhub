@@ -122,6 +122,10 @@
   <% end %>  
 </p>
 
+  <% if !@project.enabled? %>
+    <div class="alert alert-danger" role="alert">已被管理员禁用报工</div>
+  <% end %>
+
 <%= render "common/feeds" %>
 
 

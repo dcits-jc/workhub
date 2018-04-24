@@ -21,6 +21,7 @@
 #  area                   :string
 #  begin_time             :datetime
 #  end_time               :datetime
+#  is_disabled            :boolean          default(FALSE)
 #
 # Indexes
 #

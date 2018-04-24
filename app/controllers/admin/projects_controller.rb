@@ -112,6 +112,21 @@ class Admin::ProjectsController < ApplicationController
     redirect_to admin_projects_path
   end
 
+  # 禁用项目报工
+  def set_disabled
+    @project = Project.find(params[:id])
+    @project.disabled!
+    redirect_to admin_project_path(@project)
+  end
+
+  # 启用项目报工
+  def set_enabled
+    @project = Project.find(params[:id])
+    @project.enabled!
+    redirect_to admin_project_path(@project)
+  end
+
+
 
   private
 
