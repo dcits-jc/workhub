@@ -150,4 +150,14 @@ module ApplicationHelper
  end
 
 
+ # 生成七牛私库 url
+ def user_check_uploadfile(file)
+   if file.present?
+     content_tag(:td,'√',class: 'alert-success text-center' )
+   else
+     content_tag(:td,'X',class: 'alert-danger text-center' )
+   end
+ end
+
+
 end
