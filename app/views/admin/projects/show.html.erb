@@ -117,6 +117,13 @@
 <%= render 'form_member_add'  %>
 
 <p>当前已产生费用 <span class="lead"><code>¥<%= @project_workflows_costsum %></code></span>; 合计发生工时 <span class="lead"><code><%= @project_workflows_hoursum %> h</code></span>.
+
+  <% if @project.enabled? %>
+    <%= link_to('禁止继续报工',set_disabled_admin_project_path(@project),method: 'post',class: "btn btn-xs btn-danger")  %>
+  <% else %>
+    <%= link_to('开启继续报工',set_enabled_admin_project_path(@project),method: 'post',class: "btn btn-xs btn-default")  %>
+  <% end %>
+
   <%= link_to project_path(@project,format: "xls"),class: 'pull-right'  do%>
     <span class="glyphicon glyphicon-save"></span> 导出工作量
   <% end %>  

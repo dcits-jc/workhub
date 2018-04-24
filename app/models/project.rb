@@ -68,6 +68,21 @@ class Project < ApplicationRecord
     end
   end
 
+
+  def disabled!
+    self.is_disabled = true
+    self.save
+  end
+
+  def enabled!
+    self.is_disabled = false
+    self.save
+  end
+
+  def enabled?
+    !self.is_disabled
+  end
+
 end
 
 # == Schema Information
@@ -93,6 +108,7 @@ end
 #  area                   :string
 #  begin_time             :datetime
 #  end_time               :datetime
+#  is_disabled            :boolean          default(FALSE)
 #
 # Indexes
 #

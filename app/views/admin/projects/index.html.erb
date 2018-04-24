@@ -27,7 +27,13 @@
 
   <tbody>
     <% @projects.each do |p| %>
-    <tr>
+
+    <% if p.enabled?  %>
+      <tr class="alert alert-success">
+    <% else %>
+      <tr class="alert alert-danger">
+    <% end %>
+
       <td><strong><%= link_to(p.name,admin_project_path(p)) %></strong></td>
       <td><kbd><%= p.members.count %></kbd> </td>
       <td><small><%= p.sales.name %> </small> </td>
