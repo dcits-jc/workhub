@@ -5,19 +5,29 @@
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
-        <th>itcode</th>
+        <!-- <th>itcode</th> -->
         <th>姓名</th>
-        <th>用户邮箱</th>
+        <!-- <th>用户邮箱</th> -->
+        <th>身份证</th>
+        <th>学历证</th>
+        <th>学位证</th>
+        <th>职称</th>
+        <th>简历</th>
+
       </tr>
     </thead>
     <tbody>
       <% @users.each do |u| %>
       <tr>
-        <td>
-          <strong><%= link_to(u.itcode,wechatpage_user_path(u)) %></strong>
-        </td>
+<!--         <td>
+          <strong><%#= link_to(u.itcode,wechatpage_user_path(u)) %></strong>
+        </td> -->
         <td><small> <%= u.name %></small></td>
-        <td><%= u.email %></td>
+        <%= user_check_uploadfile(u.idcard_attachment) %>
+        <%= user_check_uploadfile(u.degree_attachment) %>
+        <td class="alert-danger text-center">X</td>
+        <td class="alert-danger text-center">X</td>
+        <%= user_check_uploadfile(u.resume_attachment) %>
       </tr>
       <% end %>
     </tbody>
