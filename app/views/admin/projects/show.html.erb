@@ -128,6 +128,10 @@
     <span class="glyphicon glyphicon-save"></span> 导出工作量
   <% end %>  
 </p>
+  <% if !@project.enabled? %>
+    <div class="alert alert-danger" role="alert">已禁用报工</div>
+  <% end %>
+
 
 <%= render "common/feeds" %>
 
