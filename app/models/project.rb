@@ -83,6 +83,17 @@ class Project < ApplicationRecord
     !self.is_disabled
   end
 
+
+  # 是否可编辑
+  def editor_user?(user)
+    # 如果用户是创建者,pm, 或后台管理员
+    if user.id == self.builder_id or user.is_admin? or self.managers.include?(user)
+      true
+    else
+      false
+    end
+  end
+
 end
 
 # == Schema Information

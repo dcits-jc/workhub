@@ -9,8 +9,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-pencil" aria-hidden="true"></i> 基本信息
-     <%= link_to edit_project_path(@project),class: ' pull-right',type: 'button' do %>
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+      <!-- 如果对于这个项目拥有编辑权限 -->
+      <% if @project.editor_user?(current_user) %>
+
+       <%= link_to edit_project_path(@project),class: ' pull-right',type: 'button' do %>
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+       <% end %>
+
      <% end %>
     </h3>
   </div>
@@ -77,9 +83,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-user" aria-hidden="true"></i> 项目经理 <kbd><%= @managers.count %></kbd>
-      <a href="" class="pull-right" data-toggle="modal" data-target="#newManager">
-         <i class="fa fa-user-plus" aria-hidden="true"></i>
-      </a>
+      <!-- 如果对于这个项目拥有编辑权限 -->
+      <% if @project.editor_user?(current_user) %>
+
+        <a href="" class="pull-right" data-toggle="modal" data-target="#newManager">
+           <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </a>
+
+      <% end %>
     </h3>
   </div>
   <div class="panel-body">
@@ -94,9 +105,15 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><i class="fa fa-user-o" aria-hidden="true"></i> 成员 <kbd><%= @members.count %></kbd>
-      <a href="" class="pull-right" data-toggle="modal" data-target="#newMember">
-         <i class="fa fa-user-plus" aria-hidden="true"></i>
-      </a>
+
+      <!-- 如果对于这个项目拥有编辑权限 -->
+      <% if @project.editor_user?(current_user) %>
+
+        <a href="" class="pull-right" data-toggle="modal" data-target="#newMember">
+           <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </a>
+        
+      <% end %>
     </h3>
   </div>
   <div class="panel-body">

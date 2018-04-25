@@ -7,6 +7,9 @@ class Feed < ApplicationRecord
 
   scope :order_by_recent, -> { order("created_at DESC") }
 
+
+
+
 end
 
 # == Schema Information

@@ -22,10 +22,13 @@ class ProjectWorkflowsController < ApplicationController
       if current_user.cost.blank?
         current_user.cost = 0
         current_user.save
+        workflow_cost = 0
+      else
+        workflow_cost = current_user.cost
       end
 
       # 核算人天
-      @project_workflow.cost = current_user.cost * @project_workflow.hours / 8
+      @project_workflow.cost = workflow_cost * @project_workflow.hours / 8
 
       # 两次','去重
       itvendors = dry_tsstring(@project_workflow.other_itvendors)
