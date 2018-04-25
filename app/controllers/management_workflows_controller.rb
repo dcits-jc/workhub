@@ -20,10 +20,13 @@ class ManagementWorkflowsController < ApplicationController
     if current_user.cost.blank?
       current_user.cost = 0
       current_user.save
+      workflow_cost = 0
+    else
+      workflow_cost = current_user.cost
     end
 
     # 核算人天
-    @management_workflow.cost = current_user.cost * @management_workflow.hours / 8
+    @management_workflow.cost = workflow_cost * @management_workflow.hours / 8
 
     # 根据工作类别选择对应管理项目
     case management_workflow_params[:worktype]
