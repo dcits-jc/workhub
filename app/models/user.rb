@@ -148,6 +148,9 @@ class User < ApplicationRecord
     Project.find_by(binding_team_id: self.team_id,projecttype: 'day_off')
   end
 
+
+
+
 end
 
 # == Schema Information

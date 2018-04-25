@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
       @project_workflows_costsum = @project_workflows_costsum + w.cost
     end
 
-
     # 导出的数据
     @export_feeds = @feeds
 
