@@ -4,7 +4,7 @@ class Wechatpage::UsersController < ActionController::Base
     @all_users = User.where(worktype: "技术")
     # 用户搜索
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).where(worktype: "技术")
+    @users = @q.result(distinct: true).where(worktype: "技术").order_by_itcode
   end
 
 

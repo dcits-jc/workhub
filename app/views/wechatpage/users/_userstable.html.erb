@@ -25,7 +25,7 @@
         <td><small><%= link_to(u.name,wechatpage_user_path(u)) %></small></td>
         <%= user_check_uploadfile(u.idcard_attachment) %>
         <%= user_check_uploadfile(u.degree_attachment) %>
-        <td class="alert-danger text-center">X</td>
+        <%= user_check_uploadfile(u.academic_attachment) %>
         <td class="alert-danger text-center">X</td>
         <%= user_check_uploadfile(u.resume_attachment) %>
       </tr>
