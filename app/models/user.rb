@@ -31,7 +31,8 @@ class User < ApplicationRecord
   # 挂载其他文件
   mount_uploader :resume_attachment, AttachmentUploader
   mount_uploader :idcard_attachment, AttachmentUploader
-  mount_uploader :degree_attachment, AttachmentUploader  
+  mount_uploader :degree_attachment, AttachmentUploader
+  mount_uploader :academic_attachment, AttachmentUploader  
 
 
   # 团队关系
@@ -72,6 +73,9 @@ class User < ApplicationRecord
 
   # 信息流
   has_many :feeds
+
+
+  scope :order_by_itcode, -> { order("itcode ASC") }
 
 
   # 搜索用户
@@ -191,6 +195,8 @@ end
 #  idcard_attachment      :string
 #  degree                 :string
 #  degree_attachment      :string
+#  academic_attachment    :string
+#  is_updateattachment    :boolean          default(FALSE)
 #
 # Indexes
 #
