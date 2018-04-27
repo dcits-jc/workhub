@@ -51,6 +51,17 @@
 
 
           <tr>
+            <td>学位证书:</td>
+            <td>
+              <% if @user.academic_attachment.present? %>
+                <kbd>已上传</kbd>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
             <td>技术简历:</td>
             <td>
               <% if @user.resume_attachment.present? %>
