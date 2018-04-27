@@ -82,10 +82,21 @@
           </tr>
 
           <tr>
-            <td>学历学位证书:</td>
+            <td>学历证书:</td>
             <td>
               <% if @user.degree_attachment.present? %>
                 <%=link_to("下载",quniuurl_pri(@user.degree_attachment_url),class: " glyphicon glyphicon-save",target: "_blank" ,download: '') %>
+              <% else %>
+                <code>未上传<code>
+              <% end %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>学位证书:</td>
+            <td>
+              <% if @user.academic_attachment.present? %>
+                <%=link_to("下载",quniuurl_pri(@user.academic_attachment_url),class: " glyphicon glyphicon-save",target: "_blank" ,download: '') %>
               <% else %>
                 <code>未上传<code>
               <% end %>
