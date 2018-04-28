@@ -97,7 +97,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name,:code,:itcode,:email,:level,:title,:cost,:avatar_attachment,:password_resetting,:team_id,:resume_attachment,:idcard_attachment,:degree_attachment,:degree)
+    params.require(:user).permit(:name,:code,:itcode,:email,:level,:title,:cost,:avatar_attachment,:password_resetting,:team_id,:resume_attachment,:idcard_attachment,:degree_attachment,:academic_attachment,:degree)
   end
   
 

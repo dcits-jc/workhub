@@ -20,6 +20,8 @@ class Team < ApplicationRecord
   has_many :children, class_name: "Team", foreign_key: "parent_id"
 
 
+  scope :order_by_name, -> { order("name ASC") }
+
   # 增加成员
   def join!(user)
     self.users << user

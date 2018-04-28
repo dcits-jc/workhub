@@ -28,7 +28,7 @@
   <tbody>
     <% @teams.each do |t| %>
     <tr>
-      <td><strong><%= link_to(t.name,admin_team_path(t)) %></strong></td>
+      <td><strong><%= link_to(t.name,admin_team_path(t),target: '_blank') %></strong></td>
        <td><kbd><%= t.users.count %></kbd> </td>
       <td> <small> <%= t.description %></small></td>
       <td><%= link_to('编辑',edit_admin_team_path(t)) %>  | <%= link_to('删除',admin_team_path(t), method: 'DELETE', data: { confirm: "确认删除该团队?" }) %> </td>
