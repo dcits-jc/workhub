@@ -38,7 +38,7 @@
 #  degree_attachment      :string
 #  academic_attachment    :string
 #  is_updateattachment    :boolean          default(FALSE)
-#  extra_cost             :float
+#  extra_cost             :integer
 #
 # Indexes
 #

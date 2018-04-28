@@ -64,15 +64,20 @@
             <td><%= @user.level %></td>
           </tr>
           <tr>
-            <td>收费标准:</td>
+            <td>Bu内部标准:</td>
             <td><code>¥ <%= @user.cost %> 人/天</code></td>
           </tr>
-
+          <tr>
+            <td>Bu外部标准:</td>
+            <td><code>¥ <%= @user.extra_cost %> 人/天</code></td>
+          </tr>
 
           <tr>
             <td>学历:</td>
             <td>
-              <kbd><%= @user.degree %></kbd>
+              <% if @user.degree.present? %>
+                <kbd><%= @user.degree %></kbd>
+              <% end %>
             </td>
           </tr>
           
