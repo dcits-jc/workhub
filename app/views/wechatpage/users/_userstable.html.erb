@@ -1,36 +1,50 @@
+<!-- 如果确实有搜索东西 -->
+<% if  params[:q].present? %>
 
+<!-- 用户搜到了 -->
+<% if @users.present? %>
+  <div class="col-md-12">
 
-<div class="col-md-12">
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <!-- <th>itcode</th> -->
+          <th>姓名</th>
+          <!-- <th>用户邮箱</th> -->
+          <th>身份证</th>
+          <th>学历证</th>
+          <th>学位证</th>
+          <th>职称</th>
+          <th>简历</th>
 
-  <table class="table table-hover table-condensed">
-    <thead>
-      <tr>
-        <!-- <th>itcode</th> -->
-        <th>姓名</th>
-        <!-- <th>用户邮箱</th> -->
-        <th>身份证</th>
-        <th>学历证</th>
-        <th>学位证</th>
-        <th>职称</th>
-        <th>简历</th>
-
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |u| %>
-      <tr>
-<!--         <td>
-          <strong><%#= link_to(u.itcode,wechatpage_user_path(u)) %></strong>
-        </td> -->
-        <td><small><%= link_to(u.name,wechatpage_user_path(u)) %></small></td>
-        <%= user_check_uploadfile(u.idcard_attachment) %>
-        <%= user_check_uploadfile(u.degree_attachment) %>
-        <%= user_check_uploadfile(u.academic_attachment) %>
-        <td class="alert-danger text-center">X</td>
-        <%= user_check_uploadfile(u.resume_attachment) %>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |u| %>
+        <tr>
+  <!--         <td>
+            <strong><%#= link_to(u.itcode,wechatpage_user_path(u)) %></strong>
+          </td> -->
+          <td><small><%= link_to(u.name,wechatpage_user_path(u)) %></small></td>
+          <%= user_check_uploadfile(u.idcard_attachment) %>
+          <%= user_check_uploadfile(u.degree_attachment) %>
+          <%= user_check_uploadfile(u.academic_attachment) %>
+          <td class="alert-danger text-center">X</td>
+          <%= user_check_uploadfile(u.resume_attachment) %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+<% elsif @users.blank? %>
+<div class="col-md-12 col-xs-12 col-sm-12">
+  <div class="alert alert-warning" role="alert"">
+    未搜索到该用户!
+  </div>  
 </div>
+
+<% else %>
+<% end %>
+
+<% end %>

@@ -12,11 +12,13 @@
 </div>
 
 <!-- 用户表 -->
-<% if @users.present? %>
+<%# if @users.present? %>
   <%= render "userstable" %>
-<% end %>
+<%# end %>
 
-<div class="col-md-12">
+
+
+<div class="col-md-12 col-xs-12">
   <div class="panel panel-default">
     <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span> 个人资料借阅流程</div>
     <div class="panel-body">
@@ -28,7 +30,6 @@
       </ol>
     </div>
   </div>
-  
 </div>
 
 
