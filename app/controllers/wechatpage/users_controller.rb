@@ -8,7 +8,8 @@ class Wechatpage::UsersController < ActionController::Base
       @users = @q.result(distinct: true).order_by_itcode
     else
       @users = nil
-    end   
+    end
+      
   end
 
 
