@@ -16,10 +16,14 @@
     </h3>
   </div>
   <div class="panel-body">
-    <p>上级部门: <kbd><%= @team.parent.present? ? @team.parent.name : nil %></kbd></p>
+    <p>上级部门: 
+      <% if @team.parent.present? %>
+        <kbd><%= @team.parent.name %> <%= link_to('x',delete_parents_admin_team_path({parent_id: @team.parent_id}),method: 'post', data: { confirm: "确认移除该上级部门?" }) %></kbd>
+      <% end %>
+    </p>
     <p>下级部门: 
       <% @team.children.each do |t| %>
-      <kbd><%= t.name %></kbd>
+        <kbd><%= t.name %> <%= link_to('x',delete_children_admin_team_path({children_id: t.id}),method: 'post', data: { confirm: "确认移除该下级部门?" }) %></kbd>
       <% end %>
     </p>
     <%= @team.description %>

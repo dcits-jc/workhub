@@ -7,7 +7,7 @@ class Admin::TeamsController < ApplicationController
     @all_teams = Team.all
     # 团队搜索
     @q = Team.ransack(params[:q])
-    @teams = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)
+    @teams = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20).order_by_name
   end
 
   def show
@@ -68,7 +68,7 @@ class Admin::TeamsController < ApplicationController
     else
       if @team.update(team_params)
         flash[:notice] = "团队更新成功!"
-        redirect_to admin_teams_path
+        redirect_to admin_team_path(@team)
       else
         flash[:alert] = "团队更新失败!"
         render :edit
@@ -83,6 +83,26 @@ class Admin::TeamsController < ApplicationController
     @team.destroy
     flash[:notice] = "团队已删除"
     redirect_to admin_teams_path
+  end
+
+
+  # 移除父团队
+  def delete_parents
+    @team = Team.find(params[:id])
+    @parent_team = Team.find(params[:parent_id])
+    @team.parent = nil
+    @team.save
+    flash[:notice] = "该上级部门移除成功!"
+    redirect_to admin_team_path(@team)
+  end
+
+  # 移除子团队
+  def delete_children
+    @team = Team.find(params[:id])
+    @children_team = Team.find(params[:children_id])
+    @team.children.delete(@children_team)
+    flash[:notice] = "该下级部门移除成功!"
+    redirect_to admin_team_path(@team)
   end
 
 

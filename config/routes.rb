@@ -39,7 +39,12 @@ Rails.application.routes.draw do
         post :cancel_admin
       end
     end
-    resources :teams
+    resources :teams do
+      member do
+        post :delete_parents
+        post :delete_children
+      end
+    end
     resources :projects do
       member do
         post :set_disabled
