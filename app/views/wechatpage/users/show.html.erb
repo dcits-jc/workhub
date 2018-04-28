@@ -1,88 +1,80 @@
-        <table>
-          <tr>
-            <td>编号:</td>
-            <td><%= @user.code %></td>
-          </tr>
-          <tr>
-            <td>姓名:</td>
-            <td><%= @user.name %></td>
-          </tr>
-          <tr>
-            <td>itcode:</td>
-            <td><%= @user.itcode %></td>
-          </tr>
-          <tr>
-            <td>邮箱:</td>
-            <td><%= @user.email %></td>
-          </tr>
-          <tr>
-            <td>当前团队:</td>
-            <td>
-              <% if @user.team.present? %>
-                <kbd>
-                  <%= @user.team.name %>
-                </kbd>
-              <% else %>
-                <span class="alert-warning">不在任何团队中</span> 
-              <% end %>                
-            </td>
-          </tr>
-
-          <tr>
-            <td>评级:</td>
-            <td><%= @user.level %></td>
-          </tr>
-          <tr>
-            <td>收费标准:</td>
-            <td><code>¥ <%= @user.cost %> 人/天</code></td>
-          </tr>
-
-
-          <tr>
-            <td>学历证书:</td>
-            <td>
-              <% if @user.degree_attachment.present? %>
-                <kbd>已上传</kbd>
-              <% else %>
-                <code>未上传<code>
-              <% end %>
-            </td>
-          </tr>
-
-
-          <tr>
-            <td>学位证书:</td>
-            <td>
-              <% if @user.academic_attachment.present? %>
-                <kbd>已上传</kbd>
-              <% else %>
-                <code>未上传<code>
-              <% end %>
-            </td>
-          </tr>
-
-          <tr>
-            <td>技术简历:</td>
-            <td>
-              <% if @user.resume_attachment.present? %>
-                <kbd>已上传</kbd>
-              <% else %>
-                <code>未上传<code>
-              <% end %>
-            </td>
-          </tr>
+<div class="col-md-12">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 text-center">
+      <br>
+      <div class="thumbnail">
+        <%= user_avatar(@user) %>
+      </div>
+    </div>
+  </div>
+  <h4 class="text-center"><%= @user.name %> <%= @user.itcode %></h4>
+  <br>
+</div>
 
 
 
-          <tr>
-            <td>身份证:</td>
-            <td>
-              <% if @user.idcard_attachment.present? %>
-                <kbd>已上传</kbd>
-              <% else %>
-                <code>未上传<code>
-              <% end %>
-            </td>
-          </tr>
 
-        </table>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">个人资料</div>
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">编号 : <%= @user.code %></li>
+    <li class="list-group-item">邮箱 : <%= @user.email %></li>
+    <li class="list-group-item">职位 : <%= @user.title %>
+
+    <li class="list-group-item">部门 : 
+      <% if @user.team.present? %>
+        <kbd>
+          <%= @user.team.name %>
+        </kbd>
+      <% else %>
+        不属于任何部门
+      <% end %> 
+    </li>
+    <li class="list-group-item">评级 : <%= @user.level %>
+
+
+    </li>
+    <li class="list-group-item">Bu内部支持 : <code>¥ <%= @user.cost %> 人/天</code></li>
+    <li class="list-group-item">Bu外部支持 : <code>¥ <%= @user.extra_cost %> 人/天</code></li>
+
+    <li class="list-group-item">身份证 : 
+      <% if @user.idcard_attachment.present? %>
+        <kbd>已上传</kbd>
+      <% else %>
+        <code>未上传</code>
+      <% end %>
+    </li>
+
+    <li class="list-group-item">学历证书 : 
+      <% if @user.degree_attachment.present? %>
+        <kbd>已上传</kbd>
+      <% else %>
+        <code>未上传</code>
+      <% end %>
+    </li>
+    <li class="list-group-item">学位证书 : 
+      <% if @user.academic_attachment.present? %>
+        <kbd>已上传</kbd>
+      <% else %>
+        <code>未上传</code>
+      <% end %>      
+    </li>
+
+    <li class="list-group-item">技术简历 : 
+      <% if @user.resume_attachment.present? %>
+        <kbd>已上传</kbd>
+      <% else %>
+        <code>未上传</code>
+      <% end %>      
+    </li>
+
+  </ul>
+</div>
+
+
+
+
+
+

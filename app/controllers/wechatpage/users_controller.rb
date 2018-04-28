@@ -1,10 +1,14 @@
 class Wechatpage::UsersController < ActionController::Base
   layout 'wechat'
   def index
-    @all_users = User.where(worktype: "技术")
+    # @all_users = User.where(worktype: "技术")
     # 用户搜索
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).where(worktype: "技术").order_by_itcode
+    if params[:q].present?
+      @users = @q.result(distinct: true).order_by_itcode
+    else
+      @users = nil
+    end   
   end
 
 
