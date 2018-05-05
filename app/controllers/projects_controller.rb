@@ -64,7 +64,7 @@ class ProjectsController < ApplicationController
       @project.builder = current_user
 
       # 如果不是临时项目,而且不是12位
-      if project_params[:projecttype]!='temp_project' and check_code?(project_params[:code]) == false
+      if project_params[:projecttype]!='sipresale_project' and check_code?(project_params[:code]) == false
         # binding.pry
         flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
         render :new        
