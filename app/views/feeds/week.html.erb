@@ -10,9 +10,8 @@
           <%= strf(@start_date) %> ~ <%= strf(@end_date) %>  
         </small>
       </li>
-      <%= link_to week_feeds_path(start_date: @start_date,end_date: @end_date,format: "xls"),class: 'pull-right',title: '导出工作量'  do%>
-        <span class="glyphicon glyphicon-save"></span>
-      <% end %>
+
+      <a href="#" class='pull-right' data-toggle="modal" data-target="#export_modal"><span class="glyphicon glyphicon-save"></span></a>
     </ol>
 
     <!-- 按钮与表单 -->
@@ -55,3 +54,84 @@
   </div>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="export_modal" tabindex="-1" role="dialog" aria-labelledby="export_modalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="export_modalLabel">导出xls</h4>
+      </div>
+      <div class="modal-body">
+        
+
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon-start">起始时间</span>
+          <input id="flatpickr_begin_time" class="form-control" placeholder="点击选择日期" aria-describedby="basic-addon-start">
+        </div>
+
+        <br>
+
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon-end">结束时间</span>
+          <input id="flatpickr_end_time" class="form-control" placeholder="点击选择日期" aria-describedby="basic-addon-start">
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" id="export_xls" class="btn btn-primary" data-dismiss="modal">导出</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  
+
+
+$(document).ready(function() {
+
+
+  // 日期选择器
+  $('#flatpickr_begin_time').flatpickr({
+    // wrap: true,
+    defaultDate: '<%= @start_date %>'
+  });
+  $('#flatpickr_end_time').flatpickr({
+    // wrap: true,
+    defaultDate: '<%= @end_date %>'
+  });
+
+
+  // 导出按钮
+  $('#export_xls').click(function(event) {
+    url = '/feeds/week.xls?start_date=' + $('#flatpickr_begin_time').val()+'&end_date='+$('#flatpickr_end_time').val();
+    console.log(url);
+    window.location.replace(url);
+    // $.get(url);
+  });
+
+    
+});
+
+
+</script>
+
+
