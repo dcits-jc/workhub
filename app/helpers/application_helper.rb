@@ -160,4 +160,12 @@ module ApplicationHelper
  end
 
 
+
+ # 某用户在指定时间内是否有提交周报
+ def user_feed_submit?(user,start_date,end_date)
+   collect_feeds = user.feeds.where(end_time: start_date..end_date)
+   return collect_feeds.present?
+ end
+
+
 end
