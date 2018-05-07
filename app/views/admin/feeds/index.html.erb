@@ -18,14 +18,38 @@
 
     </ol>
 
+    <div>
 
-    <!-- 本周的 feeds -->
-    <%= render 'common/feeds' %>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#all_feeds" aria-controls="all_feeds" role="tab" data-toggle="tab">周报</a></li>
+        <li role="presentation"><a href="#all_user_feeds_sum" aria-controls="all_user_feeds_sum" role="tab" data-toggle="tab">提交情况</a></li>
+      </ul>
 
-    <!-- 分页 -->
-    <div class="text-center">
-      <%= will_paginate @feeds %>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="all_feeds">
+
+          <!-- 本周的 feeds -->
+          <%= render 'common/feeds' %>
+
+          <!-- 分页 -->
+          <div class="text-center">
+            <%= will_paginate @feeds %>
+          </div>
+          
+        </div>
+        <div role="tabpanel" class="tab-pane" id="all_user_feeds_sum">
+          <%= render 'all_user_feeds_sum' %>
+        </div>
+
+      </div>
+
     </div>
+
+
+
+
 
   </div>
 

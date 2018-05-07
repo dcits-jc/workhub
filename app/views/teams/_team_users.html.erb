@@ -11,12 +11,22 @@
         <div class="row">
           <% @all_team_users.each do |u| %>
             <div class="col-md-12">
+              <span>
+                <!-- 用户链接 -->
+                <%= link_to user_path(u) do %>
+                  <%= user_avatar(u,{style: "width: 20px;height: 20px;"}) %>
+                  <strong><%= u.name %></strong> 
+                <% end %>
 
-              <%= link_to user_path(u) do %>
-                <%= user_avatar(u,{style: "width: 20px;height: 20px;"}) %>
-                <strong><%= u.name %></strong> 
-              <% end %>
-                
+                <!-- 用户当周是否提交周报 -->
+                <% if user_feed_submit?(u,@start_date,@end_date) %>
+                  <kbd><span class="glyphicon glyphicon-ok">已提交</span></kbd>
+                <% else %>
+                  <code><span class="glyphicon glyphicon-remove">未提交</span></code>
+                <% end %>
+              
+              
+              </span>
             </div>
           <% end %>
         </div>
