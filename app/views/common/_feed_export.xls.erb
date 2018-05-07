@@ -45,8 +45,8 @@
           <Cell><Data ss:Type="String"><%= feed.user.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= desc_worktype(feed.feedable.worktype) %></Data></Cell>
           <Cell><Data ss:Type="String"><%= strip_tags(feed.feedable.content) %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= itvendors_arrary.to_s %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= itskills_arrary.to_s %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= itvendors_arrary.join(',') %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= itskills_arrary.join(',') %></Data></Cell>
           <Cell><Data ss:Type="Number"><%= feed.feedable.hours %></Data></Cell>
           <Cell><Data ss:Type="String"><%= strf(feed.feedable.begin_time) %></Data></Cell>
           <Cell><Data ss:Type="String"><%= strf(feed.feedable.end_time) %></Data></Cell>
