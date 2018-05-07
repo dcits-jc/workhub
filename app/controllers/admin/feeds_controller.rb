@@ -7,7 +7,7 @@ class Admin::FeedsController < ApplicationController
     # 设置当前时间
     @current_time = Time.now
 
-    @teams = Team.includes(:users).all
+    @teams = Team.includes(:users).all.order_by_name
 
     if params[:start_date].present? and params[:end_date].present?
       @start_date = Time.parse(params[:start_date])
