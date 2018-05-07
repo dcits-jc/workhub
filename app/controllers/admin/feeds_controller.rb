@@ -7,6 +7,8 @@ class Admin::FeedsController < ApplicationController
     # 设置当前时间
     @current_time = Time.now
 
+    @teams = Team.includes(:users).all
+
     if params[:start_date].present? and params[:end_date].present?
       @start_date = Time.parse(params[:start_date])
       @end_date = Time.parse(params[:end_date])
@@ -22,6 +24,9 @@ class Admin::FeedsController < ApplicationController
 
     # 导出的数据不分页
     @export_feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
+
+    # 提交人数
+    @feeds_users_count = @export_feeds.group_by{|r| r.user_id}.count
 
 
     # 数据导出

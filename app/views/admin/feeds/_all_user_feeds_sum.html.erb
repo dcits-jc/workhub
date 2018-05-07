@@ -1,0 +1,27 @@
+<div class="alert alert-info" role="alert">当周总计 <span class="lead"><%= @feeds_users_count %></span> 人提交了周报.</div>
+
+
+<!-- 所有的团队 -->
+<% @teams.each do |t| %>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= t.name %> <kbd><%= t.users.count %></kbd> </h3>
+    </div>
+    <div class="panel-body">
+
+      <% t.users.each do |u| %>
+        <!-- 用户当周是否提交周报 -->
+        <% if user_feed_submit?(u,@start_date,@end_date) %>
+          <kbd><span class="glyphicon glyphicon-ok"><%= u.name %></span></kbd>
+        <% else %>
+          <code><span class="glyphicon glyphicon-remove"><%= u.name %></span></code>
+        <% end %>
+                
+      <% end %>
+
+    </div>
+  </div>
+
+<% end %>
