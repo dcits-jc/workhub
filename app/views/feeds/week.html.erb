@@ -31,7 +31,7 @@
             <% else %>
               <%= @current_week_workloads %>h
             <% end %>
-          / 40h )</span> </u></strong>
+          / 40h )</span> </u> <span class="pie"><%= @current_week_workloads %>/40</span></strong>
         </div>
 
       </div>
@@ -55,6 +55,10 @@
 
 </div>
 
+<!-- 未提交周报提示 -->
+<script>
+$("span.pie").peity("pie")
+</script>
 
 
 
