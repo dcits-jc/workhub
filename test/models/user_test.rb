@@ -47,6 +47,7 @@ end
 #  academic_attachment    :string
 #  is_updateattachment    :boolean          default(FALSE)
 #  extra_cost             :integer
+#  is_feedneeded          :boolean          default(FALSE)
 #
 # Indexes
 #

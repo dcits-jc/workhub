@@ -331,6 +331,70 @@ namespace :userupdate do
     {itcode:"fengxdd",level:"高级",cost:2200,extra_cost:2750}
   ]
 
+
+
+itcode_arrary = [
+  "yanges",
+  "handjb",
+  "cuijwa",
+  "huangsheng",
+  "linsongb",
+  "zhancy",
+  "zhuywd",
+  "zhangzhend",
+  "wuyln",
+  "liumgb",
+  "hegha",
+  "mengwd",
+  "zhusle",
+  "zhangjianau",
+  "wangqunb",
+  "xiachuan",
+  "wanggangac",
+  "guosqb",
+  "gaojh",
+  "guojca",
+  "yangfj",
+  "linsenb",
+  "niepeng",
+  "malq",
+  "hanymc",
+  "wendan",
+  "songleib",
+  "zhangjingaq",
+  "wangchaor",
+  "pengsf",
+  "tangliange",
+  "xiaocgc",
+  "wanghwo",
+  "maoxsa",
+  "menghr",
+  "huzfb",
+  "tianmina",
+  "hefeig",
+  "chenzhanc",
+  "xutao",
+  "mengfda",
+  "wanghuiae",
+  "changdwa",
+  "xuchene",
+  "zhouxcb",
+  "zhaolif",
+  "chaiwc",
+  "tenglj",
+  "zhaoliangi",
+  "hedm",
+  "liucyj",
+  "lizhenu",
+  "lipfi",
+  "zhaotiana",
+  "wangjp",
+  "zhangzhengj",
+  "fengduan"
+  ]
+
+
+
   task :user_cost => :environment do
     i = 0
     user_info_arrary.each do |u|
@@ -355,6 +419,18 @@ namespace :userupdate do
       puts u.name + ' update success!'
     end
   end
+
+
+  # 设置是否要求提交
+  task :user_setcommit => :environment do
+    itcode_arrary.each do |i|
+      u = User.find_by_itcode(i)
+      puts(u.name)
+      u.is_feedneeded = true
+      u.save
+    end
+  end
+
 
 
 end

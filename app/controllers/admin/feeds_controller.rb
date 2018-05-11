@@ -25,9 +25,26 @@ class Admin::FeedsController < ApplicationController
     # 导出的数据不分页
     @export_feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
 
+    # 全部的应提周报人数
+    @total_user_feedneeded = User.where(is_feedneeded: true).order_by_team
+    
     # 提交人数
-    @feeds_users_count = @export_feeds.group_by{|r| r.user_id}.count
+    @feeds_groupby_users = @export_feeds.group_by{|r| r.user}
 
+    # 提取用户
+    @feed_committed_users = @feeds_groupby_users.map { |u| u[0] }
+
+    # 应提交未提交用户
+    @feed_uncommitted_users = @total_user_feedneeded - @feed_committed_users
+
+    # 根据参数决定筛选出来的结果
+    if params[:users_feedneeded] == 'committed'
+      @feeded_users = @feed_committed_users
+    elsif params[:users_feedneeded] == 'uncommitted'
+      @feeded_users = @feed_uncommitted_users
+    else
+      @feeded_users = @total_user_feedneeded
+    end
 
     # 数据导出
     respond_to do |format|
