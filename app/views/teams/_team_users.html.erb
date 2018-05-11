@@ -9,7 +9,7 @@
       <div class="panel-body">
 
         <div class="row">
-          <% @all_team_users.each do |u| %>
+          <% @current_team.users.each do |u| %>
             <div class="col-md-12">
               <span>
                 <!-- 用户链接 -->
@@ -18,13 +18,8 @@
                   <strong><%= u.name %></strong> 
                 <% end %>
 
-                <!-- 用户当周是否提交周报 -->
-                <% if user_feed_submit?(u,@start_date,@end_date) %>
-                  <kbd><span class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="top" title="已提交周报"></span></kbd>
-                <% else %>
-                  <code><span class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="未提交周报"></span></code>
-                <% end %>
-              
+                <!-- 用户当周饱和量 -->
+                  <span class="pie"><%=u.time_workloads(@start_date,@end_date)%>/40</span>
               
               </span>
             </div>
@@ -41,8 +36,5 @@
 
 <!-- 未提交周报提示 -->
 <script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-
+$("span.pie").peity("pie")
 </script>

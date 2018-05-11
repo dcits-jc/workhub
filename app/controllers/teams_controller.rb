@@ -31,15 +31,17 @@ class TeamsController < ApplicationController
     # 历史周
     @history_weeks = weekindex(Time.now, @current_team.created_at)
 
-    # 先检索出这段时间该团队所有的 feeds endtime
-    team_feeds = Feed.includes(:user).where( users: { team_id: @current_team.id },feeds: { end_time: @start_date..@end_date })
+    # 如果当前团队有子团队
+    team_arrary = [@current_team.id]
+    if @current_team.has_children?
+      @current_team.children.each do |c|
+        team_arrary.push(c)
+      end
+    end
 
-    # # 如果当前团队有子团队
-    # if @current_team.has_children?
-      
-    # else
-      
-    # end
+
+    # 先检索出这段时间该团队所有的 feeds endtime
+    team_feeds = Feed.includes(:user).where( users: { team_id: team_arrary },feeds: { end_time: @start_date..@end_date })
 
 
     # 最后排序
@@ -57,7 +59,25 @@ class TeamsController < ApplicationController
 
 
     # 所有团队成员
-    @all_team_users = @current_team.users
+    # @team_users = @current_team.users
+
+
+    # 如果当前团队有子团队,就把子团队成员 push 进来
+    if @current_team.has_children?
+      teamuser_arrary = []
+      @current_team.users.each do |u|
+        teamuser_arrary.push(u)
+      end
+
+      @current_team.children.each do |c|
+        c.users.each do |cu|
+          teamuser_arrary.push(cu)
+        end
+      end
+    end
+
+    # 为 excel加入用户统计
+    @feeded_users = teamuser_arrary
 
     # 数据导出
     respond_to do |format|
