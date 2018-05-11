@@ -1,27 +1,57 @@
-<div class="alert alert-info" role="alert">当周总计 <span class="lead"><%= @feeds_users_count %></span> 人提交了周报.</div>
+<div class="alert alert-info" role="alert">总计 
+  <u class="lead"><%= link_to(@total_user_feedneeded.count,admin_feeds_path({start_date: params[:start_date],end_date: params[:end_date]})+'#all_user_feeds_sum' ) %></u> 提交人,
+  <u class="lead"><%= link_to(@feed_committed_users.count,admin_feeds_path({start_date: params[:start_date],end_date: params[:end_date],users_feedneeded: 'committed'})+'#all_user_feeds_sum') %></u> 人提交了周报,
+  <u class="lead"><%= link_to(@feed_uncommitted_users.count,admin_feeds_path({start_date: params[:start_date],end_date: params[:end_date],users_feedneeded: 'uncommitted'})+'#all_user_feeds_sum') %></u> 人未提交周报.
+</div>
 
 
-<!-- 所有的团队 -->
-<% @teams.each do |t| %>
 
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= t.name %> <kbd><%= t.users.count %></kbd> </h3>
-    </div>
-    <div class="panel-body">
 
-      <% t.users.each do |u| %>
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>用户名</td>
+      <td>部门</td>
+      <td>提交周报</td>
+      <td>总工作量</td>
+      <td>饱和度</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @feeded_users.each do |u| %>
+
+    <% if user_feed_submit?(u,@start_date,@end_date) %>
+      <tr class="alert alert-success">
+    <% else %>
+      <tr class="alert alert-danger">
+    <% end %>
+
+      <td><%= u.name %></td>
+      <td><%= u.team.name %></td>
+      <td>
+        
         <!-- 用户当周是否提交周报 -->
         <% if user_feed_submit?(u,@start_date,@end_date) %>
-          <kbd><span class="glyphicon glyphicon-ok"><%= u.name %></span></kbd>
+          <span class="glyphicon glyphicon-ok"></span>
         <% else %>
-          <code><span class="glyphicon glyphicon-remove"><%= u.name %></span></code>
+          <span class="glyphicon glyphicon-remove"></span>
         <% end %>
-                
-      <% end %>
 
-    </div>
-  </div>
+      </td>
+      <td>
+        <%= u.time_workloads(@start_date,@end_date) %>h
+      </td>
+      <td>
+        <%= u.time_workloads_precent(@start_date,@end_date) %>%
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<% end %>
+
+
+

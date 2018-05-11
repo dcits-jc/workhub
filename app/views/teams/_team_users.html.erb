@@ -20,9 +20,9 @@
 
                 <!-- 用户当周是否提交周报 -->
                 <% if user_feed_submit?(u,@start_date,@end_date) %>
-                  <kbd><span class="glyphicon glyphicon-ok">已提交</span></kbd>
+                  <kbd><span class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="top" title="已提交周报"></span></kbd>
                 <% else %>
-                  <code><span class="glyphicon glyphicon-remove">未提交</span></code>
+                  <code><span class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="未提交周报"></span></code>
                 <% end %>
               
               
@@ -37,3 +37,12 @@
     
   </div>
 </div>
+
+
+<!-- 未提交周报提示 -->
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+</script>

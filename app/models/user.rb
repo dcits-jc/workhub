@@ -77,6 +77,9 @@ class User < ApplicationRecord
 
   scope :order_by_itcode, -> { order("itcode ASC") }
 
+  # 该段时间提交周报了的用户
+  scope :order_by_team, -> { order("team_id ASC") }
+
 
   # 搜索用户
   def self.search(search)
@@ -153,6 +156,25 @@ class User < ApplicationRecord
   end
 
 
+  # 某段时间总工作量合计
+  def time_workloads(start_time,end_time)
+    current_feeds = self.feeds.where(end_time: start_time..end_time)
+    loads = 0
+    current_feeds.each do |f|
+      loads = loads + f.feedable.hours
+    end
+    return loads
+  end
+
+  # 计算饱和度
+  def time_workloads_precent(start_time,end_time)
+    current_feeds = self.feeds.where(end_time: start_time..end_time)
+    loads = 0
+    current_feeds.each do |f|
+      loads = loads + f.feedable.hours
+    end
+    return loads*2.5
+  end
 
 
 end
@@ -198,6 +220,7 @@ end
 #  academic_attachment    :string
 #  is_updateattachment    :boolean          default(FALSE)
 #  extra_cost             :integer
+#  is_feedneeded          :boolean          default(FALSE)
 #
 # Indexes
 #
