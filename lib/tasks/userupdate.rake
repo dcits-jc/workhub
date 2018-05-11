@@ -394,6 +394,7 @@ itcode_arrary = [
   ]
 
 
+
   task :user_cost => :environment do
     i = 0
     user_info_arrary.each do |u|
