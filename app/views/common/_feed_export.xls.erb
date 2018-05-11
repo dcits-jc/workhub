@@ -4,7 +4,7 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
+  <Worksheet ss:Name="报工明细">
     <Table>
       <Row>
         <Cell><Data ss:Type="String">项目号</Data></Cell>
@@ -56,4 +56,41 @@
 
     </Table>
   </Worksheet>
+
+  <!-- 如果报工人员列表存在 -->
+  <% if @feeded_users.present? %>
+
+  <Worksheet ss:Name="报工统计">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">用户名</Data></Cell>
+        <Cell><Data ss:Type="String">部门</Data></Cell>
+        <Cell><Data ss:Type="String">是否提交周报</Data></Cell>
+        <Cell><Data ss:Type="String">总工作量(h)</Data></Cell>
+        <Cell><Data ss:Type="String">饱和度(%)</Data></Cell>
+      </Row>
+
+      <% @feeded_users.each do |u| %>
+        <Row>
+          <Cell><Data ss:Type="String"><%= u.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= u.team.name %></Data></Cell>
+          
+          <Cell><Data ss:Type="String">
+            <% if user_feed_submit?(u,@start_date,@end_date) %>
+              是
+            <% else %>
+              否
+            <% end %>
+          </Data></Cell>
+
+          <Cell><Data ss:Type="Number"><%= u.time_workloads(@start_date,@end_date) %></Data></Cell>
+          <Cell><Data ss:Type="Number"><%= u.time_workloads_precent(@start_date,@end_date) %></Data></Cell>
+        </Row>
+      <% end %>
+
+    </Table>
+  </Worksheet>
+
+  <% end %>
+
 </Workbook>

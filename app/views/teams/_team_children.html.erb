@@ -16,16 +16,10 @@
                   <!-- 用户链接 -->
                   <%= link_to user_path(u) do %>
                     <%= user_avatar(u,{style: "width: 20px;height: 20px;"}) %>
-                    <strong><%= u.name %></strong> 
+                    <strong><%= u.name %></strong>
+                    
                   <% end %>
-
-                  <!-- 用户当周是否提交周报 -->
-                  <% if user_feed_submit?(u,@start_date,@end_date) %>
-                    <kbd><span class="glyphicon glyphicon-ok" data-toggle="tooltip" data-placement="top" title="已提交周报"></span></kbd>
-                  <% else %>
-                    <code><span class="glyphicon glyphicon-remove" data-toggle="tooltip" data-placement="top" title="未提交周报"></span></code>
-                  <% end %>
-                
+                  <span class="pie"><%=u.time_workloads(@start_date,@end_date)%>/40</span>                
                 </span>
               </div>
             
@@ -42,8 +36,5 @@
 
 <!-- 未提交周报提示 -->
 <script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-
+$("span.pie").peity("pie")
 </script>

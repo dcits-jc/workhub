@@ -45,6 +45,7 @@
         <%= u.time_workloads(@start_date,@end_date) %>h
       </td>
       <td>
+        <span class="pie"><%=u.time_workloads(@start_date,@end_date)%>/40</span>
         <%= u.time_workloads_precent(@start_date,@end_date) %>%
       </td>
     </tr>
@@ -55,3 +56,7 @@
 
 
 
+<!-- 未提交周报提示 -->
+<script>
+$("span.pie").peity("pie")
+</script>
