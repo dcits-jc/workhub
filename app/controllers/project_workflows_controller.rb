@@ -13,7 +13,7 @@ class ProjectWorkflowsController < ApplicationController
     @project_workflow = ProjectWorkflow.new(project_workflow_params)
 
     @project = Project.find(project_workflow_params[:project_id])
-    if @project.enabled?
+    if @project.enabled? and project_workflow_params[:hours].present?
       
       # 将终止时间+23.59小时
       @project_workflow.end_time = @project_workflow.end_time+1.day-1.second
@@ -63,12 +63,25 @@ class ProjectWorkflowsController < ApplicationController
         flash[:notice] = "提交成功!"
         redirect_to root_path
       else
-        flash[:alert] = "提交失败!"
+        if project_workflow_params[:project_id].blank?
+          flash[:alert] = "未选择项目,提交失败!"
+        elsif project_workflow_params[:worktype].blank?
+          flash[:alert] = "未选择'工作类别',提交失败!" 
+        elsif project_workflow_params[:content].blank?
+          flash[:alert] = "未填写'工作内容',提交失败!" 
+        else
+          flash[:alert] = "提交失败!"
+        end
         redirect_to root_path      
       end
 
     else
-      flash[:alert] = "提交失败,该项目已被禁止继续报工!"
+      if project_workflow_params[:hours].blank?
+        flash[:alert] = "未填写'工作量',提交失败!" 
+      else
+        flash[:alert] = "提交失败,该项目已被禁止继续报工!"
+      end
+      
       redirect_to root_path       
     end
 
