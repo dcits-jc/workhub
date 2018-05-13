@@ -4291,3 +4291,9 @@ D, [2018-05-11T18:12:17.321854 #19615] DEBUG -- : DRAGONFLY: shell command: 'con
 I, [2018-05-11T18:12:17.350651 #19615]  INFO -- : DRAGONFLY: GET /avatar/250/5e35b1/w 200
 I, [2018-05-11T18:12:17.352985 #19615]  INFO -- : DRAGONFLY: GET /avatar/250/004d40/y 200
 I, [2018-05-11T18:12:17.355091 #19615]  INFO -- : DRAGONFLY: GET /avatar/250/c0ca33/w 200
+D, [2018-05-12T13:10:53.859428 #19615] DEBUG -- : DRAGONFLY: shell command: 'convert' '-gravity' 'none' '-antialias' '-pointsize' '125' '-font' 'Arial-Regular' '-fill' '#FFFFFF' '-background' '#01579b' 'label:L' '/var/folders/nx/0d0tjzmd7nl2rq6z_wjpmfsc0000gn/T/dragonfly20180512-19615-10o13lw.png'
+D, [2018-05-12T13:10:53.979212 #19615] DEBUG -- : DRAGONFLY: shell command: 'convert' '/var/folders/nx/0d0tjzmd7nl2rq6z_wjpmfsc0000gn/T/dragonfly20180512-19615-10o13lw.png' '-gravity' 'center' '-extent' '250x250' '/var/folders/nx/0d0tjzmd7nl2rq6z_wjpmfsc0000gn/T/dragonfly20180512-19615-1monkp9'
+I, [2018-05-12T13:10:54.014243 #19615]  INFO -- : DRAGONFLY: GET /avatar/250/01579b/l 200
+D, [2018-05-13T22:38:29.735252 #70285] DEBUG -- : DRAGONFLY: shell command: 'convert' '-gravity' 'none' '-antialias' '-pointsize' '125' '-font' 'Arial-Regular' '-fill' '#FFFFFF' '-background' '#01579b' 'label:L' '/var/folders/nx/0d0tjzmd7nl2rq6z_wjpmfsc0000gn/T/dragonfly20180513-70285-10ulx6r.png'
+D, [2018-05-13T22:38:29.932220 #70285] DEBUG -- : DRAGONFLY: shell command: 'convert' '/var/folders/nx/0d0tjzmd7nl2rq6z_wjpmfsc0000gn/T/dragonfly20180513-70285-10ulx6r.png' '-gravity' 'center' '-extent' '250x250' '/var/folders/nx/0d0tjzmd7nl2rq6z_wjpmfsc0000gn/T/dragonfly20180513-70285-veovrd'
+I, [2018-05-13T22:38:29.976082 #70285]  INFO -- : DRAGONFLY: GET /avatar/250/01579b/l 200
