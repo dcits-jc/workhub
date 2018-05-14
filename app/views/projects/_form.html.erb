@@ -8,7 +8,7 @@
 
     <!-- 输入项目号 -->
     <div id='project_code'>
-      <label><abbr title="required">*</abbr> 项目号</label>
+      <label><abbr title="required" id="project_code_needing" >*</abbr> 项目号</label>
       <%= p.input :code,label: false,placeholder: "输入项目号" %>
     </div>
 
@@ -179,13 +179,13 @@ $('#project_projecttype').change(function() {
 
   /* Act on the event */
   console.log($(this).val());
-  // 如果是临时项目
+  // 如果是售前项目
   if ($(this).val()=='sipresale_project') {
     // 隐藏项目号
-    $('#project_code').addClass('hidden');
+    $('#project_code_needing').addClass('hidden');
   }else{
     // 显示项目号
-    $('#project_code').removeClass('hidden')
+    $('#project_code_needing').removeClass('hidden')
   }
 });  
 

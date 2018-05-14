@@ -33,3 +33,5 @@
 
 /config/database.yml
 /config/secrets.yml
+
+/dragonfly.log
