@@ -20,6 +20,7 @@
         <Cell><Data ss:Type="String">工作量(小时)</Data></Cell>
         <Cell><Data ss:Type="String">开始时间</Data></Cell>
         <Cell><Data ss:Type="String">结束时间</Data></Cell>
+        <Cell><Data ss:Type="String">提交时间</Data></Cell>
       </Row>
 
       <% @export_feeds.each do |feed| %>
@@ -50,6 +51,7 @@
           <Cell><Data ss:Type="Number"><%= feed.feedable.hours %></Data></Cell>
           <Cell><Data ss:Type="String"><%= strf(feed.feedable.begin_time) %></Data></Cell>
           <Cell><Data ss:Type="String"><%= strf(feed.feedable.end_time) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= strf(feed.created_at) %></Data></Cell>
         </Row>
 
       <% end %>
