@@ -24,6 +24,7 @@ class Admin::FeedsController < ApplicationController
 
     # 导出的数据不分页
     @export_feeds = Feed.where(end_time: @start_date..@end_date).order("feeds.created_at DESC")
+    # binding.pry
 
     # 全部的应提周报人数
     @total_user_feedneeded = User.where(is_feedneeded: true).order_by_team
