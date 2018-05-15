@@ -18,7 +18,7 @@ class TeamsController < ApplicationController
     # 如果参数存在,则用参数的
     if params[:start_date].present? and params[:end_date].present?
       @start_date = Time.parse(params[:start_date])
-      @end_date = Time.parse(params[:end_date])
+      @end_date = @start_date.at_end_of_week
     # 不存在的话就显示当周的    
     else
       @start_date = Time.now.at_beginning_of_week
