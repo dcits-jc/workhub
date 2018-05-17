@@ -15,7 +15,7 @@ class FeedsController < ApplicationController
 
     if params[:start_date].present? and params[:end_date].present?
       @start_date = Time.parse(params[:start_date])
-      @end_date = @start_date.at_end_of_week
+      @end_date = Time.parse(params[:end_date]).at_end_of_day
     else
       @start_date = @current_time.at_beginning_of_week
       @end_date = @current_time.at_end_of_week
