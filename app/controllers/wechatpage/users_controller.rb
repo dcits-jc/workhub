@@ -5,7 +5,7 @@ class Wechatpage::UsersController < ActionController::Base
     # 用户搜索
     @q = User.ransack(params[:q])
     if params[:q].present?
-      @users = @q.result(distinct: true).order_by_itcode
+      @users = @q.result(distinct: true).where(worktype: '技术').order_by_itcode
     else
       @users = nil
     end
@@ -16,7 +16,7 @@ class Wechatpage::UsersController < ActionController::Base
   def user_search
     # 用户搜索
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)    
+    @users = @q.result(distinct: true).where(worktype: '技术').paginate(:page => params[:page], :per_page => 20)    
   end
 
 
