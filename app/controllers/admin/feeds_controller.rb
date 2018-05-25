@@ -47,6 +47,32 @@ class Admin::FeedsController < ApplicationController
       @feeded_users = @total_user_feedneeded
     end
 
+
+
+    # 母 SBU
+    @sbus = Team.where(parent_id: nil)
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     # 数据导出
     respond_to do |format|
       format.html
