@@ -1,0 +1,19 @@
+<% @sbus.each do |s| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= s.name %></h3>
+    </div>
+    <div class="panel-body">
+      <% if s.children.present? %>
+        <ul>
+        <% s.children.each do |c| %>
+          <li><%= c.name %></li>
+        <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+
+
