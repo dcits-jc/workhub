@@ -63,19 +63,7 @@ class ProjectsController < ApplicationController
       # 记录创建者
       @project.builder = current_user
 
-
-      # 如果 不是售前项目 并且 项目号检查不合格 则提示
-      
-      if project_params[:projecttype]!='sipresale_project' and check_code?(project_params[:code]) == false
-        # binding.pry
-        flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
-        render :new
-      # 如果是 售前项目 并且项目号不为空,但检查格式有问题,也提示
-      elsif project_params[:projecttype]=='sipresale_project' and project_params[:code].present? and check_code?(project_params[:code]) == false
-        flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
-        render :new  
-      elsif @project.save
-
+      if  @project.save
         # 销售加进项目
         @project.join!(sales_user)
         # 也加入 pm
