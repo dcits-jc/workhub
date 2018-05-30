@@ -13,6 +13,7 @@
         <Cell><Data ss:Type="String">销售事业部</Data></Cell>
         <Cell><Data ss:Type="String">销售</Data></Cell>
         <Cell><Data ss:Type="String">报工人事业部</Data></Cell>
+        <Cell><Data ss:Type="String">报工人所属SBU</Data></Cell>
         <Cell><Data ss:Type="String">报工人</Data></Cell>
         <Cell><Data ss:Type="String">工作类型</Data></Cell>
         <Cell><Data ss:Type="String">工作内容描述</Data></Cell>
@@ -45,6 +46,7 @@
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.team.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.team.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= feed.user.team.parent.present? ? feed.user.team.parent.name : nil %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= desc_worktype(feed.feedable.worktype) %></Data></Cell>
           <Cell><Data ss:Type="String"><%= strip_tags(feed.feedable.content) %></Data></Cell>
