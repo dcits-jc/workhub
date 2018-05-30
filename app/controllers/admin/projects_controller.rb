@@ -56,16 +56,47 @@ class Admin::ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    # 记录创建者
-    @project.builder = current_user
-    # 加入这个创建者
-    @project.join!(current_user)
-    if @project.save
-      flash[:notice] = "项目建立成功!"
-      redirect_to admin_projects_path
+    # binding.pry
+    # 搜索项目经理
+    if project_params[:pm_id].blank? or project_params[:sales_id].blank?
+      flash[:alert] = "请选择项目经理与销售!"
+      render :new        
     else
-      flash[:alert] = "项目建立失败!"
-      render :new
+      pm_user = User.find(@project.pm_id)
+      sales_user = User.find(@project.sales_id)
+      @project.pm_id = nil
+      # 记录创建者
+      @project.builder = current_user
+
+
+      # 如果 不是售前项目 并且 项目号检查不合格 则提示
+      
+      if project_params[:projecttype]!='sipresale_project' and check_code?(project_params[:code]) == false
+        # binding.pry
+        flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
+        render :new
+      # 如果是 售前项目 并且项目号不为空,但检查格式有问题,也提示
+      elsif project_params[:projecttype]=='sipresale_project' and project_params[:code].present? and check_code?(project_params[:code]) == false
+        flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
+        render :new  
+      elsif @project.save
+
+        # 销售加进项目
+        @project.join!(sales_user)
+        # 也加入 pm
+        @project.join!(pm_user)
+        # 加入这个创建者
+        @project.join!(current_user)
+
+        # 同时将项目经理设置成项目经理
+        @project.join_manager!(pm_user)
+
+        flash[:notice] = "项目建立成功!"
+        redirect_to projects_path
+      else
+        flash[:alert] = "项目建立失败!"
+        render :new
+      end
     end
   end
 
@@ -131,7 +162,23 @@ class Admin::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description,:new_member,:new_manager)
+    params.require(:project).permit(:name, :description,:projecttype,:code,:sales_id,:new_member,:new_manager,:pm_id,:project_class,:customer_name,:customer_contact_name,:customer_contact_phone,:customer_contact_email,:area,:begin_time,:end_time)
+  end
+
+  # 检查是否项目号是12位
+  def check_code?(code)
+    if code.present?
+      if Project.find_by_code(code).present?
+        return false
+      # 正则匹配字母或者数字
+      elsif code.length == 12 and code =~ /^[A-Z0-9]+$/
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
   end
 
 end
