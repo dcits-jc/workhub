@@ -73,11 +73,11 @@ class Admin::ProjectsController < ApplicationController
       
       if project_params[:projecttype]!='sipresale_project' and check_code?(project_params[:code]) == false
         # binding.pry
-        flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
+        flash[:alert] = "项目号格式有误,请填写正确的10位项目号(其中字母必须为大写)!"
         render :new
       # 如果是 售前项目 并且项目号不为空,但检查格式有问题,也提示
       elsif project_params[:projecttype]=='sipresale_project' and project_params[:code].present? and check_code?(project_params[:code]) == false
-        flash[:alert] = "项目号格式有误,请填写正确的12位项目号(其中字母必须为大写)!"
+        flash[:alert] = "项目号格式有误,请填写正确的10位项目号(其中字母必须为大写)!"
         render :new  
       elsif @project.save
 
@@ -165,8 +165,19 @@ class Admin::ProjectsController < ApplicationController
       # 打开文件
       spreadsheet = Roo::Spreadsheet.open(excel_file.path)
       header = spreadsheet.row(1)
+      # binding.pry
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
+        # binding.pry
+        project = Project.find_by(code: row["项目号"]) || Project.new
+        project.code = row["项目号"]
+        project.name = row["项目名称"]
+        project.projecttype = row["项目类型"]
+        project.sales =  User.find_by_itcode(row["销售员ITCODE"])
+        project.builder = current_user
+        project.begin_time = row['项目开始日期']
+        project.end_time = row['项目结束日期']
+        project.save
       end
       redirect_to admin_projects_path, notice: '项目导入成功.'
     rescue Exception => e
@@ -187,7 +198,7 @@ class Admin::ProjectsController < ApplicationController
       if Project.find_by_code(code).present?
         return false
       # 正则匹配字母或者数字
-      elsif code.length == 12 and code =~ /^[A-Z0-9]+$/
+      elsif code.length == 10 and code =~ /^[A-Z0-9]+$/
         return true
       else
         return false
