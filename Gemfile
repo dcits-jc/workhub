@@ -98,11 +98,18 @@ gem 'simditor'
 # markdown
 gem 'markdown-rails', '~> 0.2.1'
 
+# excel 导入
+gem "roo", "~> 2.7.0"
+gem 'roo-xls'
+
 
 # 七牛插件
 gem 'carrierwave-qiniu', '~> 1.1.5'
 gem 'qiniu-rs'
 gem 'qiniu', '>= 6.9.0'
+
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -157,7 +157,23 @@ class Admin::ProjectsController < ApplicationController
     redirect_to admin_project_path(@project)
   end
 
+  # 导入项目操作
+  def import
+    # 导入文件参数
+    excel_file = params[:file]
+    begin
+      # 打开文件
+      spreadsheet = Roo::Spreadsheet.open(excel_file.path)
+      header = spreadsheet.row(1)
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+      end
+      redirect_to admin_projects_path, notice: '项目导入成功.'
+    rescue Exception => e
+      redirect_to admin_projects_path, alert: '项目导入失败.'
+    end
 
+  end
 
   private
 
