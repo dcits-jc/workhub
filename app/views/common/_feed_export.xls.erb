@@ -13,6 +13,7 @@
         <Cell><Data ss:Type="String">项目状态</Data></Cell>
         <Cell><Data ss:Type="String">销售事业部</Data></Cell>
         <Cell><Data ss:Type="String">销售</Data></Cell>
+        <Cell><Data ss:Type="String">项目经理</Data></Cell>
         <Cell><Data ss:Type="String">报工人事业部</Data></Cell>
         <Cell><Data ss:Type="String">报工人所属SBU</Data></Cell>
         <Cell><Data ss:Type="String">报工人</Data></Cell>
@@ -27,6 +28,14 @@
       </Row>
 
       <% @export_feeds.each do |feed| %>
+
+          <% manager_arrary =[] %>
+          <% if feed.feedable.project.managers.present? %>
+            <% feed.feedable.project.managers.each do |m| %>
+              <%= manager_arrary.push(m.name) %>
+            <% end %>
+          <% end %>
+
           <% itvendors_arrary =[] %>
           <% if feed.feedable.tag_itvendors.present? %>
             <% feed.feedable.tag_itvendors.each do |v| %>
@@ -47,6 +56,7 @@
           <Cell><Data ss:Type="String"><%= feed.feedable.project.enabled? ? '启用' : '禁用' %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.team.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= manager_arrary.join(',') %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.team.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.team.parent.present? ? feed.user.team.parent.name : nil %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.name %></Data></Cell>

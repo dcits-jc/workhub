@@ -46,6 +46,9 @@ Rails.application.routes.draw do
       end
     end
     resources :projects do
+      collection do
+        post :import
+      end
       member do
         post :set_disabled
         post :set_enabled
