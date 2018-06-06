@@ -13,7 +13,7 @@
     
 
 
-     <%= link_to edit_project_path(@project),class: ' pull-right',type: 'button' do %>
+     <%= link_to edit_admin_project_path(@project),class: ' pull-right',type: 'button' do %>
         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
      <% end %>
 
@@ -43,8 +43,8 @@
         <td><code><%=  @project.builder.name %></code></td>
       </tr>      
       <tr>
-        <td>事业部:</td>
-        <td><kbd><%=  @project.sales.team.name %></kbd></td>
+        <td>所属部门:</td>
+        <td><kbd><%=  @project.binding_team.present? ? @project.binding_team.name : @project.sales.team.name %></kbd></td>
       </tr>
       <tr>
         <td>时间:</td>
