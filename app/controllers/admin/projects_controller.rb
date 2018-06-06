@@ -174,10 +174,15 @@ class Admin::ProjectsController < ApplicationController
         project.name = row["项目名称"]
         project.projecttype = row["项目类型"]
         project.sales =  User.find_by_itcode(row["销售员ITCODE"])
+        project.binding_team = Team.find_by_name(row["销售事业部"])
         project.builder = current_user
         project.begin_time = row['项目开始日期']
         project.end_time = row['项目结束日期']
         project.save
+        # 如果项目经理存在,则导入
+        if row['项目经理ITCODE'].present?
+          project.managers << User.find_by_itcode(row['项目经理ITCODE'])
+        end
       end
       redirect_to admin_projects_path, notice: '项目导入成功.'
     rescue Exception => e
@@ -189,7 +194,7 @@ class Admin::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description,:projecttype,:code,:sales_id,:new_member,:new_manager,:pm_id,:project_class,:customer_name,:customer_contact_name,:customer_contact_phone,:customer_contact_email,:area,:begin_time,:end_time)
+    params.require(:project).permit(:name, :description,:projecttype,:code,:sales_id,:new_member,:new_manager,:pm_id,:project_class,:customer_name,:customer_contact_name,:customer_contact_phone,:customer_contact_email,:area,:begin_time,:end_time,:binding_team_id)
   end
 
   # 检查是否项目号是12位
