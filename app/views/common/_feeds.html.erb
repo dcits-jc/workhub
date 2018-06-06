@@ -47,7 +47,8 @@
                <p>
                 <span class="glyphicon glyphicon-bookmark" aria-hidden="true"> </span>
                  <kbd><%= desc_worktype(f.feedable.worktype) %></kbd>
-                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="bottom" title="项目号 <%= f.feedable.project.code %>" data-content="<p><span class='glyphicon glyphicon-user'></span> <code><%= f.feedable.project.sales.name %></code><br><kbd><%= f.feedable.project.sales.team.name %></kbd></p>"><%= f.feedable.project.name %></span> 
+                 <span class="btn-projectinfo" data-container="body" data-toggle="popover" data-placement="bottom" title="项目号 <%= f.feedable.project.code %>" data-content="<p><span class='glyphicon glyphicon-user'></span> <code><%= f.feedable.project.sales.name %></code><br><kbd><%= f.feedable.project.binding_team.present? ? f.feedable.project.binding_team.name : f.feedable.project.sales.team.name %></kbd></p>"><%= f.feedable.project.name %></span> 
+                 <!-- 如果绑定的团队存在则显示绑定团队,不存在则显示销售所在团队 -->
                </p>
                <p><%= simple_format(f.feedable.content) %></p>
                <p>

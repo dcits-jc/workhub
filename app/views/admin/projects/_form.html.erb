@@ -25,6 +25,8 @@
     </div>
 
 
+
+
     <div class="form-group">
       <label><abbr title="required">*</abbr> 开始日期</label>
       <%= p.flatpickr_date_select :begin_time,placeholder: "点击选择日期",id: 'flatpickr_begin_time'%>
@@ -34,6 +36,14 @@
       <label><abbr title="required">*</abbr> 结束日期</label>
       <%= p.flatpickr_date_select :end_time,placeholder: "点击选择日期",id: 'flatpickr_end_time'%>  
     </div>
+
+
+    <!-- ajax 选择 -->
+    <div class="form-group">
+      <label>项目所属部门</label>
+      <select data-live-search="true" data-size=10  name="project[binding_team_id]" id="project_binding_team_id" class="selectpicker form-control select required" data-live-search-placeholder="输入团队名进行搜索" data-none-selected-text="<%= @project.binding_team.present? ?  @project.binding_team.name : '不在任何团队中' %>">
+      </select>
+    </div>    
 
 
 
@@ -131,11 +141,65 @@ $(document).ready(function(){
             // 设置启动 ajax 最少字符数
             if ($('#pm_id_input').val().length>0) {
 
-                  // console.log($('#pm_id_input').val()); //获取输入框值输出到控制台  
+              // console.log($('#pm_id_input').val()); //获取输入框值输出到控制台  
+
+              $.ajax({
+                // get请求地址
+                    url: "/api/v1/users/" + $('#pm_id_input').val(),
+                    dataType: "json",
+                    success: function (data) {
+                      data_arrary = data['data'];
+                      // console.log(data_arrary)
+                      // 如果是正常的搜到了
+                      if (data['stat']==1) {
+
+                      $('#pm_id').html("");
+                        for (var i = 0; i < data_arrary.length; i++) {
+                            $('#pm_id').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].itcode + "</option>");
+                        };
+                        // 缺一不可
+                        $('#pm_id').selectpicker('refresh');
+                        $('#pm_id').selectpicker('render');
+
+                      } else {
+                        $('#pm_id').html("");
+                        $('#pm_id').append("<option value=0>未找到</option>");
+                      }
+                  }
+              });
+            }
+          }
+          // body...
+        },500)
+
+      })  
+  });
+
+
+
+
+
+
+
+  // 动态ajax调整下拉框
+  $("#project_binding_team_id").on('shown.bs.select',function(e){
+      $('#project_binding_team_id').prev().find("input").keyup(function(event){
+        // 建立时间戳
+        last = event.timeStamp;
+        // 设置延时500ms 执行 keyup事件
+        setTimeout(function() {
+          if(last-event.timeStamp==0){
+
+            // 增加 id
+            $('#project_binding_team_id').prev().find("input").attr('id',"team_id_input");
+            // 设置启动 ajax 最少字符数
+            if ($('#team_id_input').val().length>0) {
+
+                  // console.log($('#team_id_input').val()); //获取输入框值输出到控制台  
 
                   $.ajax({
                     // get请求地址
-                        url: "/api/v1/users/" + $('#pm_id_input').val(),
+                        url: "/api/v1/teams/" + $('#team_id_input').val(),
                         dataType: "json",
                         success: function (data) {
                           data_arrary = data['data'];
@@ -143,17 +207,17 @@ $(document).ready(function(){
                           // 如果是正常的搜到了
                           if (data['stat']==1) {
 
-                          $('#pm_id').html("");
+                          $('.selectpicker').html("");
                             for (var i = 0; i < data_arrary.length; i++) {
-                                $('#pm_id').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name+'#'+ data_arrary[i].itcode + "</option>");
+                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].name + "</option>");
                             };
                             // 缺一不可
-                            $('#pm_id').selectpicker('refresh');
-                            $('#pm_id').selectpicker('render');
+                            $('#project_binding_team_id').selectpicker('refresh');
+                            $('#project_binding_team_id').selectpicker('render');
 
                           } else {
-                            $('#pm_id').html("");
-                            $('#pm_id').append("<option value=0>未找到</option>");
+                            $('.selectpicker').html("");
+                            $('.selectpicker').append("<option value=0>未找到</option>");
                           }
                       }
                   });
@@ -167,12 +231,19 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+
+
 });
 
 
 // 重新绘图 防止 display:none 的问题
-$("#pm_id").selectpicker()
-$("#sales_id").selectpicker()
+$("#pm_id").selectpicker();
+$("#sales_id").selectpicker();
+$("#project_binding_team_id").selectpicker()
 
 // 如果选项卡选中了什么
 $('#project_projecttype').change(function() {
