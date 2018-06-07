@@ -169,20 +169,35 @@ class Admin::ProjectsController < ApplicationController
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
         # binding.pry
-        project = Project.find_by(code: row["项目号"]) || Project.new
+        project = Project.find_by(code: row["项目号"]) || Project.find_by(name: row["项目名称"]) || Project.new
         project.code = row["项目号"]
         project.name = row["项目名称"]
-        project.projecttype = row["项目类型"]
+        project.projecttype = project_type_choice(row["项目类型"])
         project.sales =  User.find_by_itcode(row["销售员ITCODE"])
         project.binding_team = Team.find_by_name(row["销售事业部"])
         project.builder = current_user
         project.begin_time = row['项目开始日期']
         project.end_time = row['项目结束日期']
+        # binding.pry
         project.save
         # 如果项目经理存在,则导入
-        if row['项目经理ITCODE'].present?
-          project.managers << User.find_by_itcode(row['项目经理ITCODE'])
+        if User.find_by_itcode(row['项目经理ITCODE']).present?
+          u = User.find_by_itcode(row['项目经理ITCODE'])
+          if !project.managers.include?(u)
+            project.managers << u
+          end
+          if !project.members.include?(u)
+            project.members << u
+          end
         end
+        # 销售存在
+        if User.find_by_itcode(row['销售员ITCODE']).present?
+          u = User.find_by_itcode(row['销售员ITCODE'])
+          if !project.members.include?(u)
+            project.members << u
+          end
+        end
+
       end
       redirect_to admin_projects_path, notice: '项目导入成功.'
     rescue Exception => e
@@ -212,5 +227,7 @@ class Admin::ProjectsController < ApplicationController
       return false
     end
   end
+
+
 
 end

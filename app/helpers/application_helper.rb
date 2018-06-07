@@ -113,34 +113,20 @@ module ApplicationHelper
 
  # feed显示项目类型编号
  def desc_projecttype(projecttype)
-  case projecttype
-  when 'temp_project'
-    '临时项目'
-  when 'si_project'
-    '集成'
-  when 'sipresale_project'
-    '集成售前'
-  when 'supply_project'
-    '供货'
-  when 'solutionpresale_project'
-    '解决方案售前'
-  when 'singleservice_project'
-    '单次服务'
-  when 'operation_project'
-    '运维'
-  when 'technical_exchange'
-    '厂商交流'
-  when 'certification_exam'
-    '认证考试'
-  when 'tech_improvement'
-    '技术提升'
-  when 'team_work'
-    '部门工作'
-  when 'day_off'
-    '休假'
-  else
-    '其他类型'
-  end
+  project_dict = Hash.new
+  project_dict["供货"] = 'supply_project'
+  project_dict["集成售前"] = 'sipresale_project'
+  project_dict["服务"] = 'service_project'
+  project_dict["单次服务"] = 'singleservice_project'
+  project_dict["服务运维"] = 'serviceoperation_project'
+  project_dict["复杂集成/灾备"] = 'complexsi_project'
+  project_dict["厂商交流"] = 'technical_exchange'
+  project_dict["认证考试"] = 'certification_exam'
+  project_dict["技术提升"] = 'tech_improvement'
+  project_dict["部门工作"] = 'team_work'
+  project_dict["休假"] = 'day_off'
+  project_dict.index(projecttype)
+
  end
 
 
