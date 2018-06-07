@@ -54,4 +54,18 @@ class ApplicationController < ActionController::Base
   end
 
 
+
+  # 判断与区分项目类型
+  def project_type_choice(key)
+    project_dict = Hash.new
+    project_dict["供货"] = 'supply_project'
+    project_dict["集成售前"] = 'sipresale_project'
+    project_dict["服务"] = 'service_project'
+    project_dict["单次服务"] = 'singleservice_project'
+    project_dict["服务运维"] = 'serviceoperation_project'
+    project_dict["复杂集成/灾备"] = 'complexsi_project'
+    project_dict[key]
+  end
+
+
 end
