@@ -1,6 +1,6 @@
 
 <%= simple_form_for @project_workflow do |f| %>
-  <p class="text-left alert alert-warning"><small>如果系统中无法找到相关项目,请点击 <%= link_to('新建项目',new_project_path) %></small></p>
+  <p class="text-left alert alert-warning"><small>如果系统中没有找到相关项目:<br>- 属于 <kbd>售前项目</kbd> ,请点击 <%= link_to('新建项目',new_project_path)%><br>- 属于<kbd>售中项目</kbd> ,不能自己创建,请联系鲁志梅创建 luzm@dcits.com </small></p>
   <!-- ajax 选择 -->
   <div class="form-group">
     <label><abbr title="required">*</abbr> 项目名</label>
