@@ -47,30 +47,15 @@ class Admin::FeedsController < ApplicationController
       @feeded_users = @total_user_feedneeded
     end
 
+    # 筛掉所有没有父节点的
+    @sbus = Team.includes(:children).no_parents
 
-
-    # 母 SBU
-    @sbus = Team.where(parent_id: nil)
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # 当周的工作流列表
+    @workflows = ProjectWorkflow.where(end_time: @start_date..@end_date)
+    # 按组分的分的工作流
+    @workflows_groupby_projects = @workflows.group_by{|w| w.project}
+    # 具体的进行中的项目
+    @projects = @workflows_groupby_projects.map { |w| w[0] }
 
 
     # 数据导出

@@ -1,18 +1,75 @@
 <% @sbus.each do |s| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= s.name %></h3>
-    </div>
-    <div class="panel-body">
-      <% if s.children.present? %>
-        <ul>
+  <% if s.children.present? %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="pull-left">
+              <h3 class="panel-title">
+                <%= s.name %>
+              </h3>
+
+            </div>
+
+            <div class="pull-right">
+              <strong>当周工作量 <u><span class="lead">(
+              <% if @current_week_workloads == 0 %>
+                <span style="color: #f00">0h</span>
+              <% else %>
+                <%=s.time_workloads(@start_date,@end_date)%>h
+              <% end %> / <%= s.members.count*40 %>h )</span> </u></strong>
+              <span class="pie"><%=s.time_workloads(@start_date,@end_date)%>/<%= s.users.count*40 %></span>
+              <%= s.time_workloads_precent(@start_date,@end_date) %>%   
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+      <div class="panel-body">
+
+        
+
         <% s.children.each do |c| %>
-          <li><%= c.name %></li>
+          <div class="row">
+            <div class="col-md-12">
+              <div>
+                <div class="pull-left">
+                  <h5><%= c.name %></h5>
+                </div>
+                <div class="pull-right">
+                  <strong>当周工作量 <u><span class="lead">(
+                  <% if @current_week_workloads == 0 %>
+                    <span style="color: #f00">0h</span>
+                  <% else %>
+                    <%=c.time_workloads(@start_date,@end_date)%>h
+                  <% end %> / <%= c.users.count*40 %>h )</span> </u></strong>
+                  <span class="pie"><%=c.time_workloads(@start_date,@end_date)%>/<%= c.users.count*40 %></span>
+                  <%= c.time_workloads_precent(@start_date,@end_date) %>%   
+
+                </div>
+                
+              </div>
+            </div> 
+            <div class="col-md-12">
+              <% c.users.each do |u| %>
+                <kbd><%= u.name %> <%= u.time_workloads(@start_date,@end_date) %>h</kbd>
+              <% end %>
+            </div>
+          </div>
+
         <% end %>
-        </ul>
-      <% end %>
+
+
+        
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 
