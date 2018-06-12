@@ -126,12 +126,13 @@ class Team < ApplicationRecord
       user_num = self.users.count
     end
 
-    total_time = user_num * 40
-    
-
     current_week_workload = self.time_workloads(start_time,end_time)
 
-    return current_week_workload/user_num * 2.5
+    if user_num == 0
+      return 0
+    else
+      return current_week_workload/user_num * 2.5
+    end
   end
 
 
