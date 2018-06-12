@@ -131,7 +131,7 @@ class Team < ApplicationRecord
     if user_num == 0
       return 0
     else
-      return current_week_workload/user_num * 2.5
+      return (current_week_workload/user_num * 2.5).round(1)
     end
   end
 
