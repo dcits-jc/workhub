@@ -173,7 +173,7 @@ class User < ApplicationRecord
     current_feeds.each do |f|
       loads = loads + f.feedable.hours
     end
-    return loads*2.5
+    return (loads*2.5).round(1)
   end
 
 
