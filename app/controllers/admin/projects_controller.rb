@@ -172,6 +172,7 @@ class Admin::ProjectsController < ApplicationController
         project = Project.find_by(code: row["项目号"]) || Project.find_by(name: row["项目名称"]) || Project.new
         project.code = row["项目号"]
         project.name = row["项目名称"]
+        project.project_class = row["项目级别"]
         project.projecttype = project_type_choice(row["项目类型"])
         project.sales =  User.find_by_itcode(row["销售员ITCODE"])
         project.binding_team = Team.find_by_name(row["销售事业部"])
