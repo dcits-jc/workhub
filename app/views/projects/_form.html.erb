@@ -13,12 +13,26 @@
     <div class="form-group">
       <label><abbr title="required">*</abbr> 销售</label>
       <select data-live-search="true" data-size=10  name="project[sales_id]" id="sales_id" class="selectpicker form-control select required" data-live-search-placeholder="输入用户名或昵称进行搜索" data-none-selected-text="点击输入用户名">
+
+      <!-- 项目销售存在则显示 -->
+      <% if @project.sales.present? %>
+        <option  value=<%= @project.sales.id %> ><%= @project.sales.name %>#<%= @project.sales.itcode %></option>
+      <% end %>
+
       </select>
     </div>
 
     <div class="form-group">
       <label><abbr title="required">*</abbr> 项目经理</label>
       <select data-live-search="true" data-size=10  name="project[pm_id]" id="pm_id" class="selectpicker form-control select required" data-live-search-placeholder="输入用户名或昵称进行搜索" data-none-selected-text="点击输入用户名">
+
+        <!-- 项目经理存在则显示 -->
+        <% if @project.managers.present? %>
+          <% @project.managers.each do |m| %>
+          <option  value=<%= m.id %> ><%= m.name %>#<%= m.itcode %></option>
+          <% end %>
+        <% end %>
+        
       </select>
     </div>
 

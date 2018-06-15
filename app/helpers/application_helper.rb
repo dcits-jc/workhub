@@ -114,7 +114,7 @@ module ApplicationHelper
  # feed显示项目类型编号
  def desc_projecttype(projecttype)
   project_dict = Hash.new
-  project_dict["供货"] = 'supply_project'
+  project_dict["集成供货"] = 'supply_project'
   project_dict["集成售前"] = 'sipresale_project'
   project_dict["服务"] = 'service_project'
   project_dict["单次服务"] = 'singleservice_project'
