@@ -27,6 +27,7 @@
     <div class="form-group">
       <label><abbr title="required">*</abbr> 项目经理</label>
       <select data-live-search="true" data-size=10  name="project[pm_id]" id="pm_id" class="selectpicker form-control select required" data-live-search-placeholder="输入用户名或昵称进行搜索" data-none-selected-text="点击输入用户名">
+
         <!-- 项目经理存在则显示 -->
         <% if @project.managers.present? %>
           <% @project.managers.each do |m| %>
@@ -55,6 +56,14 @@
     <div class="form-group">
       <label>项目所属部门</label>
       <select data-live-search="true" data-size=10  name="project[binding_team_id]" id="project_binding_team_id" class="selectpicker form-control select required" data-live-search-placeholder="输入团队名进行搜索" data-none-selected-text="<%= @project.binding_team.present? ?  @project.binding_team.name : '不在任何团队中' %>">
+
+      <!-- 项目所属部门存在则显示 -->
+      <% if @project.binding_team.present? %>
+        <option  value=<%= @project.binding_team.id %> ><%= @project.binding_team.name %></option>
+      <% else %>
+        <option  value=<%= @project.sales.team.id %> ><%= @project.sales.team.name %></option>
+      <% end %>
+
       </select>
     </div>    
 
