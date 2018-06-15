@@ -39,6 +39,15 @@
         <td><code><%=  @project.sales.name %></code></td>
       </tr>
       <tr>
+        <td>项目经理:</td>
+        <td>
+          <% @project.managers.each do |m| %>
+            <code><%= m.name %></code>
+          <% end %>
+        </td>
+      </tr>
+
+      <tr>
         <td>建立者:</td>
         <td><code><%=  @project.builder.name %></code></td>
       </tr>      
