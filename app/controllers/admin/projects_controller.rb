@@ -166,6 +166,11 @@ class Admin::ProjectsController < ApplicationController
       spreadsheet = Roo::Spreadsheet.open(excel_file.path)
       header = spreadsheet.row(1)
       # binding.pry
+      # 导入成功列表
+      success_rows = []
+      # 导入失败列表
+      failed_rows = []
+
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
         # binding.pry
@@ -180,27 +185,41 @@ class Admin::ProjectsController < ApplicationController
         project.begin_time = row['项目开始日期']
         project.end_time = row['项目结束日期']
         # binding.pry
-        project.save
-        # 如果项目经理存在,则导入
-        if User.find_by_itcode(row['项目经理ITCODE']).present?
-          u = User.find_by_itcode(row['项目经理ITCODE'])
-          if !project.managers.include?(u)
-            project.managers << u
+        # 如果导入成功
+        if project.save
+          # 如果项目经理存在,则导入
+          if User.find_by_itcode(row['项目经理ITCODE']).present?
+            u = User.find_by_itcode(row['项目经理ITCODE'])
+            if !project.managers.include?(u)
+              project.managers << u
+            end
+            if !project.members.include?(u)
+              project.members << u
+            end
           end
-          if !project.members.include?(u)
-            project.members << u
+          # 销售存在
+          if User.find_by_itcode(row['销售员ITCODE']).present?
+            u = User.find_by_itcode(row['销售员ITCODE'])
+            if !project.members.include?(u)
+              project.members << u
+            end
           end
-        end
-        # 销售存在
-        if User.find_by_itcode(row['销售员ITCODE']).present?
-          u = User.find_by_itcode(row['销售员ITCODE'])
-          if !project.members.include?(u)
-            project.members << u
-          end
+          # 成功列表写入
+          success_rows.push(row["项目号"])
+        # 如果导入失败
+        else
+          failed_rows.push(row["项目号"])
         end
 
       end
-      redirect_to admin_projects_path, notice: '项目导入成功.'
+      # 如果有导入失败
+      if failed_rows.present?
+        failed_alert = '导入失败项目:'+ failed_rows.join(',') + '!'
+      else
+        failed_alert = ''
+      end
+      
+      redirect_to admin_projects_path, notice: success_rows.count.to_s + '项目导入成功,' + failed_rows.count.to_s + '项目导入失败!' + failed_alert
     rescue Exception => e
       redirect_to admin_projects_path, alert: '项目导入失败.'
     end
