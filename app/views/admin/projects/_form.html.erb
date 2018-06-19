@@ -60,7 +60,7 @@
       <!-- 项目所属部门存在则显示 -->
       <% if @project.binding_team.present? %>
         <option  value=<%= @project.binding_team.id %> ><%= @project.binding_team.name %></option>
-      <% else %>
+      <% elsif @project.sales.present? %>
         <option  value=<%= @project.sales.team.id %> ><%= @project.sales.team.name %></option>
       <% end %>
 
