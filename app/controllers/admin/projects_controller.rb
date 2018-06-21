@@ -62,8 +62,11 @@ class Admin::ProjectsController < ApplicationController
       flash[:alert] = "请选择项目经理与销售!"
       render :new        
     else
-      pm_user = User.find(@project.pm_id)
-      sales_user = User.find(@project.sales_id)
+      pm_user = User.find(project_params[:pm_id])
+      # 搜到指定用户作为销售
+       
+      sales_user = User.find(project_params[:sales_id])
+      @project.sales = sales_user
       @project.pm_id = nil
       # 记录创建者
       @project.builder = current_user
