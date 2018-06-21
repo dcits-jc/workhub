@@ -85,14 +85,13 @@ class Admin::ProjectsController < ApplicationController
         @project.join!(sales_user)
         # 也加入 pm
         @project.join!(pm_user)
-        # 加入这个创建者
-        @project.join!(current_user)
+
 
         # 同时将项目经理设置成项目经理
         @project.join_manager!(pm_user)
 
         flash[:notice] = "项目建立成功!"
-        redirect_to projects_path
+        redirect_to admin_projects_path
       else
         flash[:alert] = "项目建立失败!"
         render :new
@@ -127,6 +126,14 @@ class Admin::ProjectsController < ApplicationController
     # 如果都没增加就是更新其他
     else
       if @project.update(project_params)
+        # 如果项目经理这个栏目独立存在
+        if project_params[:pm_id].present?
+          pm_user = User.find(project_params[:pm_id])
+          # 清空项目经理
+          @project.del_allmanagers!
+          # 加入指定用户为项目经理
+          @project.join_manager!(pm_user)
+        end
         flash[:notice] = "项目更新成功!"
         redirect_to admin_projects_path
       else

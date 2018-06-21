@@ -46,12 +46,23 @@ class Project < ApplicationRecord
     end
   end
 
+
+
+
+
   # 加入管理员
   def join_manager!(user)
     if !(self.managers.include?(user))
       self.managers << user
       self.save
     end
+  end
+
+  # 清空所有pm
+  def del_allmanagers!
+    self.managers.each do |m|
+      self.managers.delete(m)
+    end  
   end
 
   # 搜索常规项目
