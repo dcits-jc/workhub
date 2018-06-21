@@ -293,8 +293,37 @@ nowTimeFormat = nowTime.getFullYear()+'-'+(nowTime.getMonth()+1)+'-'+nowTime.get
 // 日期选择器
 $('.flatpicker_date_select').flatpickr({
   wrap: true,
-  defaultDate: nowTimeFormat
+  // defaultDate: nowTimeFormat
 });
 
+
+
+// $(document).ready(function() {
+
+
+// 日期选择器
+$('#flatpickr_begin_time').flatpickr({
+  // wrap: true,
+  defaultDate: '<%= @project.begin_time %>'
+});
+$('#flatpickr_end_time').flatpickr({
+  // wrap: true,
+  defaultDate: '<%= @project.end_time %>'
+});
+
+
+//   // 导出按钮
+//   $('#export_xls').click(function(event) {
+//     url = '/admin/feeds.xls?start_date=' + $('#flatpickr_begin_time').val()+'&end_date='+$('#flatpickr_end_time').val();
+//     console.log(url);
+//     window.location.replace(url);
+//     // $.get(url);
+//   });
+
+    
+// });
+
+
+</script>
 
 </script>
