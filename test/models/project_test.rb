@@ -30,6 +30,8 @@ end
 #  begin_time             :datetime
 #  end_time               :datetime
 #  is_disabled            :boolean          default(FALSE)
+#  engineering_costs      :integer          default(0)
+#  custody_charge         :integer          default(0)
 #
 # Indexes
 #

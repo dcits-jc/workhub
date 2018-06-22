@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508125601) do
+ActiveRecord::Schema.define(version: 20180622125426) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(version: 20180508125601) do
   create_table "managementworkflowitvendor_relationships", force: :cascade do |t|
     t.integer "management_workflow_id"
     t.integer "tag_itvendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_costs", force: :cascade do |t|
+    t.integer "project_id", default: 0
+    t.integer "mould_fee", default: 0
+    t.integer "labor_fee", default: 0
+    t.integer "manual_fee", default: 0
+    t.integer "custodian_fee", default: 0
+    t.integer "sum_engineer_fee", default: 0
+    t.integer "sum_fee", default: 0
+    t.datetime "commit_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -98,6 +111,8 @@ ActiveRecord::Schema.define(version: 20180508125601) do
     t.datetime "begin_time"
     t.datetime "end_time"
     t.boolean "is_disabled", default: false
+    t.integer "engineering_costs", default: 0
+    t.integer "custody_charge", default: 0
     t.index ["name"], name: "index_projects_on_name", unique: true
   end
 

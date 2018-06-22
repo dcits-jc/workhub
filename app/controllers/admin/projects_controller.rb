@@ -194,6 +194,8 @@ class Admin::ProjectsController < ApplicationController
         project.builder = current_user
         project.begin_time = row['项目开始日期']
         project.end_time = row['项目结束日期']
+        project.engineering_costs = row['工程费用预留'] || 0
+        project.custody_charge = row['托管费用预留'] || 0
         # binding.pry
         # 如果导入成功
         if project.save
@@ -235,6 +237,78 @@ class Admin::ProjectsController < ApplicationController
     end
 
   end
+
+
+
+
+  # 导入项目操作
+  def importcost
+    # 导入文件参数
+    excel_file = params[:file]
+    begin
+      # binding.pry
+      # 打开文件
+      spreadsheet = Roo::Spreadsheet.open(excel_file.path)
+      header = spreadsheet.row(1)
+      # binding.pry
+      # 导入成功列表
+      success_rows = []
+      # 导入失败列表
+      failed_rows = []
+
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        # binding.pry
+        project = Project.find_by(code: row["项目号"])
+        # 花费
+        project_cost = ProjectCost.find_by(project_id: project.id,commit_time: row['导入日期'].beginning_of_day) || ProjectCost.new
+        project_cost.project = project
+        project_cost.commit_time = row['导入日期']
+        project_cost.mould_fee = row['工模费'] || 0
+        project_cost.labor_fee = row['劳务费用'] || 0
+        project_cost.manual_fee = row['人工费'] || 0
+        project_cost.custodian_fee = row['托管费用'] || 0
+
+        # 如果导入成功
+        if project_cost.save
+          # 工程费合计
+          project_cost.sum_engineer_fee = project_cost.mould_fee + project_cost.labor_fee + project_cost.manual_fee
+          # 全部费用合计
+          project_cost.sum_fee = project_cost.mould_fee + project_cost.labor_fee + project_cost.manual_fee + project_cost.custodian_fee
+          project_cost.save
+
+          # 成功列表写入
+          success_rows.push(row["项目号"])
+        # 如果导入失败
+        else
+          failed_rows.push(row["项目号"])
+        end
+
+      end
+      # 如果有导入失败
+      if failed_rows.present?
+        failed_alert = '导入失败项目:'+ failed_rows.join(',') + '!'
+      else
+        failed_alert = ''
+      end
+      
+      redirect_to admin_projects_path, notice: success_rows.count.to_s + '项目导入成功,' + failed_rows.count.to_s + '项目导入失败!' + failed_alert
+    rescue Exception => e
+      redirect_to admin_projects_path, alert: '项目导入失败.'
+    end
+
+  end
+
+
+
+
+
+
+
+
+
+
+
 
   private
 
