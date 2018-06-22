@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :projects do
       collection do
         post :import
+        post :importcost
       end
       member do
         post :set_disabled

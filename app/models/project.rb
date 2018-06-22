@@ -35,6 +35,10 @@ class Project < ApplicationRecord
   belongs_to :binding_team, class_name: "Team", foreign_key: "binding_team_id",optional: true
 
 
+  # 1:n 开销
+  has_many :project_costs
+
+
   # 排序
   scope :order_by_recent, -> { order("created_at DESC") }
 
@@ -131,6 +135,8 @@ end
 #  begin_time             :datetime
 #  end_time               :datetime
 #  is_disabled            :boolean          default(FALSE)
+#  engineering_costs      :integer          default(0)
+#  custody_charge         :integer          default(0)
 #
 # Indexes
 #
