@@ -12,8 +12,11 @@
     <%= f.submit '搜索',class: "btn btn-warning btn-xs" %>
     <%= link_to('+ 新建项目',new_admin_project_path,class: 'btn btn-primary btn-xs') %>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#excelImport">
-      导入xls
+    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#excelImportProject">
+      导入项目(xls)
+    </button>
+    <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#excelImportCost">
+      导入费用(xls)
     </button>
 
   </div>
@@ -76,14 +79,14 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="excelImport" tabindex="-1" role="dialog" aria-labelledby="excelImportLabel">
+<!-- 项目 -->
+<div class="modal fade" id="excelImportProject" tabindex="-1" role="dialog" aria-labelledby="excelImportProjectLabel">
   <div class="modal-dialog" role="document">
     <%= form_tag import_admin_projects_path, multipart: true do %>
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="excelImportLabel">项目导入</h4>
+        <h4 class="modal-title" id="excelImportProjectLabel">项目导入</h4>
       </div>
       <div class="modal-body">
         <!-- 文件上传 -->
@@ -99,4 +102,27 @@
   </div>
 </div>
 
+
+
+<!-- 费用导入 -->
+<div class="modal fade" id="excelImportCost" tabindex="-1" role="dialog" aria-labelledby="excelImportCostLabel">
+  <div class="modal-dialog" role="document">
+    <%= form_tag importcost_admin_projects_path, multipart: true do %>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="excelImportCostLabel">费用导入</h4>
+      </div>
+      <div class="modal-body">
+        <!-- 文件上传 -->
+        <%= file_field_tag :file %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <%= submit_tag "导入",class:"btn btn-primary" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
 

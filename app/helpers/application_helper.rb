@@ -153,5 +153,11 @@ module ApplicationHelper
    return collect_feeds.present?
  end
 
+ # 计算核算环节的费用结余
+ def cost_balance(pre,cost)
+   pre-cost
+ end
+
+
 
 end
