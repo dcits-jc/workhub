@@ -188,12 +188,15 @@ class Admin::ProjectsController < ApplicationController
         project.code = row["项目号"]
         project.name = row["项目名称"]
         # project.project_class = row["项目级别"]
-        project.projecttype = project_type_choice(row["项目类型"])
-        project.sales =  User.find_by_itcode(row["销售员ITCODE"])
-        project.binding_team = Team.find_by_name(row["销售事业部"])
-        project.builder = current_user
-        project.begin_time = row['项目开始日期']
-        project.end_time = row['项目结束日期']
+        if row["项目类型"].present? and row["销售员ITCODE"].present? and row["销售事业部"].present? and row['项目开始日期'].present? and row['项目结束日期'].present?
+          project.projecttype = project_type_choice(row["项目类型"])
+          project.sales =  User.find_by_itcode(row["销售员ITCODE"])
+          project.binding_team = Team.find_by_name(row["销售事业部"])
+          project.builder = current_user
+          project.begin_time = row['项目开始日期']
+          project.end_time = row['项目结束日期']
+        end
+
         project.engineering_costs = row['工程费用预留'] || 0
         project.custody_charge = row['托管费用预留'] || 0
         # binding.pry
