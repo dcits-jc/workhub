@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   layout 'user'
+  
 
   def week
     if params[:team_id].present?
@@ -66,7 +67,7 @@ class TeamsController < ApplicationController
     if @current_team.has_children?
       teamuser_arrary = []
       @current_team.users.each do |u|
-        teamuser_arrary.push(u)
+        teamuser_arrary.push(u)  
       end
 
       @current_team.children.each do |c|
