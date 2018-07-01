@@ -12,9 +12,11 @@ class ApplicationController < ActionController::Base
       edit_user_registration_path
     else
       root_path
-    end
+    end      
+
   end
   
+
 
 
   # 判断管理员

@@ -94,6 +94,22 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  #  禁用账户
+  def disable
+    @user = User.find(params[:id])
+    @user.is_enabled = false
+    @user.save
+    redirect_to admin_users_path
+  end
+
+  #  禁用账户
+  def enable
+    @user = User.find(params[:id])
+    @user.is_enabled = true
+    @user.save
+    redirect_to admin_users_path
+  end
+
   private
 
   def user_params
