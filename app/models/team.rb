@@ -6,7 +6,7 @@ class Team < ApplicationRecord
   # after_create :create_binding_managementprojects!()
 
   # 一个团队拥有多个成员
-  has_many :users
+  has_many :teamusers, class_name: "User", foreign_key: "team_id"
 
   # n:m 管理项目
   has_many :teammanager_relationships
@@ -28,7 +28,16 @@ class Team < ApplicationRecord
 
   scope :no_parents, -> {where(parent_id: nil)}
 
+  # 激活状态的用户
+  scope :acitved, -> {where(is_enabled: true)}
+
   # scope :no_children, -> {where(parent_id: nil)}
+
+  # 重构成员(变成启用用户)
+  def users
+     self.teamusers.where(is_enabled: true)
+  end
+
 
   # 增加成员
   def join!(user)

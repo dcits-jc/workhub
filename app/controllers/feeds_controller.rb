@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
   layout 'user'
+  
 
 
   # 全部工作流

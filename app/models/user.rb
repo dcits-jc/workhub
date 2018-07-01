@@ -176,6 +176,14 @@ class User < ApplicationRecord
     return (loads*2.5).round(1)
   end
 
+  # 激活账户
+  def active_for_authentication?
+    #remember to call the super
+    #then put our own check to determine "active" state using 
+    #our own "is_active" column
+    super and self.is_enabled?
+  end
+
 
 end
 
@@ -221,6 +229,7 @@ end
 #  is_updateattachment    :boolean          default(FALSE)
 #  extra_cost             :integer
 #  is_feedneeded          :boolean          default(FALSE)
+#  is_enabled             :boolean          default(TRUE)
 #
 # Indexes
 #

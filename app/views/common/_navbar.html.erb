@@ -68,7 +68,7 @@
                       <!-- 如果是管理员则显示管理中心按钮 -->
                       <% if current_user.is_admin? %>
                           <!-- <li><%#= link_to('demo页',demo_landingpage_index_path) %></li> -->
-                          <li><%= link_to("管理中心",admin_feeds_path)  %></li>
+                          <li><%= link_to("管理中心",admin_users_path)  %></li>
 
                           <!-- 管理员选项卡 -->
                           <li><%= link_to('工作流',admin_feeds_path, class: "visible-xs-block "+active_class('feeds') ) %></li>
