@@ -37,4 +37,4 @@
 # 忽略日志
 dragonfly.log
 
-/db/seed.rb
+/db/seeds.rb
