@@ -4,10 +4,10 @@ class Admin::UsersController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @all_users = User.all
+    @all_users = User.order_by_createtime
     # 用户搜索
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)
+    @users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20).order_by_createtime
   end
 
   def show

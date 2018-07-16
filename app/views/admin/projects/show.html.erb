@@ -131,7 +131,13 @@
 <!-- 成本核算 -->
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><span class="glyphicon glyphicon-yen" aria-hidden="true"></span> 核算</h3>
+    <h3 class="panel-title"><span class="glyphicon glyphicon-yen" aria-hidden="true"></span> 核算
+
+      <a href="" class="pull-right" data-toggle="modal" data-target="#valuedit">
+         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+
+    </h3>
   </div>
   <div class="panel-body">
 
@@ -205,7 +211,6 @@
     <div class="alert alert-danger" role="alert">已禁用报工</div>
   <% end %>
 
-
 <%= render "common/feeds" %>
 
 
@@ -213,6 +218,29 @@
 
 
 
+
+
+<!-- 预留修改模态框 -->
+<%= simple_form_for [:admin,@project] do |f| %>
+<div class="modal fade" id="valuedit" tabindex="-1" role="dialog" aria-labelledby="valueditLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="valueditLabel">预算修改</h4>
+      </div>
+      <div class="modal-body">
+        <%= f.input :engineering_costs,label: '工程预留', input_html: { class: "form-control"} %>
+        <%= f.input :custody_charge,label: '托管预留', input_html: { class: "form-control"} %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <%= f.submit "提交", class: "btn btn-primary btn-xs", data: { disable_with: "提交中..." } %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
 
 
 

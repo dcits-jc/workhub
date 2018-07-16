@@ -75,6 +75,7 @@ class User < ApplicationRecord
   has_many :feeds
 
 
+  scope :order_by_createtime, -> { order("created_at DESC") }
   scope :order_by_itcode, -> { order("itcode ASC") }
 
   # 该段时间提交周报了的用户

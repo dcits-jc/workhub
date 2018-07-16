@@ -138,7 +138,7 @@ class Admin::ProjectsController < ApplicationController
           @project.join_manager!(pm_user)
         end
         flash[:notice] = "项目更新成功!"
-        redirect_to admin_projects_path
+        redirect_to admin_project_path(@project)
       else
         flash[:alert] = "项目更新失败!"
         render :edit
@@ -316,7 +316,7 @@ class Admin::ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description,:projecttype,:code,:sales_id,:new_member,:new_manager,:pm_id,:project_class,:customer_name,:customer_contact_name,:customer_contact_phone,:customer_contact_email,:area,:begin_time,:end_time,:binding_team_id)
+    params.require(:project).permit(:name, :description,:projecttype,:code,:sales_id,:new_member,:new_manager,:pm_id,:project_class,:customer_name,:customer_contact_name,:customer_contact_phone,:customer_contact_email,:area,:begin_time,:end_time,:binding_team_id,:engineering_costs,:custody_charge)
   end
 
   # 检查是否项目号是12位
