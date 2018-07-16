@@ -1,0 +1,39 @@
+<!-- 添加费用模态框 -->
+<%= simple_form_for [:admin,@project_cost] do |c| %>
+<div class="modal fade" id="newprojectcost" tabindex="-1" role="dialog" aria-labelledby="newprojectcost">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="newprojectcost">新费用</h4>
+      </div>
+      <div class="modal-body">
+        <%= c.input :mould_fee,label: '工模费', wrapper: :vertical_input_group,input_html: { class: "form-control"} do %>
+          <span class="input-group-addon">¥</span>
+          <%= c.input_field :mould_fee, class: "form-control" %>
+        <% end %>
+        <%= c.input :labor_fee,label: '劳务费', wrapper: :vertical_input_group, input_html: { class: "form-control"} do %>
+          <span class="input-group-addon">¥</span>
+          <%= c.input_field :labor_fee, class: "form-control" %>
+        <% end %>
+        <%= c.input :manual_fee,label: '人工费', wrapper: :vertical_input_group, input_html: { class: "form-control"} do %>
+          <span class="input-group-addon">¥</span>
+          <%= c.input_field :manual_fee, class: "form-control" %>
+        <% end %>
+        <%= c.input :custodian_fee,label: '托管费', wrapper: :vertical_input_group, input_html: { class: "form-control"} do %>
+          <span class="input-group-addon">¥</span>
+          <%= c.input_field :custodian_fee, class: "form-control" %>
+        <% end %>
+        <!-- 隐藏提交项目 id -->
+        <input id='project_cost_project_id' type="hidden" name="project_cost[project_id]" value='<%= @project.id %>'>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <%= c.submit "提交", class: "btn btn-primary btn-xs", data: { disable_with: "提交中..." } %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

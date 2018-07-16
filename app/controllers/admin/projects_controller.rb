@@ -14,7 +14,7 @@ class Admin::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @members = @project.members
     @managers = @project.managers
-    
+    @project_cost = ProjectCost.new
     # 历史周
     @history_weeks = weekindex(Time.now, @project.created_at)
     
