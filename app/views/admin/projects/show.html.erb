@@ -145,11 +145,14 @@
       <thead>
         <tr>
           <td rowspan="2">#</td>
-          <td colspan="4"><strong>总预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs+@project.custody_charge %></span></code></td>
+          <td colspan="5"><strong>总预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs+@project.custody_charge %></span></code></td>
+          
         </tr>
         <tr> 
           <td colspan="3"><strong>工程预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs %></span></code></td>
           <td><strong>托管预留:</strong> <span class="lead"><code>¥<%= @project.custody_charge %></span></code></td>
+          <td></td>
+          
         </tr>
         <tr>
           <td>导入日期</td>
@@ -157,6 +160,7 @@
           <td>劳务费用</td>
           <td>人工费</td>
           <td>托管费</td>
+          <td></td>
         </tr>
       </thead>
       <tbody>
@@ -165,10 +169,15 @@
       <% @project.project_costs.each do |c| %>
         <tr>
           <td><%= strf(c.commit_time) %></td>
-          <td>- ¥<%= c.mould_fee %></td>
-          <td>- ¥<%= c.labor_fee %></td>
-          <td>- ¥<%= c.manual_fee %></td>
-          <td>- ¥<%= c.custodian_fee %></td>
+          <td>¥<%= c.mould_fee %></td>
+          <td>¥<%= c.labor_fee %></td>
+          <td>¥<%= c.manual_fee %></td>
+          <td>¥<%= c.custodian_fee %></td>
+          <td>
+            <!-- 删除按钮 -->
+            <%= link_to admin_project_cost_path(c), method: 'DELETE',data: { confirm: "确认删除该条费用(该操作不可回退)?" },class: 'text-danger glyphicon glyphicon-minus-sign' do %>
+            <% end %>
+          </td>
         </tr>
         <%total_engineering_costs += c.sum_engineer_fee%>
         <%total_custody_cost += c.custodian_fee%>
@@ -178,10 +187,14 @@
       <tfoot>
         <td>#</td>
         <td colspan="3"><strong>工程结余:</strong> <span class="lead"><code>¥<%= cost_balance(@project.engineering_costs,total_engineering_costs) %></span></code></td>
-        <td><strong>托管结余:</strong> <span class="lead"><code>¥<%= cost_balance(@project.custody_charge,total_custody_cost) %></span></code></td>        
+        <td colspan="2"><strong>托管结余:</strong> <span class="lead"><code>¥<%= cost_balance(@project.custody_charge,total_custody_cost) %></span></code></td> 
+
       </tfoot>
     </table>
 
+      <button class="btn btn-xs btn-primary pull-left" data-toggle="modal" data-target="#newprojectcost">
+        + 新费用
+      </button>
 
   </div>
 </div>
@@ -241,6 +254,10 @@
   </div>
 </div>
 <% end %>
+
+
+
+<%= render "form_cost_add" %>
 
 
 

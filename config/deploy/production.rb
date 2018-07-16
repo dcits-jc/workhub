@@ -10,7 +10,7 @@
 
 server "ubuntu-huawei04", user: "alan", roles: %w{app db web}, my_property: :my_value
 # 如果部署分支是 develop,则注意设置,默认是 master
-set :branch, 'master' 
+set :branch, 'develop' 
 
 
 # role-based syntax

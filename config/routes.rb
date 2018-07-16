@@ -58,7 +58,7 @@ Rails.application.routes.draw do
         post :set_enabled
       end
     end
-
+    resources :project_costs
   end
   
 
