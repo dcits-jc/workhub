@@ -128,6 +128,64 @@
   </div>
 </div>
 
+<!-- 成本核算 -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><span class="glyphicon glyphicon-yen" aria-hidden="true"></span> 核算
+
+      <a href="" class="pull-right" data-toggle="modal" data-target="#valuedit">
+         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+
+    </h3>
+  </div>
+  <div class="panel-body">
+
+    <table class="table table-bordered table-hove">
+      <thead>
+        <tr>
+          <td rowspan="2">#</td>
+          <td colspan="4"><strong>总预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs+@project.custody_charge %></span></code></td>
+        </tr>
+        <tr> 
+          <td colspan="3"><strong>工程预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs %></span></code></td>
+          <td><strong>托管预留:</strong> <span class="lead"><code>¥<%= @project.custody_charge %></span></code></td>
+        </tr>
+        <tr>
+          <td>导入日期</td>
+          <td>工模费</td>
+          <td>劳务费用</td>
+          <td>人工费</td>
+          <td>托管费</td>
+        </tr>
+      </thead>
+      <tbody>
+      <% total_engineering_costs = 0 %>
+      <% total_custody_cost = 0 %>
+      <% @project.project_costs.each do |c| %>
+        <tr>
+          <td><%= strf(c.commit_time) %></td>
+          <td>- ¥<%= c.mould_fee %></td>
+          <td>- ¥<%= c.labor_fee %></td>
+          <td>- ¥<%= c.manual_fee %></td>
+          <td>- ¥<%= c.custodian_fee %></td>
+        </tr>
+        <%total_engineering_costs += c.sum_engineer_fee%>
+        <%total_custody_cost += c.custodian_fee%>
+      <% end %>       
+      </tbody>
+      <!-- 当前结余 -->
+      <tfoot>
+        <td>#</td>
+        <td colspan="3"><strong>工程结余:</strong> <span class="lead"><code>¥<%= cost_balance(@project.engineering_costs,total_engineering_costs) %></span></code></td>
+        <td><strong>托管结余:</strong> <span class="lead"><code>¥<%= cost_balance(@project.custody_charge,total_custody_cost) %></span></code></td>        
+      </tfoot>
+    </table>
+
+
+  </div>
+</div>
+
 
 <%#= link_to('编辑',edit_project_path(@project),class: 'btn btn-primary btn-xs') %>
 <%#= link_to('删除',project_path(@project), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
@@ -153,7 +211,6 @@
     <div class="alert alert-danger" role="alert">已禁用报工</div>
   <% end %>
 
-
 <%= render "common/feeds" %>
 
 
@@ -161,6 +218,29 @@
 
 
 
+
+
+<!-- 预留修改模态框 -->
+<%= simple_form_for [:admin,@project] do |f| %>
+<div class="modal fade" id="valuedit" tabindex="-1" role="dialog" aria-labelledby="valueditLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="valueditLabel">预算修改</h4>
+      </div>
+      <div class="modal-body">
+        <%= f.input :engineering_costs,label: '工程预留', input_html: { class: "form-control"} %>
+        <%= f.input :custody_charge,label: '托管预留', input_html: { class: "form-control"} %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <%= f.submit "提交", class: "btn btn-primary btn-xs", data: { disable_with: "提交中..." } %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
 
 
 

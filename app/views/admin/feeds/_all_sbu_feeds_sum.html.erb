@@ -18,7 +18,7 @@
               <% else %>
                 <%=s.time_workloads(@start_date,@end_date)%>h
               <% end %> / <%= s.members.count*40 %>h )</span> </u></strong>
-              <span class="pie"><%=s.time_workloads(@start_date,@end_date)%>/<%= s.users.count*40 %></span>
+              <span class="pie"><%=s.time_workloads(@start_date,@end_date)%>/<%= s.members.count*40 %></span>
               <%= s.time_workloads_precent(@start_date,@end_date) %>%   
 
             </div>

@@ -4,10 +4,10 @@ class Admin::UsersController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @all_users = User.all
+    @all_users = User.order_by_createtime
     # 用户搜索
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20)
+    @users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20).order_by_createtime
   end
 
   def show
@@ -91,6 +91,22 @@ class Admin::UsersController < ApplicationController
   def cancel_admin
     @user = User.find(params[:id])
     @user.cancel_admin!
+    redirect_to admin_users_path
+  end
+
+  #  禁用账户
+  def disable
+    @user = User.find(params[:id])
+    @user.is_enabled = false
+    @user.save
+    redirect_to admin_users_path
+  end
+
+  #  禁用账户
+  def enable
+    @user = User.find(params[:id])
+    @user.is_enabled = true
+    @user.save
     redirect_to admin_users_path
   end
 

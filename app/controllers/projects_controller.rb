@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
 
   layout 'user'
+  
+
   def index
     @projects = current_user.participated_projects
     # binding.pry

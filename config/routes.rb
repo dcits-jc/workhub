@@ -37,6 +37,9 @@ Rails.application.routes.draw do
         post :reset_password
         post :set_admin
         post :cancel_admin
+        post :disable
+        post :enable
+
       end
     end
     resources :teams do
@@ -48,6 +51,7 @@ Rails.application.routes.draw do
     resources :projects do
       collection do
         post :import
+        post :importcost
       end
       member do
         post :set_disabled

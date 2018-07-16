@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   layout 'other_user'
   
+
   def show
     @user = User.find(params[:id])
     # 设置当前时间
