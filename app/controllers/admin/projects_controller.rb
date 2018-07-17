@@ -83,6 +83,8 @@ class Admin::ProjectsController < ApplicationController
         flash[:alert] = "项目号格式有误,请填写正确的10位项目号(其中字母必须为大写)!"
         render :new  
       elsif @project.save
+        # 检查并加入预先输入的费用入项目
+        check_add_costs(@project)
 
         # 销售加进项目
         @project.join!(sales_user)
@@ -129,6 +131,8 @@ class Admin::ProjectsController < ApplicationController
     # 如果都没增加就是更新其他
     else
       if @project.update(project_params)
+        # 检查并加入预先输入的费用入项目
+        check_add_costs(@project)
         # 如果项目经理这个栏目独立存在
         if project_params[:pm_id].present?
           pm_user = User.find(project_params[:pm_id])
@@ -202,6 +206,8 @@ class Admin::ProjectsController < ApplicationController
         # binding.pry
         # 如果导入成功
         if project.save
+          # 检查并加入预先输入的费用入项目
+          check_add_costs(project)
           # 如果项目经理存在,则导入
           if User.find_by_itcode(row['项目经理ITCODE']).present?
             u = User.find_by_itcode(row['项目经理ITCODE'])
@@ -262,16 +268,27 @@ class Admin::ProjectsController < ApplicationController
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
         # binding.pry
-        project = Project.find_by(code: row["项目号"])
-        # 花费
-        project_cost = ProjectCost.find_by(project_id: project.id,commit_time: row['导入日期'].beginning_of_day) || ProjectCost.new
-        project_cost.project = project
-        project_cost.commit_time = row['导入日期']
-        project_cost.mould_fee = row['工模费'] || 0
-        project_cost.labor_fee = row['劳务费用'] || 0
-        project_cost.manual_fee = row['人工费'] || 0
-        project_cost.custodian_fee = row['托管费用'] || 0
-
+         
+        
+        if project = Project.find_by(code: row["项目号"])
+          # 花费
+          project_cost = ProjectCost.find_by(project_id: project.id,commit_time: row['导入日期'].beginning_of_day) || ProjectCost.new
+          project_cost.project = project
+          project_cost.commit_time = row['导入日期']
+          project_cost.mould_fee = row['工模费'] || 0
+          project_cost.labor_fee = row['劳务费用'] || 0
+          project_cost.manual_fee = row['人工费'] || 0
+          project_cost.custodian_fee = row['托管费用'] || 0
+        # 如果导入时候没有这个项目号,则先存起来,记录project_code,以后建立项目的时候检查并自动关联
+        else
+          project_cost = ProjectCost.find_by(project_code: row["项目号"],commit_time: row['导入日期'].beginning_of_day) || ProjectCost.new
+          project_cost.project_code = row["项目号"]
+          project_cost.commit_time = row['导入日期']
+          project_cost.mould_fee = row['工模费'] || 0
+          project_cost.labor_fee = row['劳务费用'] || 0
+          project_cost.manual_fee = row['人工费'] || 0
+          project_cost.custodian_fee = row['托管费用'] || 0
+        end
         # 如果导入成功
         if project_cost.save
           # 工程费合计
@@ -279,7 +296,6 @@ class Admin::ProjectsController < ApplicationController
           # 全部费用合计
           project_cost.sum_fee = project_cost.mould_fee + project_cost.labor_fee + project_cost.manual_fee + project_cost.custodian_fee
           project_cost.save
-
           # 成功列表写入
           success_rows.push(row["项目号"])
         # 如果导入失败
@@ -295,9 +311,9 @@ class Admin::ProjectsController < ApplicationController
         failed_alert = ''
       end
       
-      redirect_to admin_projects_path, notice: success_rows.count.to_s + '项目导入成功,' + failed_rows.count.to_s + '项目导入失败!' + failed_alert
+      redirect_to admin_projects_path, notice: success_rows.count.to_s + '费用导入成功,' + failed_rows.count.to_s + '费用导入失败!' + failed_alert
     rescue Exception => e
-      redirect_to admin_projects_path, alert: '项目导入失败.'
+      redirect_to admin_projects_path, alert: '费用导入失败.'
     end
 
   end
@@ -332,6 +348,17 @@ class Admin::ProjectsController < ApplicationController
       end
     else
       return false
+    end
+  end
+
+
+  def check_add_costs(project)
+    # 如果找到了费用,就把所有费用归到该项目下
+    if costs = ProjectCost.where(project_code: project.code)
+      costs.each do |c|
+        c.project = project
+        c.save
+      end
     end
   end
 

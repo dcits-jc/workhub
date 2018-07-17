@@ -21,4 +21,5 @@ end
 #  commit_time      :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  project_code     :string
 #
