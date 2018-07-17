@@ -160,7 +160,7 @@
           <td>劳务费用</td>
           <td>人工费</td>
           <td>托管费</td>
-          <td></td>
+          <td>操作|导入者</td>
         </tr>
       </thead>
       <tbody>
@@ -174,9 +174,11 @@
           <td>¥<%= c.manual_fee %></td>
           <td>¥<%= c.custodian_fee %></td>
           <td>
+            
             <!-- 删除按钮 -->
             <%= link_to admin_project_cost_path(c), method: 'DELETE',data: { confirm: "确认删除该条费用(该操作不可回退)?" },class: 'text-danger glyphicon glyphicon-minus-sign' do %>
-            <% end %>
+            <% end %> | 
+            <%= c.import_user.name %>
           </td>
         </tr>
         <%total_engineering_costs += c.sum_engineer_fee%>
