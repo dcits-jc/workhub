@@ -279,6 +279,7 @@ class Admin::ProjectsController < ApplicationController
           project_cost.labor_fee = row['劳务费用'] || 0
           project_cost.manual_fee = row['人工费'] || 0
           project_cost.custodian_fee = row['托管费用'] || 0
+          project_cost.import_user = current_user
         # 如果导入时候没有这个项目号,则先存起来,记录project_code,以后建立项目的时候检查并自动关联
         else
           project_cost = ProjectCost.find_by(project_code: row["项目号"],commit_time: row['导入日期'].beginning_of_day) || ProjectCost.new
@@ -288,6 +289,7 @@ class Admin::ProjectsController < ApplicationController
           project_cost.labor_fee = row['劳务费用'] || 0
           project_cost.manual_fee = row['人工费'] || 0
           project_cost.custodian_fee = row['托管费用'] || 0
+          project_cost.import_user = current_user
         end
         # 如果导入成功
         if project_cost.save

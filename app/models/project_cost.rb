@@ -2,6 +2,8 @@ class ProjectCost < ApplicationRecord
 	# 隶属于一个项目
 	belongs_to :project, optional: true
 
+  # 隶属于一个导入者
+  belongs_to :import_user, class_name: 'User', foreign_key: 'import_user_id'
 end
 
 # == Schema Information
@@ -20,4 +22,5 @@ end
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  project_code     :string
+#  import_user_id   :integer
 #

@@ -22,4 +22,5 @@ end
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  project_code     :string
+#  import_user_id   :integer
 #

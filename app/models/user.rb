@@ -71,6 +71,10 @@ class User < ApplicationRecord
   has_many :tag_itvendors, through: :useritvendor_relationships, source: :tag_itvendor
 
 
+  # 一个管理员可以拥有多个导入的 cost
+  has_many :project_cost, class_name: "ProjectCost",foreign_key: "import_user_id"
+
+
   # 信息流
   has_many :feeds
 

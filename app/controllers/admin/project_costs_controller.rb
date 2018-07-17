@@ -17,6 +17,7 @@ class Admin::ProjectCostsController < ApplicationController
     @project_cost.sum_engineer_fee = @project_cost.mould_fee + @project_cost.labor_fee + @project_cost.manual_fee
     # 全部费用合计
     @project_cost.sum_fee = @project_cost.mould_fee + @project_cost.labor_fee + @project_cost.manual_fee + @project_cost.custodian_fee
+    @project_cost.import_user = current_user
     @project_cost.save
     # 重定向
     @project = @project_cost.project
