@@ -1,6 +1,6 @@
 class ProjectCost < ApplicationRecord
 	# 隶属于一个项目
-	belongs_to :project
+	belongs_to :project, optional: true
 
 end
 
@@ -19,4 +19,5 @@ end
 #  commit_time      :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  project_code     :string
 #
