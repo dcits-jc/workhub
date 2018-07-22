@@ -19,6 +19,10 @@
       导入费用(xls)
     </button>
 
+    <%= link_to exportcost_admin_projects_path(@projects,format: "xls"),class: 'btn btn-warning btn-xs' do%>
+      导出工作量(xls)
+    <% end %>  
+
   </div>
 <% end %>
 

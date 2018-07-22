@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       collection do
         post :import
         post :importcost
+        get  :exportcost
       end
       member do
         post :set_disabled
