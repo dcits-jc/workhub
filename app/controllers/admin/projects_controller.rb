@@ -320,15 +320,19 @@ class Admin::ProjectsController < ApplicationController
 
   end
 
-
-
-
-
-
-
-
-
-
+  # 导出费用
+  def exportcost
+    @projects = Project.order_by_recent
+    time = Time.new.strftime('%Y-%m-%d')
+    # 数据导出
+    respond_to do |format|
+      format.html
+      format.xls{ 
+        # 设置文件名
+        headers["Content-Disposition"]="attachment; filename=费用导出("+time+").xls"
+      }  
+    end
+  end
 
 
   private

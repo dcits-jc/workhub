@@ -144,23 +144,23 @@
     <table class="table table-bordered table-hove">
       <thead>
         <tr>
-          <td rowspan="2">#</td>
-          <td colspan="5"><strong>总预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs+@project.custody_charge %></span></code></td>
+          <th rowspan="2">#</th>
+          <th colspan="5"><strong>总预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs+@project.custody_charge %></span></code></th>
           
         </tr>
         <tr> 
-          <td colspan="3"><strong>工程预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs %></span></code></td>
-          <td><strong>托管预留:</strong> <span class="lead"><code>¥<%= @project.custody_charge %></span></code></td>
-          <td></td>
+          <th colspan="3"><strong>工程预留:</strong> <span class="lead"><code>¥<%= @project.engineering_costs %></span></code></th>
+          <th><strong>托管预留:</strong> <span class="lead"><code>¥<%= @project.custody_charge %></span></code></th>
+          <th></th>
           
         </tr>
-        <tr>
-          <td>导入日期</td>
-          <td>工模费</td>
-          <td>劳务费用</td>
-          <td>人工费</td>
-          <td>托管费</td>
-          <td>操作|导入者</td>
+        <tr class="active">
+          <th>导入日期</th>
+          <th>工模费</th>
+          <th>劳务费用</th>
+          <th>人工费</th>
+          <th>托管费</th>
+          <th>操作|导入者</th>
         </tr>
       </thead>
       <tbody>
@@ -183,7 +183,29 @@
         </tr>
         <%total_engineering_costs += c.sum_engineer_fee%>
         <%total_custody_cost += c.custodian_fee%>
-      <% end %>       
+      <% end %> 
+
+        <!-- 总工模合计 -->
+        <% t_mould_fee = 0 %>
+        <% @project.project_costs.each{|c| t_mould_fee+=c.mould_fee} %>
+        <!-- 总劳务合计 -->
+        <% t_labor_fee = 0 %>
+        <% @project.project_costs.each{|c| t_labor_fee+=c.labor_fee} %>
+        <!-- 总人工费合计 -->
+        <% t_manual_fee = 0 %>
+        <% @project.project_costs.each{|c| t_manual_fee+=c.manual_fee} %>
+        <!-- 总托管费合计 -->
+        <% t_custodian_fee = 0 %>
+        <% @project.project_costs.each{|c| t_custodian_fee+=c.custodian_fee} %>
+
+        <tr class="active">
+          <td>费用合计</td>
+          <td>¥<%= t_mould_fee %></td>
+          <td>¥<%= t_labor_fee %></td>
+          <td>¥<%= t_manual_fee %></td>
+          <td>¥<%= t_custodian_fee %></td>
+          <td>¥<%= t_mould_fee + t_labor_fee + t_manual_fee + t_custodian_fee %></td>
+        </tr>      
       </tbody>
       <!-- 当前结余 -->
       <tfoot>
