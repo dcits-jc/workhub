@@ -31,6 +31,12 @@ class TeamsController < ApplicationController
     @current_time = Time.now
     # 历史周
     @history_weeks = weekindex(Time.now, @current_team.created_at)
+    
+    if params[:history_all] != 'true'
+      @history_weeks = @history_weeks[0..4]   
+    end
+
+
 
     # 如果当前团队有子团队
     team_arrary = [@current_team.id]

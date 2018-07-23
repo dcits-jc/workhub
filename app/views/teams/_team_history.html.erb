@@ -10,15 +10,15 @@
               <li role="presentation" class="<%= active_history(w.at_beginning_of_week,w.at_end_of_week) %>">
             <% end %>
                 <!-- 历史链接 -->
-                <%= link_to(week_begin(w)+'~'+week_end(w),week_teams_path({start_date: w.at_beginning_of_week,end_date: w.at_end_of_week,team_id: @current_team}))%>
+                <%= link_to(week_begin(w)+'~'+week_end(w),week_teams_path({start_date: w.at_beginning_of_week,end_date: w.at_end_of_week,team_id: @current_team,history_all: params[:history_all]}))%>
               </li>              
           <% end %>
 
           <!-- 更多 -->
           <li role="presentation">
-            <a href="#" class="text-center btn-default">
+            <%= link_to week_teams_path(history_all: 'true',start_date: params[:start_date],end_date: params[:end_date]), class: "text-center btn-default" do %>
               <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-            </a>
+            <% end %>
           </li>
 
         </ul>
