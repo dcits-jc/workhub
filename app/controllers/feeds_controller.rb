@@ -22,8 +22,14 @@ class FeedsController < ApplicationController
       @end_date = @current_time.at_end_of_week
     end
 
-    # 历史周
-    @history_weeks = weekindex(Time.now, current_user.created_at)
+
+    # 如果有 params 要求所有 history,就显示全部,没有就显示10条
+    @history_weeks = weekindex(Time.now, current_user.created_at) 
+    
+    if params[:history_all] != 'true'
+      @history_weeks = @history_weeks[0..10]   
+    end
+
 
     # 项目工作流
     @project_workflow = ProjectWorkflow.new
