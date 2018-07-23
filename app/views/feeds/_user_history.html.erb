@@ -1,28 +1,42 @@
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="nav nav-pills nav-stacked">
-          <!-- 历史周链接 -->
-          <% @history_weeks.each do |w| %>
-            <!-- 如果就是当前周就高亮显示 -->
-            <% if week_begin(w) == week_begin(@current_time) and params['start_date'].blank? %>
-              <li role="presentation" class="active">
-            <% else %>
-              <li role="presentation" class="<%= active_history(w.at_beginning_of_week,w.at_end_of_week) %>">
-            <% end %>
-                <!-- 历史链接 -->
-                <%= link_to(week_begin(w)+'~'+week_end(w),week_feeds_path(start_date: w.at_beginning_of_week,end_date: w.at_end_of_week))%>
-              </li>              
-          <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-pills nav-stacked" id="user_history">
+      <!-- 历史周链接 -->
+      
+      
+      <% @history_weeks.each do |w| %>
+        <!-- 自加1,直到10个 -->
+        <!-- 如果就是当前周就高亮显示 -->
+        <% if week_begin(w) == week_begin(@current_time) and params['start_date'].blank? %>
+          <li role="presentation" class="active">
+        <% else %>
+          <li role="presentation" class="<%= active_history(w.at_beginning_of_week,w.at_end_of_week) %>">
+        <% end %>
+            <!-- 历史链接 -->
+            <%= link_to(week_begin(w)+'~'+week_end(w),week_feeds_path(start_date: w.at_beginning_of_week,end_date: w.at_end_of_week,history_all: params[:history_all]))%>
+          </li>              
+      <% end %>
 
-          <!-- 更多 -->
-          <li role="presentation">
-            <a href="#" class="text-center btn-default">
-              <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-            </a>
-          </li>
+      
+      <!-- 更多 -->
+      <li role="presentation">
+        <%= link_to root_path(history_all: 'true',start_date: params[:start_date],end_date: params[:end_date]), class: "text-center btn-default" do %>
+          <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        <% end %>
+      </li>
 
-        </ul>
-        
-      </div>
+    </ul>
+    
+  </div>
 
-    </div>
+</div>
+
+
+
+
+<!-- <script type="text/javascript">
+  $('#user_history')
+</script> -->
+
+
+<!-- 默认超过 history_weeks 10条后默认隐藏,10条后的被隐藏的通过点击可以重新显示 -->
