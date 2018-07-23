@@ -1,11 +1,9 @@
 <div class="row">
   <div class="col-md-12">
     <ul class="nav nav-pills nav-stacked" id="user_history">
-      <!-- 历史周链接 -->
-      
+      <!-- 历史周链接 -->   
       
       <% @history_weeks.each do |w| %>
-        <!-- 自加1,直到10个 -->
         <!-- 如果就是当前周就高亮显示 -->
         <% if week_begin(w) == week_begin(@current_time) and params['start_date'].blank? %>
           <li role="presentation" class="active">
@@ -17,14 +15,12 @@
           </li>              
       <% end %>
 
-      
       <!-- 更多 -->
       <li role="presentation">
         <%= link_to root_path(history_all: 'true',start_date: params[:start_date],end_date: params[:end_date]), class: "text-center btn-default" do %>
           <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
         <% end %>
       </li>
-
     </ul>
     
   </div>
