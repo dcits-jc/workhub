@@ -9,7 +9,7 @@
       <Row>
         <Cell><Data ss:Type="String">项目号</Data></Cell>
         <Cell><Data ss:Type="String">项目名</Data></Cell>
-
+        <Cell><Data ss:Type="String">销售事业部</Data></Cell>
         <Cell><Data ss:Type="String">工程预留</Data></Cell>
         <Cell><Data ss:Type="String">托管预留</Data></Cell>
         <Cell><Data ss:Type="String">工模费合计</Data></Cell>
@@ -37,7 +37,7 @@
         <Row>
           <Cell><Data ss:Type="String"><%= p.code %></Data></Cell>
           <Cell><Data ss:Type="String"><%= p.name %></Data></Cell>
-
+          <Cell><Data ss:Type="String"><%= p.sales.team.name %></Data></Cell>
           <Cell><Data ss:Type="Number"><%= p.engineering_costs %></Data></Cell>
           <Cell><Data ss:Type="Number"><%= p.custody_charge %></Data></Cell>
 
