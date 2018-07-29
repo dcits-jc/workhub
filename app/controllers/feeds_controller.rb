@@ -11,6 +11,7 @@ class FeedsController < ApplicationController
 
 
   def week
+    # binding.pry
     # 设置当前时间
     @current_time = Time.now
 
