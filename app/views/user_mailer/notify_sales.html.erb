@@ -1,0 +1,22 @@
+<p>hi <b><%= @to_user.name %></b>!</p>
+
+<p>
+  <b><%= @send_user.name %></b> 在你的项目 <b><a href="<%= project_url(@project) %>"><%= @project.name %></a> </b> 中提交了一条工作记录!
+</p>
+
+<table border="1">
+  <tr>
+    <th>工作量</th>
+    <th>工作内容</th>
+    <th>工作时间</th>
+  </tr>
+  <tr>
+    <td><h1><%= @workflow.hours %>h</h1></td>
+    <td><%= simple_format(@workflow.content) %></td>
+    <td><%= @workflow.begin_time.strftime('%Y/%m/%d') %> ~ <%= @workflow.end_time.strftime('%Y/%m/%d') %></td>
+  </tr>
+</table>
+
+<br>
+
+<%= render "mail_footer" %>
