@@ -60,8 +60,12 @@ class ProjectWorkflowsController < ApplicationController
         @project_workflow.project.join!(current_user)
         # 建立 feed 流
         feed_create!(@project_workflow,current_user)
-        # 发给销售邮件
-        UserMailer.notify_sales(current_user,@project_workflow,@project).deliver_now!
+        # 发给销售邮件和错误捕捉
+        begin
+          UserMailer.notify_sales(current_user,@project_workflow,@project).deliver_now!
+        rescue => err
+          pass
+        end
         flash[:notice] = "提交成功!"
         redirect_to root_path
       else
