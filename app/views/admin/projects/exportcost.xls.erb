@@ -16,6 +16,8 @@
         <Cell><Data ss:Type="String">劳务费用合计</Data></Cell>
         <Cell><Data ss:Type="String">人工费用合计</Data></Cell>
         <Cell><Data ss:Type="String">托管费用合计</Data></Cell>
+        <Cell><Data ss:Type="String">状态</Data></Cell>
+
 
 
       </Row>
@@ -45,6 +47,7 @@
           <Cell><Data ss:Type="Number"><%= t_labor_fee %></Data></Cell>
           <Cell><Data ss:Type="Number"><%= t_manual_fee %></Data></Cell>
           <Cell><Data ss:Type="Number"><%= t_custodian_fee %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= p.is_disabled ? '禁用' : '启用' %></Data></Cell>
 
         </Row>
 
