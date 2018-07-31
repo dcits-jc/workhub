@@ -62,7 +62,9 @@ class ProjectWorkflowsController < ApplicationController
         feed_create!(@project_workflow,current_user)
         # 发给销售邮件和错误捕捉
         begin
-          UserMailer.notify_sales(current_user,@project_workflow,@project).deliver_now!
+          UserMailer.notify_sales(current_user,@project_workflow,@project).deliver_later
+        rescue Exception => e
+          print e
         end
         flash[:notice] = "提交成功!"
         redirect_to root_path

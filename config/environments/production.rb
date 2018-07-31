@@ -89,13 +89,15 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "http://daily.dcits.com" }
   config.action_mailer.smtp_settings = {
     address: "smtpcloud.sohu.com",
     port: 25,
-    domain: "dcits.com",
+    domain: "NPsQQAqOISmlOJzletbZwjf6JLN2KXVS.sendcloud.org",
     authentication: "login",
     enable_starttls_auto: true,
     user_name: ENV["SEND_CLOUD_USER_NAME"],
