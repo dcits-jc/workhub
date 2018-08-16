@@ -16,6 +16,13 @@ class TagItvendor < ApplicationRecord
   # 按照时间排序
   scope :order_by_created_at, -> { order("created_at ASC") }
 
+
+  def total_hours
+    sum = 0
+    self.project_workflows.each {|p| sum+=p.hours}
+    sum
+  end
+
 end
 
 # == Schema Information

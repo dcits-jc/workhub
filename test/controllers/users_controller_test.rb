@@ -41,6 +41,7 @@
 #  extra_cost             :integer
 #  is_feedneeded          :boolean          default(FALSE)
 #  is_enabled             :boolean          default(TRUE)
+#  company                :string           default("ITS")
 #
 # Indexes
 #

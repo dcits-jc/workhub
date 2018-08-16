@@ -1,0 +1,34 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li class="active">全部厂商 <kbd><%= @tag_itvendors.count %></kbd></li>
+</ol>
+
+
+<!-- 厂商搜索 -->
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <td>排名</td>
+      <td>厂商</td>
+      <td>相关工作时长</td>
+      <td>相关工作记录数</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% t=0 %>
+    <% @tag_itvendors.each do |tag| %>
+    <% t+=1 %>
+      <tr>
+        <td><%= t %></td>
+        <td><kbd><%= tag.name %></kbd></td>
+        <td><code><%= tag.total_hours %>h</code></td>
+        <td><%= tag.project_workflows.count %></td>      
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- 分页 -->
+<div class="text-center">
+  <%= will_paginate @tag_itvendors %>
+</div>

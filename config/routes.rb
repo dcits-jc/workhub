@@ -59,6 +59,8 @@ Rails.application.routes.draw do
         post :set_enabled
       end
     end
+    resources :tag_itskills
+    resources :tag_itvendors
     resources :project_costs
   end
   
