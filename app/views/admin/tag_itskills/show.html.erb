@@ -1,0 +1,23 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部技术方向',admin_tag_itskills_path) %></li>
+  <li class="active"><%= @tag_itskill.name %></li>
+</ol>
+
+<h1><%= @tag_itskill.name %></h1>
+
+<table>
+  <tr>
+    <td>相关工作时长: </td>
+    <td> <code><%= @tag_itskill.total_hours %>h</code></td>
+  </tr>
+  <tr>
+    <td>相关工作记录数: </td>
+    <td> <code><%= @tag_itskill.project_workflows.count %>条</code></td>
+  </tr>
+</table>
+
+
+<hr>
+<!-- 本周的 feeds -->
+<%= render 'common/feeds' %>
