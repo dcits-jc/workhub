@@ -20,7 +20,11 @@
     <% t+=1 %>
       <tr>
         <td><%= t %></td>
-        <td><kbd><%= tag.name %></kbd></td>
+        <td>
+          <%= link_to admin_tag_itskill_path(tag) do %>
+            <kbd><%= tag.name %></kbd>
+          <% end %>
+        </td>
         <td><code><%= tag.total_hours %>h</code></td>
         <td><%= tag.project_workflows.count %></td>      
       </tr>

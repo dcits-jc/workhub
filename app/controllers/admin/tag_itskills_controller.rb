@@ -8,4 +8,10 @@ class Admin::TagItskillsController < ApplicationController
     @tag_itskills = @tag_itskills.paginate(:page => params[:page], :per_page => 25)
   end
 
+  def show
+    @tag_itskill = TagItskill.includes(:project_workflows).find(params[:id])
+    @feeds = @tag_itskill.project_workflows.map(&:feed).sort_by{|f| f.created_at}.reverse
+    @feeds = @feeds.paginate(:page => params[:page], :per_page => 20)
+  end
+
 end
