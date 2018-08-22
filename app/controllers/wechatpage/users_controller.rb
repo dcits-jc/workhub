@@ -1,4 +1,4 @@
-class Wechatpage::UsersController < ActionController::Base
+class Wechatpage::UsersController < WechatController
   layout 'wechat'
   def index
     # @all_users = User.where(worktype: "技术")

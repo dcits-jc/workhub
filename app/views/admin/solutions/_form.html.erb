@@ -1,0 +1,120 @@
+<%= simple_form_for [:admin,@solution] do |f| %>
+  <%= f.input :name,label: '名称', input_html: { class: "form-control"} %>
+
+  <label>图示</label>
+  <%= f.input :solution_pic ,label: false %>
+  <% if @solution.solution_pic.present? %>
+    <!-- <div class="row"> -->
+      <div class="col-xs-12 col-md-12 col-xs-12 thumbnail">
+        <%= image_tag(quniuurl_pri(@solution.solution_pic_url)) %>
+      </div>
+    <!-- </div> -->
+  <% end %>
+  
+
+
+  <%= f.input :background,label: '背景介绍',input_html: { class: "form-control", id: "solution_background",placeholder: "填写相关项目背景"} %>
+  <%= f.input :desc,label: '方案简介', input_html: { class: "form-control", id: "solution_desc",placeholder: "填写方案简介"} %>
+  <%= f.input :value,label: '方案价值', input_html: { class: "form-control", id: "solution_value",placeholder: "填写方案价值点"} %>
+  <%= f.input :success_case,label: '典型案例', input_html: { class: "form-control", id: "solution_success_case",placeholder: "填写该方案典型案例"} %>
+
+
+
+  <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
+<% end %>
+
+
+
+
+<script>
+// 背景
+var background_editor = new Simditor({
+    textarea: $('#solution_background'),
+    pasteImage: true,
+    toolbar: [
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough',  
+      'color',        
+      'ul',           
+      'blockquote',
+      'code',        
+      'table',
+      'link',
+      // 'image'
+    ],
+    pasteImage: false,
+
+    // upload: {url: '/upload'}
+});
+
+// 简介
+var desc_editor = new Simditor({
+    textarea: $('#solution_desc'),
+    pasteImage: true,
+    toolbar: [
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough',  
+      'color',        
+      'ul',           
+      'blockquote',
+      'code',        
+      'table',
+      'link',
+      // 'image'
+    ],
+    pasteImage: false,
+
+    // upload: {url: '/upload'}
+});
+
+
+// 价值
+var value_editor = new Simditor({
+    textarea: $('#solution_value'),
+    pasteImage: true,
+    toolbar: [
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough',  
+      'color',        
+      'ul',           
+      'blockquote',
+      'code',        
+      'table',
+      'link',
+      // 'image'
+    ],
+    pasteImage: false,
+
+    // upload: {url: '/upload'}
+});
+
+
+// 案例
+var success_case_editor = new Simditor({
+    textarea: $('#solution_success_case'),
+    pasteImage: true,
+    toolbar: [
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough',  
+      'color',        
+      'ul',           
+      'blockquote',
+      'code',        
+      'table',
+      'link',
+      // 'image'
+    ],
+    pasteImage: false,
+
+    // upload: {url: '/upload'}
+});
+
+</script>

@@ -1,0 +1,9 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部解决方案',admin_solutions_path) %></li>
+  <li><%= link_to(@solution.name,wechatpage_solution_path(@solution)) %></li>
+  <li class="active">编辑</li>
+</ol>
+
+
+<%= render 'form' %>

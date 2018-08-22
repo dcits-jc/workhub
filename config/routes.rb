@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     resources :tag_itskills
     resources :tag_itvendors
     resources :project_costs
+    resources :solutions
   end
   
 
@@ -105,6 +106,7 @@ Rails.application.routes.draw do
         get :user_degree_doctor 
       end
     end
+    resources :solutions
   end
 
 
