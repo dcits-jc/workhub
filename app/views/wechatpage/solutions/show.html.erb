@@ -1,0 +1,27 @@
+<div class="col-md-12">
+  <!-- 导航栏 -->
+  <ol class="breadcrumb">
+    <li><%= link_to('解决方案',wechatpage_solutions_path) %></li>
+    <li class="active"><%= @solution.name %></li>
+  </ol>
+
+  <h3><span class="glyphicon glyphicon-menu-right"></span> <%= @solution.name %></h3>
+  <p><kbd>背景介绍</kbd></p>
+  <p><%= simple_format(@solution.background) %></p>
+
+  <div class="col-xs-12 col-md-12 col-xs-12 thumbnail">
+    <%= image_tag(quniuurl_pri(@solution.solution_pic_url)) %>
+  </div>
+
+  <p><kbd>方案简介</kbd></p>
+  <p><%= simple_format(@solution.desc) %></p>
+  <p><kbd>方案价值</kbd></p>
+  <p><%= simple_format(@solution.value) %></p>
+  <p><kbd>典型案例</kbd></p>
+  <p><%= simple_format(@solution.success_case) %></p>
+  <p><kbd>相关附件</kbd></p>
+
+
+</div>
+
+
