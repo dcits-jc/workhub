@@ -12,7 +12,6 @@ class Api::V1::ProjectsController < ApplicationController
               name: project.name,
               code: project.code,
               sales_name: project.sales.name,
-              is_disabled: project.is_disabled
             }
           }
         }  
