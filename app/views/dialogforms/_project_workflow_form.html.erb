@@ -110,7 +110,12 @@ $(document).ready(function(){
 
                           $('.selectpicker').html("");
                             for (var i = 0; i < data_arrary.length; i++) {
-                                $('.selectpicker').append("<option value=" + data_arrary[i].id + ">" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>");
+                              if (data_arrary[i].is_disabled) {
+                                option_string = "<option value=" + data_arrary[i].id + " disabled style='background: #bc0000; color: #fff;'>(已禁用)" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
+                              } else {
+                                option_string = "<option value=" + data_arrary[i].id + ">" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
+                              }
+                              $('.selectpicker').append(option_string);
                             };
                             // 缺一不可
                             $('#project_project_workflow_id').selectpicker('refresh');
