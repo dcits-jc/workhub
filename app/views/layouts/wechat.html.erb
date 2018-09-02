@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>微信企业号</title>
+    <title>神州信息</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style type="text/css">
+      body{
+       background: 'http://p123oziiu.bkt.clouddn.com/dcitswebg.png'  no-repeat center center;
+       background-size:cover;
+       background-attachment:fixed;
+      }
+      h3{color: #fff;}
+      a:link {color: #000; text-decoration:none;}  
+      a:visited {color:#000;text-decoration:none;} 
+      a:hover {color: #15eefb; text-decoration:none;}
+      button{background-color: #001928;margin: 10px;}
+      button:hover{background-color: #003b58}
+      .mainsubject p{color: #eee}
+      h2{color: #fff}
+      h3{ color: #15eefb}
+      .footer p{color: #15eefb}
+    </style>
+    <!-- 引入二维码插件 -->
+    <script src="http://p7sfuyemg.bkt.clouddn.com/qrcode.min.js">
+    </script>
+
   </head>
-  <body>
+  <body background='http://p123oziiu.bkt.clouddn.com/dcitswebg.png'>
     <div class="container-fluid">
       <div class="row">
         <%= yield %>    

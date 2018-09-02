@@ -5,10 +5,12 @@
     <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
       <% @solutions.each do |s| %>
         <%= link_to wechatpage_solution_path(s) do %>
-          <h4><span class="glyphicon glyphicon-menu-right"></span> <%= s.name %></h4>
+        <button class="text-left mainsubject">
+          <h3><span class="glyphicon glyphicon-menu-right"></span> <%= s.name %></h3>
+          <div class="sub_desc"><%= simple_format(s.desc) %></div>          
+        </button>
         <% end %>
       <% end %>
     </div>
-
   <% end %>
 
