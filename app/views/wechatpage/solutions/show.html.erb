@@ -1,27 +1,103 @@
 <div class="col-md-12">
   <!-- 导航栏 -->
   <ol class="breadcrumb">
-    <li><%= link_to('解决方案',wechatpage_solutions_path) %></li>
+    <li><%= link_to('全部解决方案',wechatpage_solutions_path) %></li>
     <li class="active"><%= @solution.name %></li>
   </ol>
 
   <h3><span class="glyphicon glyphicon-menu-right"></span> <%= @solution.name %></h3>
-  <p><kbd>背景介绍</kbd></p>
-  <p><%= simple_format(@solution.background) %></p>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> 背景介绍</h5>
+    </div>
+    <div class="panel-body">
+      <p class="sub_desc"><%= simple_format(@solution.background) %></p>
+    </div>
+  </div>
+
+
 
   <div class="col-xs-12 col-md-12 col-xs-12 thumbnail">
     <%= image_tag(quniuurl_pri(@solution.solution_pic_url)) %>
   </div>
 
-  <p><kbd>方案简介</kbd></p>
-  <p><%= simple_format(@solution.desc) %></p>
-  <p><kbd>方案价值</kbd></p>
-  <p><%= simple_format(@solution.value) %></p>
-  <p><kbd>典型案例</kbd></p>
-  <p><%= simple_format(@solution.success_case) %></p>
-  <p><kbd>相关附件</kbd></p>
+  <div class="row"></div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title"><span class="glyphicon glyphicon-ok-sign"></span> 方案简介</h5>
+    </div>
+    <div class="panel-body">
+      <p class="sub_desc"><%= simple_format(@solution.desc) %></p>
+    </div>
+  </div>
+
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title"><span class="glyphicon glyphicon-usd"></span> 方案价值</h5>
+    </div>
+    <div class="panel-body">
+      <p class="sub_desc"><%= simple_format(@solution.value) %></p>
+    </div>
+  </div>
+
+
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title"><span class="glyphicon glyphicon-flag"></span> 典型案例</h5>
+    </div>
+    <div class="panel-body">
+      <p class="sub_desc"><%= simple_format(@solution.success_case) %></p>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title"><span class="glyphicon glyphicon-floppy-disk"></span> 相关附件</h5>
+    </div>
+    <div class="panel-body">
+
+    </div>
+  </div>
+
+    <div id="qrcode">
+
+    </div>
+
 
 
 </div>
 
 
+<style type="text/css">
+.panel{
+  background-color:#000000;
+  opacity: 0.5;
+}
+.panel{
+  color: #fff
+}
+#qrcode img{
+  margin: 0 auto
+}
+</style>
+
+
+
+<script type="text/javascript">
+  new QRCode(document.getElementById("qrcode"),"<%='http://daily.dcits.com/'+wechatpage_solution_path(@solution) %>"); 
+</script>
+
+
+<footer>
+  <div class="text-center footer">
+    <p>© 2018 DCITS 神州信息</p>
+  </div>
+</footer>
