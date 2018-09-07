@@ -37,6 +37,13 @@ class Admin::SolutionsController < ApplicationController
     end
   end
 
+  def destroy
+    @solution = Solution.find(params[:id])
+    @solution.destroy
+    flash[:notice] = "解决方案已删除"
+    redirect_to admin_solutions_path
+  end
+
   private
 
   def solution_params

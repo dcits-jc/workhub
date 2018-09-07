@@ -15,4 +15,6 @@ class Wechatpage::SolutionsController < WechatController
     @solution = Solution.find(params[:id])
   end
 
+
+
 end
