@@ -5,12 +5,90 @@
     <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
       <% @solutions.each do |s| %>
         <%= link_to wechatpage_solution_path(s) do %>
-        <button class="text-left mainsubject">
-          <h3><span class="glyphicon glyphicon-menu-right"></span> <%= s.name %></h3>
-          <div class="sub_desc"><%= simple_format(s.desc) %></div>          
+        <button class="text-left mainsubject bb">
+          <div class="btn_border_style top_right"></div>
+          
+          <div class="btn_title text-center">
+            <h3 class="small_title"><%= s.name %></h3>
+          </div>
+
+
+          <div class="btn_content">
+            <div class="sub_desc">
+              <div class="btn_border_style top_left"></div>
+              <%= simple_format(s.desc) %>
+              <div class="btn_border_style bottom_right"></div>
+            </div>
+          </div>
+          
+          <div class="btn_border_style bottom_left"></div>
+
         </button>
         <% end %>
       <% end %>
     </div>
   <% end %>
+
+
+<style type="text/css">
+.bb{
+  /*border:5px solid #0d8ef2;*/
+  border-width: 1px;
+  border-color: #0d8ef2;
+  border-style: solid;
+  padding: 20px;
+}
+
+.btn_border_style{
+  border: 6px solid #0d8ef2;
+  float: left;
+  border-color: #0d8ef2;
+}
+
+.top_left{
+  height: 20px;
+  width: 20px;
+  float: left;
+  border-width: 1px;
+  border-color: #6e93b7;
+  border-style: solid none none solid;
+  margin: -10px -10px;
+}
+
+.top_right{
+  height: 40px;
+  width: 20px;
+  float: right;
+  border-style: solid solid none none;
+  margin: -25px -25px;
+}
+
+
+.bottom_left{
+  height: 20px;
+  width: 40px;
+  float: left;
+  border-style: none none solid solid;
+  margin: 5px 0px -24px -24px;
+}
+
+.bottom_right{
+  height: 20px;
+  width: 20px;
+  float: right;
+  border-width: 1px;
+  margin-top: -25px;
+  margin-right: 0px;
+  border-color: #6e93b7;
+  border-style: none solid solid none;
+}
+
+.btn_content{
+  padding: 10px;
+}
+/*0d8ef2*/
+/*13 142 242*/
+
+</style>
+
 

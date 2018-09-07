@@ -9,20 +9,22 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style type="text/css">
       body{
-        background-image: url(http://p123oziiu.bkt.clouddn.com/dcitswebg.png);
+        background-image: url(http://p123oziiu.bkt.clouddn.com/dcitswe_bg.png);
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
       }
       h3{color: #fff;}
-      a:link {color: #000; text-decoration:none;}  
-      a:visited {color:#000;text-decoration:none;} 
+      a:link {color: #15eefb; text-decoration:none;}  
+      a:visited {color:#15eefb;text-decoration:none;} 
       a:hover {color: #15eefb; text-decoration:none;}
       button{background-color: #001928;margin: 10px;}
       button:hover{background-color: #003b58}
       .mainsubject p{color: #eee}
-      h2{color: #fff}
-      h3{ color: #15eefb}
+      p.big_tilte{font-size: 22px;color: #fff}
+      p.sub_tilte{font-size: 26px;color: #15eefb}
+      /*p.small_tilte{font-size: 28px;color: #15eefb}*/
+      h3{ font-size: 18px;color: #15eefb}
       .footer p{color: #15eefb}
     </style>
     <!-- 引入二维码插件 -->
@@ -30,7 +32,7 @@
     </script>
 
   </head>
-  <body background='http://p123oziiu.bkt.clouddn.com/dcitswebg.png'>
+  <body>
     <div class="container-fluid">
       <div class="row">
         <%= yield %>    

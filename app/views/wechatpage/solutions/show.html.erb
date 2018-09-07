@@ -1,11 +1,8 @@
 <div class="col-md-12">
   <!-- 导航栏 -->
-  <ol class="breadcrumb">
-    <li><%= link_to('全部解决方案',wechatpage_solutions_path) %></li>
-    <li class="active"><%= @solution.name %></li>
-  </ol>
 
-  <h3><span class="glyphicon glyphicon-menu-right"></span> <%= @solution.name %></h3>
+
+  <p class="sub_tilte"><span class="glyphicon glyphicon-menu-right"></span> <%= @solution.name %></p>
 
 
   <div class="panel panel-default">
@@ -68,12 +65,23 @@
   </div>
 
     <div id="qrcode">
-
     </div>
 
 
-
 </div>
+
+<div class="col-md-12">
+  <div>
+    <br>
+  </div>
+  <div class="text-center footer">
+    <%= link_to wechatpage_solutions_path do %>
+    <span class="glyphicon glyphicon-home"></span> 返回目录
+    <% end %>
+  </div>  
+</div>
+
+
 
 
 <style type="text/css">
@@ -91,13 +99,14 @@
 
 
 
+
+
+
 <script type="text/javascript">
   new QRCode(document.getElementById("qrcode"),"<%='http://daily.dcits.com/'+wechatpage_solution_path(@solution) %>"); 
 </script>
 
 
 <footer>
-  <div class="text-center footer">
-    <p>© 2018 DCITS 神州信息</p>
-  </div>
+
 </footer>

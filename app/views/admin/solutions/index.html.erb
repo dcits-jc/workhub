@@ -17,7 +17,7 @@
     <% @solutions.each do |s| %>
     <tr>
       <td><%= link_to(s.name,wechatpage_solution_path(s),target: '_blank') %></td>
-      <td><%= link_to('编辑',edit_admin_solution_path(s)) %></td>
+      <td><%= link_to('编辑',edit_admin_solution_path(s)) %> | <%= link_to('删除',admin_solution_path(s), method: 'DELETE', data: { confirm: "确认删除该方案?" }) %> </td>
     </tr>
     <% end %>
   </tbody>
