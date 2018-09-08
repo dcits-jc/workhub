@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>神州信息</title>
+    <title>神州信息解决方案大全</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style type="text/css">
-      body{
+      html,body{
+        width: 100%;
+        height: 100%;
         background-image: url(http://p123oziiu.bkt.clouddn.com/dcitswe_bg.png);
         background-attachment: fixed;
         background-repeat: no-repeat;
@@ -18,7 +20,7 @@
       a:link {color: #15eefb; text-decoration:none;}  
       a:visited {color:#15eefb;text-decoration:none;} 
       a:hover {color: #15eefb; text-decoration:none;}
-      button{background-color: #001928;margin: 10px;}
+      button{background-color: #001928 ;margin: 10px;opacity:0.5;}
       button:hover{background-color: #003b58}
       .mainsubject p{color: #eee}
       p.big_tilte{font-size: 22px;color: #fff}
@@ -35,6 +37,9 @@
   <body>
     <div class="container-fluid">
       <div class="row">
+        <div class="col-md-12">
+          <br>
+        </div>
         <%= yield %>    
       </div>
     </div>
