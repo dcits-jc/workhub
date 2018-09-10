@@ -55,7 +55,7 @@
           <Cell><Data ss:Type="String"><%= feed.feedable.project.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= desc_projecttype(feed.feedable.project.projecttype) %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.feedable.project.enabled? ? '启用' : '禁用' %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= feed.feedable.project.binding_team.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= feed.feedable.project.binding_team.present? ? feed.feedable.project.binding_team.name : nil %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.team.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= manager_arrary.join(',') %></Data></Cell>
