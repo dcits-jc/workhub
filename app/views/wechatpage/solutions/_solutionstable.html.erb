@@ -2,14 +2,29 @@
 
   <!-- 用户搜到了 -->
   <% if @solutions.present? %>
-    <div class="col-md-10 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+    <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
       <% @solutions.each do |s| %>
         <%= link_to wechatpage_solution_path(s) do %>
+<!--           <div class="row">
+            <div class="col-xs-4 thumbnail">
+              <%= image_tag(quniuurl_pri(s.solution_pic_url)) %>
+            </div>
+            <div class="col-xs-8">
+              <h3 class="small_title"><%= s.name %></h3>
+              <%= simple_format(s.desc) %>
+            </div>
+          </div> -->
+
+
+
+
+
         <button class="text-left mainsubject bb">
           <div class="btn_border_style top_right"></div>
           
-          <div class="btn_title text-center">
+          <div class="btn_title">
             <h3 class="small_title"><%= s.name %></h3>
+
           </div>
 
 
@@ -26,7 +41,7 @@
         </button>
         <% end %>
       <% end %>
-    </div>
+    <!-- </div> -->
   <% end %>
 
 
@@ -88,6 +103,7 @@
 }
 /*0d8ef2*/
 /*13 142 242*/
+
 
 </style>
 
