@@ -32,31 +32,15 @@
   <%= f.input :hours,label: '工作量(小时)', input_html: { class: "form-control"},placeholder: '输入数字' %>
 
 
+  <div class="form-group">
+    <label><abbr title="required">*</abbr> 开始日期</label>
+    <input name="management_workflow[begin_time]" class="form-control management_workflow_time_pickr" placeholder="点击选择日期" aria-describedby="basic-addon-start" id="management_workflow_begin_time">
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="form-group">
-  <label><abbr title="required">*</abbr> 开始日期</label>
-  <%= f.flatpickr_date_select :begin_time,placeholder: "点击选择日期",id: 'flatpickr_begin_time'%>
-</div>
-<div class="form-group">
-  <label><abbr title="required">*</abbr> 结束日期</label>
-  <%= f.flatpickr_date_select :end_time,placeholder: "点击选择日期",id: 'flatpickr_end_time'%>  
-</div>
+  <div class="form-group">
+    <label><abbr title="required">*</abbr> 结束日期</label>
+    <input name="management_workflow[end_time]" class="form-control management_workflow_time_pickr" placeholder="点击选择日期" aria-describedby="basic-addon-start" id="management_workflow_end_time">
+  </div>
 
 
 
@@ -77,10 +61,16 @@
 // 设置当前时间
 var nowTime = new Date();
 nowTimeFormat = nowTime.getFullYear()+'-'+(nowTime.getMonth()+1)+'-'+nowTime.getDate()
+
+
+
 // 日期选择器
-$('.flatpicker_date_select').flatpickr({
-  wrap: true,
-  defaultDate: nowTimeFormat
+$('.management_workflow_time_pickr').flatpickr({
+  defaultDate: nowTimeFormat,
+  enable: [{
+          from: '<%= @start_date %>',
+          to: '<%= @end_date %>'
+      }]
 });
 
 
