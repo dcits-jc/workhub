@@ -1,0 +1,9 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部标签',admin_solution_tags_path) %></li>
+  <li><%= @solution_tag.name %></li>
+  <li class="active">编辑</li>
+</ol>
+
+
+<%= render 'form' %>

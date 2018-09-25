@@ -68,8 +68,8 @@ nowTimeFormat = nowTime.getFullYear()+'-'+(nowTime.getMonth()+1)+'-'+nowTime.get
 $('.management_workflow_time_pickr').flatpickr({
   defaultDate: nowTimeFormat,
   enable: [{
-          from: '<%= @start_date %>',
-          to: '<%= @end_date %>'
+          from: '<%= @current_time.at_beginning_of_week %>',
+          to: '<%= @current_time.at_end_of_week %>'
       }]
 });
 
