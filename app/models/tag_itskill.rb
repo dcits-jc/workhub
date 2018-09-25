@@ -25,6 +25,11 @@ class TagItskill < ApplicationRecord
     sum
   end
 
+  def commit_count
+    sum = 0
+    self.project_workflows.each {|p| sum+=1}
+    sum
+  end
 
 
 end
