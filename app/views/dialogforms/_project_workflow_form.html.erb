@@ -39,7 +39,7 @@
 
   <label id="workflow_companies_label">涉及厂商(最多3个)</label>
 
-  <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_created_at[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
+  <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_commit_count[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
 
   <%= f.input :other_itvendors,label: false,placeholder: "其他厂商 (以逗号 ',' 分割)"  %>
 
@@ -57,15 +57,12 @@
 
   <div class="form-group">
     <label><abbr title="required">*</abbr> 开始日期</label>
-    <%= f.flatpickr_date_select :begin_time,placeholder: "点击选择日期",id: 'flatpickr_begin_time'%>
+    <input name="project_workflow[begin_time]" class="form-control project_workflow_time_pickr" placeholder="点击选择日期" aria-describedby="basic-addon-start" id="project_workflow_begin_time">
   </div>
   <div class="form-group">
     <label><abbr title="required">*</abbr> 结束日期</label>
-    <%= f.flatpickr_date_select :end_time,placeholder: "点击选择日期",id: 'flatpickr_end_time'%>  
+    <input name="project_workflow[end_time]" class="form-control project_workflow_time_pickr" placeholder="点击选择日期" aria-describedby="basic-addon-start" id="project_workflow_end_time">
   </div>
-
-
-
 
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -164,15 +161,28 @@ $(document).ready(function(){
 $(".selectpicker").selectpicker();
 
 
-
 // 设置当前时间
 var nowTime = new Date();
-nowTimeFormat = nowTime.getFullYear()+'-'+(nowTime.getMonth()+1)+'-'+nowTime.getDate()
+
+
+
+nowTimeFormat = nowTime.getFullYear()+'-'+(nowTime.getMonth()+1)+'-'+nowTime.getDate();
+
+console.log(nowTimeFormat);
+
+
 // 日期选择器
-$('.flatpicker_date_select').flatpickr({
-  wrap: true,
-  defaultDate: nowTimeFormat
+$('.project_workflow_time_pickr').flatpickr({
+  defaultDate: nowTimeFormat,
+  enable: [{
+          from: '<%= @current_time.at_beginning_of_week %>',
+          to: '<%= @current_time.at_end_of_week %>'
+      }]
 });
+
+// $('#project_workflow_begin_time').flatpickr({
+//   defaultDate: "2018-09-30",
+// })
 
 
 

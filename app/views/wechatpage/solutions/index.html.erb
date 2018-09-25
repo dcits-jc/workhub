@@ -1,9 +1,9 @@
-<div class="col-md-12 col-xs-10 col-xs-offset-1">
+<div class=" col-xs-12">
   <p class="big_tilte"><span><img src="http://p123oziiu.bkt.clouddn.com/3_tree.png" width="20px" height="20px"></span> 神州信息解决方案大全</p>
   <!-- 用户搜索 -->
   <%= search_form_for [:wechatpage,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
     <div class="input-group">
-      <%= f.search_field :name_cont, class: "form-control", placeholder: "输入解决方案关键字"  %>
+      <%= f.search_field :name_cont, class: "form-control", placeholder: "神州信息解决方案大全"  %>
       <span class="input-group-btn">
         <%= f.submit '搜索',class: "btn btn-default" %>
       </span>
@@ -11,8 +11,65 @@
   <% end %>
 </div>
 
-<!-- 解决方案 -->
-<%= render "solutionstable" %>
+
+
+<div class="col-xs-12">
+
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#direction" aria-controls="direction" role="tab" data-toggle="tab">按技术方向</a></li>
+    <li role="presentation"><a href="#industry" aria-controls="industry" role="tab" data-toggle="tab">按行业</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="direction">
+      <!-- 解决方案 -->
+      <%= render "direction_solutions" %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="industry">
+      <%= render "industry_solutions" %>
+    </div>
+  </div>
+
+
+</div>
+
+<style type="text/css">
+.sub_tag{
+  padding: 2px;
+  border-radius: 0px;
+  background-color: transparent;
+  height: 60px;
+  line-height:60px
+}
+.sub_tag.active{
+    color: #15eefb;
+    background-color: transparent;
+    /*border: 1px solid #ddd;*/
+    border-style: none none solid solid;
+    border-color: #ddd;
+    border-width: 1px;
+}
+.sub_tag:hover{
+    color: #15eefb;
+    background-color: #fff;
+    /*border: 1px solid #ddd;*/
+    border-style: none none solid solid;
+    border-color: #ddd;
+    border-width: 1px;
+}
+.sub_tag.active:hover{
+    color: #15eefb;
+    background-color: transparent;
+    /*border: 1px solid #ddd;*/
+    border-style: none none solid solid;
+    border-color: #ddd;
+    border-width: 1px;
+}
+
+</style>
 
 
 

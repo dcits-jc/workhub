@@ -1,0 +1,32 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li class="active">全部方案标签<kbd><%= @solution_tags.count %></kbd></li>
+</ol>
+
+<%= link_to('+ 新建方案',new_admin_solution_tag_path,class: 'btn btn-primary btn-xs') %>
+
+
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <td>方案名</td>
+      <td>类型</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @solution_tags.each do |s| %>
+    <tr>
+      <td><kbd><%= s.name %></kbd></td>
+      <td><%= s.solution_type %></td>
+      <td><%= link_to('编辑',edit_admin_solution_tag_path(s)) %> | <%= link_to('删除',admin_solution_tag_path(s), method: 'DELETE', data: { confirm: "确认删除该方案标签?" }) %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+
+
+
+

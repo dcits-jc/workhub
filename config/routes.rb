@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     resources :tag_itvendors
     resources :project_costs
     resources :solutions
+    resources :solution_tags
   end
   
 

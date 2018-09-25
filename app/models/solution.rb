@@ -2,6 +2,14 @@ class Solution < ApplicationRecord
 
   mount_uploader :solution_pic, AttachmentUploader
 
+
+  # n:m 对应标签
+  has_many :solutionsolutiontages_relationships
+  has_many :solution_tags, through: :solutionsolutiontages_relationships, source: :solution_tag
+
+
+
+
 end
 
 # == Schema Information

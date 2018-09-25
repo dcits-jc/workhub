@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-xs-3">
+
+
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-stacked" role="tablist">
+      <% @solution_tags_industry.each do |t| %>
+      <li role="presentation">
+        <a href="#direction_<%= t.id %>" aria-controls="direction_<%= t.id %>" role="tab" data-toggle="tab">
+          <%= t.name %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+
+
+
+  </div>
+  <div class="col-xs-9">
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- 解决方案 -->
+      <%= render :partial => "solutionstable", :collection => @solution_tags_industry, :as => :tag %>
+    </div>
+  </div>
+</div>    

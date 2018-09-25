@@ -8,11 +8,13 @@ class Admin::SolutionsController < ApplicationController
   end
 
   def edit
-    @solution = Solution.find(params[:id])   
+    @solution = Solution.find(params[:id])
+    @solution_tags = SolutionTag.all
   end
 
   def new
     @solution = Solution.new
+    @solution_tags = SolutionTag.all
   end
 
   def update
@@ -47,7 +49,7 @@ class Admin::SolutionsController < ApplicationController
   private
 
   def solution_params
-    params.require(:solution).permit(:name, :background, :desc,:value, :success_case, :solution_pic)
+    params.require(:solution).permit(:name, :background, :desc,:value, :success_case, :solution_pic,solution_tag_ids: [])
   end
 
 end
