@@ -16,7 +16,7 @@ class TagItskill < ApplicationRecord
 
   # 按照时间排序
   scope :order_by_created_at, -> { order("created_at ASC") }
-
+  scope :order_by_commit_count, -> { includes(:project_workflows).sort_by{|t| t.commit_count}.reverse }
 
 
   def total_hours
