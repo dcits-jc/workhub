@@ -17,13 +17,13 @@
 
   <label id="workflow_companies_label">涉及厂商</label>
 
-  <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_created_at[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
+  <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_commit_count[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
 
   <%= f.input :other_itvendors,label: false,placeholder: "其他厂商 (以逗号 ',' 分割)"  %>
 
 
   <label id="workflow_skills_label">技术方向</label>
-  <%= f.association :tag_itskills,label: false,collection: TagItskill.order_by_created_at[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
+  <%= f.association :tag_itskills,label: false,collection: TagItskill.order_by_commit_count[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
 
   <%= f.input :other_itskills,label: false,placeholder: "其他方向 (以逗号 ',' 分割)"  %>
 
