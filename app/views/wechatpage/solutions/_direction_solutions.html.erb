@@ -24,10 +24,13 @@
   <div class="col-xs-9">
     <!-- Tab panes -->
     <div class="tab-content">
-      <%= render "all_solutions" %>
+
+      <div role="tabpanel" class="tab-pane active" id="direction_0">
+        <%= render "all_solutions" %>
+      </div>
+
       <!-- 解决方案 -->
       <%= render :partial => "solutionstable", :collection => @solution_tags_direction, :as => :tag %>
-
     </div>
   </div>
 </div>    
