@@ -5,6 +5,10 @@
 
     <!-- Nav tabs -->
     <ul class="nav nav-tabs nav-stacked" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#direction_0" aria-controls="direction_0" role="tab" data-toggle="tab" class='tag_index'>全部方案</a>
+      </li>
+
       <% @solution_tags_direction.each do |t| %>
       <li role="presentation">
         <a href="#direction_<%= t.id %>" aria-controls="direction_<%= t.id %>" role="tab" data-toggle="tab" class='tag_index'>
@@ -20,7 +24,7 @@
   <div class="col-xs-9">
     <!-- Tab panes -->
     <div class="tab-content">
-
+      <%= render "all_solutions" %>
       <!-- 解决方案 -->
       <%= render :partial => "solutionstable", :collection => @solution_tags_direction, :as => :tag %>
 
