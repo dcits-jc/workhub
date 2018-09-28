@@ -7,7 +7,7 @@
     <ul class="nav nav-tabs nav-stacked" role="tablist">
       <% @solution_tags_industry.each do |t| %>
       <li role="presentation">
-        <a href="#direction_<%= t.id %>" aria-controls="direction_<%= t.id %>" role="tab" data-toggle="tab">
+        <a href="#direction_<%= t.id %>" aria-controls="direction_<%= t.id %>" role="tab" data-toggle="tab" class='tag_index'>
           <%= t.name %>
         </a>
       </li>
@@ -25,3 +25,5 @@
     </div>
   </div>
 </div>    
+
+
