@@ -1,27 +1,24 @@
-<div role="tabpanel" class="tab-pane active" id="direction_0">
+
   <!-- 解决方案 -->
 
   <!-- 用户搜到了 -->
   <% if @all_solutions.present? %>
-    <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
-      <% @all_solutions.each do |s| %>
-        <%= link_to wechatpage_solution_path(s) do %>
+    <% @all_solutions.each do |s| %>
+      <%= link_to wechatpage_solution_path(s) do %>
 
-          <div class="row btn_content">
-            <div class="col-xs-4 sm_pic">
-              <div class="thumbnail">
-                <%= image_tag(quniuurl_pri(s.solution_pic_url)) %>
-              </div>     
-            </div>
-            <div class="col-xs-8 sub_desc">
-              <h3 class="small_title"><%= s.name %></h3>
-              <%= simple_format(s.desc) %>
-            </div>
+        <div class="row btn_content">
+          <div class="col-xs-4 sm_pic">
+            <div class="thumbnail">
+              <%= image_tag(quniuurl_pri(s.solution_pic_url)) %>
+            </div>     
           </div>
+          <div class="col-xs-8 sub_desc">
+            <h3 class="small_title"><%= s.name %></h3>
+            <%= simple_format(s.desc) %>
+          </div>
+        </div>
 
-        <% end %>
       <% end %>
-    <!-- </div> -->
+    <% end %>
   <% end %>
 
-</div>
