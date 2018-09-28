@@ -8,7 +8,8 @@ class Wechatpage::SolutionsController < WechatController
     else
       @solutions = Solution.all
     end
-    
+    # 全部方案
+    @all_solutions = @solutions
     # 筛选出所有按技术方向的标签
     @solution_tags_direction = SolutionTag.it_direction
 
