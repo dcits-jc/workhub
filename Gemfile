@@ -108,6 +108,9 @@ gem 'carrierwave-qiniu', '~> 1.1.5'
 gem 'qiniu-rs'
 gem 'qiniu', '>= 6.9.0'
 
+# 定时任务
+gem 'whenever'
+
 
 
 

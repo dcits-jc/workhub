@@ -125,8 +125,7 @@ module ApplicationHelper
   project_dict["技术提升"] = 'tech_improvement'
   project_dict["部门工作"] = 'team_work'
   project_dict["休假"] = 'day_off'
-  project_dict.index(projecttype)
-
+  project_dict.key(projecttype)
  end
 
 
