@@ -7,8 +7,7 @@ class Solution < ApplicationRecord
   has_many :solutionsolutiontages_relationships
   has_many :solution_tags, through: :solutionsolutiontages_relationships, source: :solution_tag
 
-
-
+  scope :order_by_created, -> { order("created_at ASC") }
 
 end
 

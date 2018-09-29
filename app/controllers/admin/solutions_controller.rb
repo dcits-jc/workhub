@@ -4,7 +4,7 @@ class Admin::SolutionsController < ApplicationController
   before_action :require_is_admin
 
   def index
-    @solutions = Solution.all
+    @solutions = Solution.order_by_created
   end
 
   def edit
