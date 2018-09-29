@@ -28,6 +28,8 @@ class Team < ApplicationRecord
 
   scope :no_parents, -> {where(parent_id: nil)}
 
+
+
   # 激活状态的用户
   scope :acitved, -> {where(is_enabled: true)}
 

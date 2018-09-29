@@ -11,7 +11,6 @@ class FeedsController < ApplicationController
 
 
   def week
-    # binding.pry
     # 设置当前时间
     @current_time = Time.now
 
@@ -23,14 +22,12 @@ class FeedsController < ApplicationController
       @end_date = @current_time.at_end_of_week
     end
 
-
     # 如果有 params 要求所有 history,就显示全部,没有就显示10条
     @history_weeks = weekindex(Time.now, current_user.created_at) 
     
     if params[:history_all] != 'true'
       @history_weeks = @history_weeks[0..10]   
     end
-
 
     # 项目工作流
     @project_workflow = ProjectWorkflow.new
@@ -54,7 +51,6 @@ class FeedsController < ApplicationController
     # 检索最近参与过5个项目
     @last_projects = current_user.participated_projects.reverse[0..4]
 
-
     # 数据导出
     respond_to do |format|
       format.html
@@ -64,7 +60,6 @@ class FeedsController < ApplicationController
       }  
     end
 
-    
   end
 
 
