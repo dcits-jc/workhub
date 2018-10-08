@@ -91,7 +91,7 @@ class TeamsController < ApplicationController
       format.html
       format.xls{ 
         # 设置文件名
-        headers["Content-Disposition"]="attachment; filename=周报导出("+@start_date.strftime('%Y-%m-%d')+"~"+@end_date.strftime('%Y-%m-%d')+").xls"
+        headers["Content-Disposition"]="attachment; filename=Daily("+@start_date.strftime('%Y-%m-%d')+"~"+@end_date.strftime('%Y-%m-%d')+").xls"
       }  
     end
 
