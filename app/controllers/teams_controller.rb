@@ -84,7 +84,7 @@ class TeamsController < ApplicationController
     end
 
     # 为 excel加入用户统计
-    @feeded_users = teamuser_arrary
+    @feeded_users = teamuser_arrary.select{|u| u.is_feedneeded==true}
 
     # 数据导出
     respond_to do |format|
