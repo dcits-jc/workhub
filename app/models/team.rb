@@ -136,17 +136,24 @@ class Team < ApplicationRecord
     else
       user_num = self.users.count
     end
-
+    # 该部门全部工作量
     current_week_workload = self.time_workloads(start_time,end_time)
 
+    # 总计工作日时长
+    business_days = 0
+    date = end_time
+    while date > start_time
+     business_days = business_days + 1 unless date.saturday? or date.sunday?
+     date = date - 1.day
+    end
+
+    # 工作时长 / 总工作日时长
     if user_num == 0
       return 0
     else
-      return (current_week_workload/user_num * 2.5).round(1)
+      return (current_week_workload*12.5/business_days*user_num).round(1)
     end
   end
-
-
 
 end
 
