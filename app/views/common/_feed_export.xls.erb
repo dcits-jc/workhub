@@ -59,7 +59,7 @@
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.team.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.feedable.project.sales.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= manager_arrary.join(',') %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= feed.user.team.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= feed.user.team.present? ? feed.user.team.name : nil %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.team.parent.present? ? feed.user.team.parent.name : nil %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.name %></Data></Cell>
           <Cell><Data ss:Type="String"><%= desc_worktype(feed.feedable.worktype) %></Data></Cell>
