@@ -29,8 +29,8 @@
       <tr class="alert alert-danger">
     <% end %>
 
-      <td><%= link_to(u.name ,user_path(u))%></td>
-      <td><%= u.team.name %></td>
+      <td><%= link_to(u.name ,user_path(u))%></td>      
+      <td><%= u.team.present? ? u.team.name : nil %></td>
       <td>
         
         <!-- 用户当周是否提交周报 -->
