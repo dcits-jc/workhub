@@ -175,10 +175,22 @@ class User < ApplicationRecord
   def time_workloads_precent(start_time,end_time)
     current_feeds = self.feeds.where(end_time: start_time..end_time)
     loads = 0
+    # 当前总共工作时长
     current_feeds.each do |f|
       loads = loads + f.feedable.hours
     end
-    return (loads*2.5).round(1)
+
+    # 总计工作日时长
+    business_days = 0
+    date = end_time
+    while date > start_time
+     business_days = business_days + 1 unless date.saturday? or date.sunday?
+     date = date - 1.day
+    end
+        
+
+    # (load/(business_days*8))*100
+    return (loads*12.5/business_days).round(1)
   end
 
   # 激活账户
