@@ -93,7 +93,7 @@
       <% @feeded_users.each do |u| %>
         <Row>
           <Cell><Data ss:Type="String"><%= u.name %></Data></Cell>
-          <Cell><Data ss:Type="String"><%= u.team.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= u.team.present? ? u.team.name : nil %></Data></Cell>
           
           <Cell><Data ss:Type="String">
             <% if user_feed_submit?(u,@start_date,@end_date) %>
