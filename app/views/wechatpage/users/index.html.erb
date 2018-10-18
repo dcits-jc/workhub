@@ -11,10 +11,7 @@
   <% end %>
 </div>
 
-<!-- 用户表 -->
-<%# if @users.present? %>
-  <%= render "userstable" %>
-<%# end %>
+
 
 
 
@@ -24,17 +21,16 @@
     <div class="panel-body">
       <ol>
         <li>CRM中通过投标申请.</li>
-        <li>请发邮件给 张莹（zhangyingab@dcits.com)，说明项目号、项目名称、销售员、事业部、投标日期；</li>
-        <li>张莹查询CRM后，有问题将及时邮件反馈，准备相应资料，并将电子版发至您邮箱；</li>
-        <li>请注意：提供的电子版中,简历均为PDF文件,并且所提供的所有个人资质均会打上水印,注明仅为XXX项目投标使用.</li>
+        <li>请发邮件给张莹（zhangyingab），说明项目号、项目名称、销售员、事业部、投标日期，所需工程师具体资料；</li>
+        <li>张莹查询CRM确认后，经由毛咏梅审批通过，方可将单子版个人资料借出。</li>
+        <li>请注意：提供的所有个人资料均会打上水印,注明仅供XXX项目投标使用。</li>
       </ol>
     </div>
   </div>
 </div>
 
 
-
-
-
-
-
+<!-- 用户表 -->
+<%# if @users.present? %>
+  <%= render "userstable" %>
+<%# end %>
