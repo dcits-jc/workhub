@@ -23,8 +23,7 @@ namespace :sendnotificationmail do
 
 
         # 遍历该 bu 的联系人
-        # send_users = t.teamusers.pluck(:email)
-        send_users = ['zhangyingab@dcits.com']
+        send_users = t.teamusers.pluck(:email)
         # binding.pry
         # 把该下载链接发送给该部门联系人
         download_link = 'http://daily.dcits.com/teams/team_weekly_download.xls?start_date=' + start_date.strftime('%Y-%m-%d')+'&end_date='+end_date.strftime('%Y-%m-%d')+'&team_id='+t.id.to_s
