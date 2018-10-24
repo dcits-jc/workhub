@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :teams do
     collection do
       get :week
+      get :team_weekly_download
     end
   end
 

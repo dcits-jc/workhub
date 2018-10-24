@@ -97,4 +97,57 @@ class TeamsController < ApplicationController
 
   end
 
+
+
+  # 专用于下载团队周报
+  def team_weekly_download
+    @current_team = Team.find(params[:team_id])
+
+    # 子部门
+    @children_teams = @current_team.children
+
+    @start_date = Time.parse(params[:start_date])
+    @end_date = Time.parse(params[:end_date]).at_end_of_day
+
+    # 如果当前团队有子团队
+    team_arrary = [@current_team.id]
+    if @current_team.has_children?
+      @current_team.children.each do |c|
+        team_arrary.push(c)
+      end
+    end
+
+    # 先检索出这段时间该团队所有的 feeds endtime
+    team_feeds = Feed.includes(:user).where( users: { team_id: team_arrary },feeds: { end_time: @start_date..@end_date })
+
+    # 导出的数据最后排序
+    @export_feeds = team_feeds.order("feeds.created_at DESC")
+
+    # 如果当前团队有子团队,就把子团队成员 push 进来
+    if @current_team.has_children?
+      teamuser_arrary = []
+      @current_team.users.each do |u|
+        teamuser_arrary.push(u)  
+      end
+      @current_team.children.each do |c|
+        c.users.each do |cu|
+          teamuser_arrary.push(cu)
+        end
+      end
+    end
+
+    # 为 excel加入用户统计
+    @feeded_users = teamuser_arrary.select{|u| u.is_feedneeded==true}
+
+    # 数据导出
+    respond_to do |format|
+      format.xls{ 
+        # 设置文件名
+        headers["Content-Disposition"]="attachment; filename=部门周报("+@start_date.strftime('%Y-%m-%d')+"~"+@end_date.strftime('%Y-%m-%d')+").xls"
+      }  
+    end
+
+  end
+
+
 end
