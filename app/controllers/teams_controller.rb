@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   layout 'user'
-  
+  skip_before_action :authenticate_user!, only: :team_weekly_download
 
   def week
     if params[:team_id].present?
