@@ -125,12 +125,14 @@ class TeamsController < ApplicationController
     # 导出的数据最后排序
     @export_feeds = team_feeds.order("feeds.created_at DESC")
 
+    teamuser_arrary = []
+    @current_team.users.each do |u|
+      teamuser_arrary.push(u)  
+    end
+    
     # 如果当前团队有子团队,就把子团队成员 push 进来
     if @current_team.has_children?
-      teamuser_arrary = []
-      @current_team.users.each do |u|
-        teamuser_arrary.push(u)  
-      end
+      # teamuser_arrary = []
       @current_team.children.each do |c|
         c.users.each do |cu|
           teamuser_arrary.push(cu)
