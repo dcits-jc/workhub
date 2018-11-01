@@ -1,0 +1,2 @@
+module Wechatpage::TrainingTagsHelper
+end

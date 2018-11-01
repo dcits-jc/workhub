@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180925053216) do
+ActiveRecord::Schema.define(version: 20181101132148) do
 
   create_table "feeds", force: :cascade do |t|
     t.integer "feedable_id"
@@ -194,6 +194,30 @@ ActiveRecord::Schema.define(version: 20180925053216) do
     t.string "team_type"
     t.integer "parent_id"
     t.index ["name"], name: "index_teams_on_name", unique: true
+  end
+
+  create_table "training_article_tag_relationships", force: :cascade do |t|
+    t.integer "training_tag_id"
+    t.integer "training_article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "training_articles", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_online"
+    t.boolean "is_interior"
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "training_tags", force: :cascade do |t|
+    t.string "name"
+    t.string "training_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "img"
   end
 
   create_table "useritskill_relationships", force: :cascade do |t|

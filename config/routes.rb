@@ -109,6 +109,8 @@ Rails.application.routes.draw do
       end
     end
     resources :solutions
+    resources :training_tags
+    resources :training_articles
   end
 
 
