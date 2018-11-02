@@ -1,0 +1,4 @@
+<tr>
+  <td><%= t.name %></td>
+  <td><%= link_to('编辑',edit_admin_training_tag_path(t)) %> | <%= link_to('删除',admin_training_tag_path(t), method: 'DELETE', data: { confirm: "确认删除该方案?" }) %> </td>
+</tr>

@@ -1,4 +1,14 @@
 class Solution < ApplicationRecord
+  # 必须有名称
+  validates :name, presence: true
+  # 必须有背景介绍
+  validates :background, presence: true
+  # 必须有简介
+  validates :desc, presence: true
+  # 必须有价值点
+  validates :value, presence: true
+  # 必须有图片
+  validates :solution_pic, presence: true
 
   mount_uploader :solution_pic, AttachmentUploader
 

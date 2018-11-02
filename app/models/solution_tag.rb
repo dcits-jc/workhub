@@ -1,4 +1,9 @@
 class SolutionTag < ApplicationRecord
+  # 必须有名称
+  validates :name, presence: true
+  # 必须有类型
+  validates :solution_type, presence: true
+  
   # n:m 对应标签
   has_many :solutionsolutiontages_relationships
   has_many :solutions, through: :solutionsolutiontages_relationships, source: :solution

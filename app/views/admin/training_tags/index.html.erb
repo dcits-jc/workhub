@@ -1,0 +1,59 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li class="active">全部培训标签 <kbd><%= @training_tags.count %></kbd></li>
+</ol>
+
+<%= link_to('+ 新建培训标签',new_admin_training_tag_path,class: 'btn btn-primary btn-xs') %>
+
+<!-- <div class="col-xs-12"> -->
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#itvendor" aria-controls="itvendor" role="tab" data-toggle="tab">厂商</a></li>
+    <li role="presentation"><a href="#solution" aria-controls="solution" role="tab" data-toggle="tab">解决方案</a></li>
+    <li role="presentation"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">通用</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="itvendor">      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>标签名</td>
+            <td>标签类型</td>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "tag_row", collection: @training_tags_itvendors, :as => :t %>      
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="solution">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>标签名</td>
+            <td>标签类型</td>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "tag_row", collection: @training_tags_solutions, :as => :t %>      
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="general">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>标签名</td>
+            <td>标签类型</td>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "tag_row", collection: @training_tags_generals, :as => :t %>      
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+<!-- </div> -->

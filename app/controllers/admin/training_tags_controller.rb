@@ -2,6 +2,7 @@ class Admin::TrainingTagsController < ApplicationController
   layout 'admin'
 
   def index
+    @training_tags = TrainingTag.all
     # 全部厂商培训
     @training_tags_itvendors = TrainingTag.all_itvendors
     # 全部解决方案培训

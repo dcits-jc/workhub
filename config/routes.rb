@@ -40,7 +40,6 @@ Rails.application.routes.draw do
         post :cancel_admin
         post :disable
         post :enable
-
       end
     end
     resources :teams do
@@ -65,6 +64,8 @@ Rails.application.routes.draw do
     resources :project_costs
     resources :solutions
     resources :solution_tags
+    resources :training_tags
+    resources :training_articles
   end
   
 
