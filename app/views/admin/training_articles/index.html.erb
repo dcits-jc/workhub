@@ -21,7 +21,7 @@
   <tbody>
     <% @training_articles.each do |article| %>
       <tr>
-        <td><%= article.name %></td>
+        <td><%= link_to(article.name,article.wechatlink,target: "_blank") %></td>
         <td>
           <% article.training_tags.each do |t| %>
           <code><%= t.name %></code>

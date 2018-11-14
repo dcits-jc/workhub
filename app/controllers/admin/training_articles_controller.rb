@@ -3,6 +3,7 @@ class Admin::TrainingArticlesController < ApplicationController
 
   def index
     @training_articles = TrainingArticle.all
+    @training_tags = TrainingTag.all
   end
 
   def show

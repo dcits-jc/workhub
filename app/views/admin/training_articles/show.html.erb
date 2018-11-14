@@ -1,0 +1,40 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部标签',admin_training_articles_path) %></li>
+  <li class="active"><%= link_to(@training_article.name,wechatpage_training_article_path(@training_article)) %></li>
+</ol>
+
+<h1><%= @training_article.name %></h1>
+
+<dl>
+  <dt>企业微信链接</dt>
+  <dd><%= link_to(@training_article.wechatlink,@training_article.wechatlink,target: "_blank") %></dd>
+  <dt>标签</dt>
+  <dd>
+    <% @training_article.training_tags.each do |t| %>
+      <code><%= t.name %></code>
+    <% end %>
+  </dd>
+  <dt>培训模式</dt>
+  <dd><%= @training_article.plantform %></dd>
+  <dt>培训地点</dt>
+  <dd><%= @training_article.place %></dd>
+  <dt>等级</dt>
+  <dd>
+    <% case @training_article.level %>
+    <% when 1 %>
+      <%= '初级' %>
+    <% when 2 %>
+      <%= '中级' %>
+    <% when 3 %>
+      <%= '高级' %>
+    <% end %>    
+  </dd>
+</dl>
+
+<%= link_to('编辑',edit_admin_training_article_path(@training_article),class: 'btn btn-primary btn-xs') %>
+
+<%= link_to('删除',admin_training_article_path(@training_article), method: 'DELETE', data: { confirm: "确认删除该项目?" },class: 'btn btn-danger btn-xs') %>
+
+
+
