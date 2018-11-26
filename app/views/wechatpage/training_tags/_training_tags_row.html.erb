@@ -1,0 +1,29 @@
+  <div role="tabpanel" class="tab-pane" id="direction_<%= tag.id %>">
+
+    <!-- 用户搜到了 -->
+    <% if tag.training_articles.present? %>
+      <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+        <% tag.training_articles.each do |a| %>
+          <%= link_to a.wechatlink,target: '_blank' do %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <h4><%= a.name %></h4>
+              </div>
+              <div class="panel-footer">
+                <kbd><%= a.place %></kbd>
+                <code><%= a.plantform %></code>
+                <span class="small float-right">等级<%= a.level %></span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <!-- </div> -->
+    <% end %>
+
+  </div>
+
+
+
+
+
+

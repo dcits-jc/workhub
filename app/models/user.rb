@@ -202,6 +202,21 @@ class User < ApplicationRecord
   end
 
 
+  # 最熟悉 it 技能
+  def best_itskills
+    arrary = self.feeds.map{|f| f.feedable.tag_itskills}.flatten
+    tag_dict =  arrary.reduce(Hash.new(0)){|counts, el| counts[el]+=1; counts}
+    (tag_dict.sort{ |x,y| y[1] <=> x[1] }).map{|t| t[0][:name]}[0..2]
+  end
+
+  # 最熟悉 it 厂商
+  def best_itvendors
+    arrary = self.feeds.map{|f| f.feedable.tag_itvendors}.flatten
+    tag_dict =  arrary.reduce(Hash.new(0)){|counts, el| counts[el]+=1; counts}
+    tag_dict.sort{ |x,y| y[1] <=> x[1] }.map{|t| t[0][:name]}[0..2]
+  end
+
+
 end
 
 # == Schema Information

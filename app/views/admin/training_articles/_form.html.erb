@@ -1,0 +1,13 @@
+<%= simple_form_for [:admin,@training_article] do |f| %>
+  <%= f.input :name,label: '培训名', input_html: { class: "form-control",placeholder: "填写培训名"} %>
+  <%= f.input :wechatlink,label: '培训链接', input_html: { class: "form-control",placeholder: "填写企业微信素材库培训链接(切勿粘贴预览链接)"} %>
+
+  <%= f.input :plantform,label: '培训模式',as: :radio_buttons,collection:['线上','线下'] %>
+  <%= f.input :place,label: '培训地',as: :radio_buttons,collection:['内部','外部'] %>
+  <%= f.input :level,label: '等级',as: :radio_buttons,collection:[['初级',1],['中级',2],['高级',3]]%>
+
+  <label>标签</label>
+  <%= f.association :training_tags,label: false,collection: @training_tags, as: :check_boxes ,item_wrapper_class: 'inline'  %>
+
+  <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
+<% end %>

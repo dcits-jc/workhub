@@ -1,0 +1,7 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部标签',admin_training_articles_path) %></li>
+  <li><%= link_to(@training_article.name,@training_article.wechatlink,target: "_blank") %></li>
+  <li class="active">编辑</li>
+</ol>
+<%= render 'form' %>

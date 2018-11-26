@@ -4,7 +4,6 @@ class TagItskill < ApplicationRecord
   has_many :projectworkflowitskill_relationships
   has_many :project_workflows, through: :projectworkflowitskill_relationships, source: :project_workflow
 
-
   # n:m 相关管理工作流
   has_many :managementworkflowitskill_relationships
   has_many :management_workflows, through: :managementworkflowitskill_relationships, source: :management_workflow
@@ -13,11 +12,12 @@ class TagItskill < ApplicationRecord
   has_many :useritskill_relationships
   has_many :users, through: :useritskill_relationships, source: :user
 
-
   # 按照时间排序
   scope :order_by_created_at, -> { order("created_at ASC") }
   scope :order_by_commit_count, -> { includes(:project_workflows).sort_by{|t| t.commit_count}.reverse }
 
+  # 为了避免来回计算预设置的顺序
+  scope :order_by_staic, -> { where(id:[5,7,11,6,8,1,9,2,10,4,62]) }
 
   def total_hours
     sum = 0
@@ -30,7 +30,6 @@ class TagItskill < ApplicationRecord
     self.project_workflows.each {|p| sum+=1}
     sum
   end
-
 
 end
 

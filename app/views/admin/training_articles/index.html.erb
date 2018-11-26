@@ -1,0 +1,48 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li class="active">全部培训资料 <kbd><%= @training_articles.count %></kbd></li>
+</ol>
+
+<%= link_to('+ 新建培训资料',new_admin_training_article_path,class: 'btn btn-primary btn-xs') %>
+
+
+
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <td>资料名</td>
+      <td>标签</td>
+      <td>培训模式</td>
+      <td>培训地点</td>
+      <td>等级</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @training_articles.each do |article| %>
+      <tr>
+        <td><%= link_to(article.name,article.wechatlink,target: "_blank") %></td>
+        <td>
+          <% article.training_tags.each do |t| %>
+          <code><%= t.name %></code>
+          <% end %>
+        </td>
+        <td><%= article.plantform %></td>
+        <td><%= article.place %></td>
+        <td>
+          <% case article.level %>
+          <% when 1 %>
+            <%= '初级' %>
+          <% when 2 %>
+            <%= '中级' %>
+          <% when 3 %>
+            <%= '高级' %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to('编辑',edit_admin_training_article_path(article)) %> | <%= link_to('删除',admin_training_article_path(article), method: 'DELETE', data: { confirm: "确认删除该方案?" }) %>
+        </td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>

@@ -3,6 +3,8 @@ class Api::V1::ProjectsController < ApplicationController
   # 检索项目
   def search
     @projects = Project.search(params[:search])
+    # 让被禁用的项目被排在后面
+    @projects = @projects.order_by_not_disabled
     if @projects.present?
       render json: {
           stat: 1,

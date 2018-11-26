@@ -39,13 +39,13 @@
 
   <label id="workflow_companies_label">涉及厂商(最多3个)</label>
 
-  <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_commit_count[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
+  <%= f.association :tag_itvendors,label: false,collection: TagItvendor.order_by_staic, as: :check_boxes ,item_wrapper_class: 'inline'  %>
 
   <%= f.input :other_itvendors,label: false,placeholder: "其他厂商 (以逗号 ',' 分割)"  %>
 
 
   <label id="workflow_skills_label">技术方向(最多3个)</label>
-  <%= f.association :tag_itskills,label: false,collection: TagItskill.order_by_commit_count[0..10], as: :check_boxes ,item_wrapper_class: 'inline'  %>
+  <%= f.association :tag_itskills,label: false,collection: TagItskill.order_by_staic, as: :check_boxes ,item_wrapper_class: 'inline'  %>
 
   <%= f.input :other_itskills,label: false,placeholder: "其他方向 (以逗号 ',' 分割)"  %>
 
@@ -70,9 +70,6 @@
   </div>
 
 <% end %>
-
-
-
 
 <script>
 
@@ -108,7 +105,7 @@ $(document).ready(function(){
                           $('.selectpicker').html("");
                             for (var i = 0; i < data_arrary.length; i++) {
                               if (data_arrary[i].is_disabled) {
-                                option_string = "<option value=" + data_arrary[i].id + " disabled style='background: #bc0000; color: #fff;'>(已禁用)" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
+                                option_string = "<option value=" + data_arrary[i].id + " disabled style='background: #999; color: #fff;'>(已禁用)" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
                               } else {
                                 option_string = "<option value=" + data_arrary[i].id + ">" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
                               }

@@ -45,6 +45,27 @@
       <!-- 显示当前用户等级-->
     <% end %>
 
+    <table class="table">
+      <tr>
+        <td>技术方向</td>
+        <td>
+          <% current_user.best_itskills.each do |t| %>
+            <kbd><%= t %></kbd>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>熟悉厂商</td>
+        <td>
+          <% current_user.best_itvendors.each do |t| %>
+            <code><%= t %></code>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    
+
+   
 
 <!--     <p>
       <span class="glyphicon glyphicon-tag" aria-hidden="true"> </span> <kbd>网络</kbd> <kbd>服务器</kbd>

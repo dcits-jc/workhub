@@ -50,7 +50,25 @@
     <% end %>
 
 
-
+    <table class="table">
+      <tr>
+        <td>技术方向</td>
+        <td>
+          <% @user.best_itskills.each do |t| %>
+            <kbd><%= t %></kbd>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>熟悉厂商</td>
+        <td>
+          <% @user.best_itvendors.each do |t| %>
+            <code><%= t %></code>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    
 
 
 

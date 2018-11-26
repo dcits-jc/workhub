@@ -40,7 +40,6 @@ Rails.application.routes.draw do
         post :cancel_admin
         post :disable
         post :enable
-
       end
     end
     resources :teams do
@@ -65,6 +64,8 @@ Rails.application.routes.draw do
     resources :project_costs
     resources :solutions
     resources :solution_tags
+    resources :training_tags
+    resources :training_articles
   end
   
 
@@ -109,6 +110,17 @@ Rails.application.routes.draw do
       end
     end
     resources :solutions
+
+    resources :training_tags do
+      collection do
+        get :itvendors_index 
+        get :solutions_index 
+        get :generals_index 
+      end
+    end
+    
+    resources :training_articles
+    resources :trainings
   end
 
 

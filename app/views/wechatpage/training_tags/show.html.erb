@@ -1,0 +1,37 @@
+<h1><%= @training_tag.name  %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>培训名</td>
+      <td>标签</td>
+      <td>模式</td>
+      <td>地点</td>
+      <td>等级</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @training_articles.each do |a| %>
+      <tr>
+        <td>
+          <%=link_to(a.name,a.wechatlink) %>
+        </td>
+        <td>
+          <% a.training_tags.each do |t| %>
+          <code><%= t.name %></code>
+          <% end %>            
+        </td>
+        <td><%= a.plantform %></td>
+        <td><%= a.place %></td>
+        <td><%= a.level %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<style>
+h1,td{
+  color: #fff;
+}
+</style>
