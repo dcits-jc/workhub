@@ -105,7 +105,7 @@ $(document).ready(function(){
                           $('.selectpicker').html("");
                             for (var i = 0; i < data_arrary.length; i++) {
                               if (data_arrary[i].is_disabled) {
-                                option_string = "<option value=" + data_arrary[i].id + " disabled style='background: #bc0000; color: #fff;'>(已禁用)" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
+                                option_string = "<option value=" + data_arrary[i].id + " disabled style='background: #999; color: #fff;'>(已禁用)" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
                               } else {
                                 option_string = "<option value=" + data_arrary[i].id + ">" + data_arrary[i].sales_name + "#"+ data_arrary[i].code+"#"+ data_arrary[i].name + "</option>"
                               }

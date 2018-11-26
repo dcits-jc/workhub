@@ -110,8 +110,17 @@ Rails.application.routes.draw do
       end
     end
     resources :solutions
-    resources :training_tags
+
+    resources :training_tags do
+      collection do
+        get :itvendors_index 
+        get :solutions_index 
+        get :generals_index 
+      end
+    end
+    
     resources :training_articles
+    resources :trainings
   end
 
 

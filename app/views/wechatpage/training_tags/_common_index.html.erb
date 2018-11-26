@@ -1,0 +1,61 @@
+
+  <div class="col-xs-3">
+    <div class="row">
+    <%= link_to wechatpage_training_tags_path,class: 'col-xs-12 text-center' do  %>
+      <i class="fa fa-reply fa-2x" aria-hidden="true"></i>
+    <% end %>
+    </div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-stacked" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#direction_0" aria-controls="direction_0" role="tab" data-toggle="tab" class='tag_index'>全部</a>
+      </li>
+
+      <% tags.each do |t| %>
+      <li role="presentation">
+        <a href="#direction_<%= t.id %>" aria-controls="direction_<%= t.id %>" role="tab" data-toggle="tab" class='tag_index'>
+          <%= t.name %>
+        </a>
+      </li>
+      <% end %>
+    </ul>
+
+  </div>
+
+
+  <div class="col-xs-9">
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="direction_0">
+        
+        <!-- 用户搜到了 -->
+        <% if all_articles.present? %>
+          <!-- <div class="col-md-12 col-sm-12 col-xs-12"> -->
+            <% all_articles.each do |a| %>
+              <%= link_to a.wechatlink,target: '_blank' do %>
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <h4><%= a.name %></h4>
+                  </div>
+                  <div class="panel-footer">
+                    <kbd><%= a.place %></kbd>
+                    <code><%= a.plantform %></code>
+                    <span class="small float-right">等级<%= a.level %></span>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <!-- </div> -->
+        <% end %>
+        
+      </div>
+
+      <!-- 各不同的标签 -->
+      <%= render :partial => "training_tags_row", :collection => tags, :as => :tag %>
+    </div>
+
+  </div>
+
+

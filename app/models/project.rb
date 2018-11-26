@@ -42,6 +42,10 @@ class Project < ApplicationRecord
   # 排序
   scope :order_by_recent, -> { order("created_at DESC") }
 
+  # 让被禁用的项目被排在后面
+  scope :order_by_not_disabled, -> { order("is_disabled") }
+
+
   # 加入成员
   def join!(user)
     if !(self.members.include?(user))

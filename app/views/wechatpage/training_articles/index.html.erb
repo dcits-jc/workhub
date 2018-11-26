@@ -1,0 +1,33 @@
+<div class=" col-xs-12">
+  <!-- 用户搜索 -->
+  <%= search_form_for [:wechatpage,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
+    <div class="input-group">
+      <%= f.search_field :name_cont, class: "form-control", placeholder: "输入指定的培训名称"  %>
+      <span class="input-group-btn">
+        <%= f.submit '搜索',class: "btn btn-default" %>
+      </span>
+    </div>
+  <% end %>
+</div>
+
+<div class="col-xs-12">
+  <% @training_articles.each do |a| %>
+    <%= link_to a.wechatlink,target: '_blank' do %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4><%= a.name %></h4>
+        </div>
+        <div class="panel-footer">
+          <kbd><%= a.place %></kbd>
+          <code><%= a.plantform %></code>
+          <span class="small float-right">等级<%= a.level %></span>
+        </div>
+      </div>
+    <% end %>  
+  <% end %>
+</div>
+
+
+<%= link_to wechatpage_training_tags_path,class: 'col-xs-12 text-center' do  %>
+  <i class="fa fa-reply fa-2x" aria-hidden="true"></i>
+<% end %>  
