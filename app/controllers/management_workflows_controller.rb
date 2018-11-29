@@ -85,16 +85,10 @@ class ManagementWorkflowsController < ApplicationController
   end
 
 
-  # 两次去除半角和全角逗号
+  # 去除所有乱七八糟的符号
   def dry_tsstring(ts_string)
-    ts_list = []
-    ts_list1 = ts_string.split(',')
-    ts_list1.each do |t1|
-      ts_list2 = t1.split('，')
-      ts_list2.each do |t2|
-        ts_list.push(t2)
-      end
-    end
+    ts_string = ts_string.gsub(/[,，;；、:：。‘’*+=?]/,' ')
+    ts_list = ts_string.split(' ')
     ts_list
   end
 

@@ -120,7 +120,6 @@ Rails.application.routes.draw do
     end
     
     resources :training_articles
-    resources :trainings
   end
 
 
