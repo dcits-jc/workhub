@@ -1,4 +1,4 @@
-class Wechatpage::TrainingArticlesController < ApplicationController
+class Wechatpage::TrainingArticlesController < WechatController
   layout 'wechat'
   before_action :search_blank 
 
