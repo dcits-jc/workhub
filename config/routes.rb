@@ -66,6 +66,10 @@ Rails.application.routes.draw do
     resources :solution_tags
     resources :training_tags
     resources :training_articles
+
+    # 厂商生态
+    resources :eco_companies
+
   end
   
 

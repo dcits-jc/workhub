@@ -2,8 +2,6 @@ class Wechatpage::TrainingTagsController < WechatController
   layout 'wechat'
   before_action :search_blank 
 
-
-
   def itvendors_index
     # 全部厂商培训
     @training_tags_itvendors = TrainingTag.all_itvendors
@@ -27,7 +25,6 @@ class Wechatpage::TrainingTagsController < WechatController
         @all_solutions_articles << a
       end
     end
-
   end
 
   def generals_index
