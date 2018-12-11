@@ -115,7 +115,7 @@ $(document).ready(function() {
 
   // 导出按钮
   $('#export_xls').click(function(event) {
-    url = '/feeds/week.xls?start_date=' + $('#flatpickr_begin_time').val()+'&end_date='+$('#flatpickr_end_time').val();
+    url = '<%= user_path(@user) %>' + '.xls?start_date=' + $('#flatpickr_begin_time').val()+'&end_date='+$('#flatpickr_end_time').val();
     console.log(url);
     window.location.replace(url);
     // $.get(url);

@@ -30,12 +30,15 @@ class UsersController < ApplicationController
     end
     @current_week_workloads = loads
 
+
+    @export_feeds = @feeds
+
     # 数据导出
     respond_to do |format|
       format.html
       format.xls{ 
         # 设置文件名
-        headers["Content-Disposition"]="attachment; filename=周报导出("+@start_date.strftime('%Y-%m-%d')+"~"+@end_date.strftime('%Y-%m-%d')+").xls"
+        headers["Content-Disposition"]="attachment; filename=周报导出("+@start_date+"~"+@end_date+").xls"
       }  
     end
 
