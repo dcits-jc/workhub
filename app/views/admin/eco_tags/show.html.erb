@@ -1,0 +1,23 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部标签',admin_eco_tags_path) %></li>
+  <li class="active"><%= @eco_tag.name %></li>
+</ol>
+
+<h1><%= @eco_tag.name %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>相关公司</td>
+    </tr>    
+  </thead>
+  <tbody>
+    <% @eco_tag.eco_companies.each do |c| %>
+    <tr>
+      <td><%= c.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>

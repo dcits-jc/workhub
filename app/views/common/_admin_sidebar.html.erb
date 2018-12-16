@@ -3,7 +3,6 @@
   <%= render 'common/current_user_basic_info' %>
   <!-- 按钮组 -->
   <div class="col-md-12">
-
     <div class="list-group">
       <p>Daily</p>
       <%= link_to('工作流',admin_feeds_path, class: "list-group-item "+active_class('feeds') ) %>
@@ -19,7 +18,11 @@
       <hr>
       <p>企业号-培训资料</p>
       <%= link_to('培训标签',admin_training_tags_path, class: "list-group-item "+active_class('training_tags')) %>
-      <%= link_to('培训资料',admin_training_articles_path, class: "list-group-item "+active_class('training_articles')) %>      
+      <%= link_to('培训资料',admin_training_articles_path, class: "list-group-item "+active_class('training_articles')) %>
+      <hr>
+      <p>企业号-厂商资源</p>      
+      <%= link_to('对应厂商',admin_eco_companies_path, class: "list-group-item "+active_class('eco_companies')) %>
+      <%= link_to('厂商标签',admin_eco_tags_path, class: "list-group-item "+active_class('eco_tags')) %>
     </div>
 
   </div>

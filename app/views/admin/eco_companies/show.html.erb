@@ -1,0 +1,68 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部公司',admin_eco_companies_path) %></li>
+  <li class="active"><%= @eco_company.name %></li>
+</ol>
+
+<h1><%= @eco_company.name %></h1>
+
+<hr>
+
+<div class="col-md-3">
+  <div class="thumbnail">
+  <%= image_tag(quniuurl_pri(@eco_company.img_url)) %>
+  </div>  
+</div>
+
+<div class="col-md-9">
+  <p>
+    <% @eco_company.eco_tags.each do |t| %>
+      <code><%= t.name %></code>
+    <% end %>
+  </p>  
+
+  <p><%= @eco_company.description %></p>
+
+  <table>
+    <tr>
+      <td>联系人:</td>
+      <td><%= @eco_company.contact_name %></td>
+    </tr>
+    <tr>
+      <td>联系方式:</td>
+      <td><%= @eco_company.contact_phone %></td>
+    </tr>
+  </table>
+</div>
+
+
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>附件</td>
+      <td>上传日期</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @eco_company_attachments.each do |a| %>
+      <tr>
+        <td><%= link_to a.attachment_identifier,quniuurl_pri(a.attachment_url),target: '_blank' %></td>
+        <td><%= strf_wday(a.updated_at) %></td>
+        <td>
+          <%= link_to('删除',admin_eco_company_attachment_path(a), method: 'DELETE', data: { confirm: "确认删除该方案?" }) %>
+        </td>
+      </tr>
+    <% end %>    
+  </tbody>
+
+</table>
+
+
+<%= simple_form_for [:admin,@eco_company_attachment] do |f| %>
+  <%= f.input :attachment ,label: '资料上传'%>
+  <%= f.input :eco_company_id ,label: false, :input_html => { value: @eco_company.id,type: 'hidden' } %>
+  <%= f.submit "上传", class: "btn btn-primary", data: { disable_with: "上传中..." } %>
+<% end %>
