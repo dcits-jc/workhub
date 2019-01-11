@@ -1,0 +1,71 @@
+<h1 class="text-center">厂商资源库</h1>
+<hr>
+
+<div class="col-md-12">
+  <div class="row">
+    <% @eco_companies.each do |c| %>
+    <div class="col-md-3 col-xs-3 eco_company">
+      <%= link_to wechatpage_eco_company_path(c) do %>
+        <div class="thumbnail">
+          <%= image_tag(quniuurl_pri(c.img_url)) %>
+          <p class="text-center text-black"><%= c.name %></p>
+        </div>
+      <% end %>
+
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist" id="ecotag_tab">
+  <% @eco_tags.each do |t| %>
+    <li role="presentation"><a href="#<%= t.id %>" aria-controls="direction" role="tab" data-toggle="tab"><%= t.name %></a></li>
+  <% end %>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <% @eco_tags.each do |t| %>
+  <div role="tabpanel" class="tab-pane ecotag_tab_content" id="<%= t.id %>">
+    <br>
+
+    <% t.eco_companies.each do |c| %>
+    <div class="col-md-3 col-xs-3 eco_company">
+      <%= link_to wechatpage_eco_company_path(c) do %>
+        <div class="thumbnail">
+          <%= image_tag(quniuurl_pri(c.img_url)) %>
+          <p class="text-center text-black"><%= c.name %></p>
+        </div>
+      <% end %>
+
+    </div>
+    <% end %>
+    
+  </div>
+  <% end %>
+</div>
+
+
+
+
+<style type="text/css">
+h1{
+  color: #fff
+}
+.eco_company{
+  color: #fff
+}
+.text-black{
+  color: #000
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+  // 第一个标签 active
+  $("#ecotag_tab>li:first").addClass("active");
+  $(".ecotag_tab_content:first").addClass("active");
+})
+
+</script>

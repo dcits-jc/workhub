@@ -1,0 +1,8 @@
+<!-- 导航条 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部公司',admin_eco_companies_path) %></li>
+  <li><%= @eco_company.name %></li>
+
+  <li class="active">编辑</li>
+</ol>
+<%= render 'form' %>

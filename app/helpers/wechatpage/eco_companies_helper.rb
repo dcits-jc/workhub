@@ -1,0 +1,2 @@
+module Wechatpage::EcoCompaniesHelper
+end

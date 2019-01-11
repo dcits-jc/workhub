@@ -12,14 +12,11 @@ two: {}
 
 # == Schema Information
 #
-# Table name: eco_companies
+# Table name: ecotagecocompany_relationships
 #
-#  id            :integer          not null, primary key
-#  name          :string
-#  contact_name  :string
-#  contact_phone :string
-#  description   :text
-#  img           :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id             :integer          not null, primary key
+#  eco_tag_id     :integer
+#  eco_company_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #

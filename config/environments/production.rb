@@ -95,7 +95,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "http://daily.dcits.com" }
   config.action_mailer.smtp_settings = {
-    address: "smtpcloud.sohu.com",
+    # address: "smtpcloud.sohu.com",
+    address: "smtp.sendcloud.net",
     port: 25,
     domain: "NPsQQAqOISmlOJzletbZwjf6JLN2KXVS.sendcloud.org",
     authentication: "login",

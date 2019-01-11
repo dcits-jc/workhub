@@ -1,0 +1,50 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li><%= link_to('全部厂商',wechatpage_eco_companies_path) %></li>
+  <li class="active"><%= @eco_company.name %></li>
+</ol>
+
+<h1 class="text-center"><%= @eco_company.name %></h1>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>附件</td>
+      <td>上传日期</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @eco_company_attachments.each do |a| %>
+      <tr>
+        <td><%= link_to a.attachment_identifier,quniuurl_pri(a.attachment_url),target: '_blank' %></td>
+        <td><%= strf_wday(a.updated_at) %></td>
+      </tr>
+    <% end %>    
+  </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+<style type="text/css">
+h1{
+  color: #fff
+}
+.eco_company{
+  color: #fff
+}
+.text-black{
+  color: #000
+}
+table td{
+  color: #fff
+}
+</style>

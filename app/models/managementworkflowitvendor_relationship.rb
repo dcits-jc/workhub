@@ -1,8 +1,6 @@
 class ManagementworkflowitvendorRelationship < ApplicationRecord
-
   belongs_to :management_workflow
   belongs_to :tag_itvendor
-
 end
 
 # == Schema Information

@@ -10,20 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181207134744) do
+ActiveRecord::Schema.define(version: 20181214105903) do
 
   create_table "eco_companies", force: :cascade do |t|
     t.string "name"
     t.string "contact_name"
-    t.integer "contact_phone"
+    t.string "contact_phone"
     t.text "description"
     t.string "img"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "eco_company_attachments", force: :cascade do |t|
+    t.string "attachment"
+    t.integer "eco_company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "eco_tags", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ecotagecocompany_relationships", force: :cascade do |t|
+    t.integer "eco_tag_id"
+    t.integer "eco_company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,6 @@
+<%= simple_form_for [:admin,@eco_tag] do |f| %>
+
+  <%= f.input :name,label: '标签名', input_html: { class: "form-control",placeholder: "填写标签名"} %>
+
+  <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
+<% end %>

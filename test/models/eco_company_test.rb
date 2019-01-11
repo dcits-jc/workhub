@@ -13,7 +13,7 @@ end
 #  id            :integer          not null, primary key
 #  name          :string
 #  contact_name  :string
-#  contact_phone :integer
+#  contact_phone :string
 #  description   :text
 #  img           :string
 #  created_at    :datetime         not null

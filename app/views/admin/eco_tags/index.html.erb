@@ -1,0 +1,29 @@
+<!-- 导航栏 -->
+<ol class="breadcrumb">
+  <li class="active">全部标签 <kbd><%= @eco_tags.count %></kbd></li>
+</ol>
+
+<%= link_to('+ 新建标签',new_admin_eco_tag_path,class: 'btn btn-primary btn-xs') %>
+
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <td>标签名</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @eco_tags.each do |t| %>
+    <tr>
+      <td><%= link_to(t.name,admin_eco_tag_path(t),target: '_blank') %></td>
+      <td><%= link_to('编辑',edit_admin_eco_tag_path(t)) %> | <%= link_to('删除',admin_eco_tag_path(t), method: 'DELETE', data: { confirm: "确认删除该方案?" }) %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+
+
+
+

@@ -1,4 +1,7 @@
 class EcoTag < ApplicationRecord
+  # 生态合作伙伴标签
+  has_many :ecotagecocompany_relationships
+  has_many :eco_companies, through: :ecotagecocompany_relationships, source: :eco_company
 end
 
 # == Schema Information

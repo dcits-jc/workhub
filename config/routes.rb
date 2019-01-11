@@ -69,6 +69,9 @@ Rails.application.routes.draw do
 
     # 厂商生态
     resources :eco_companies
+    resources :eco_tags
+
+    resources :eco_company_attachments
 
   end
   
@@ -124,6 +127,7 @@ Rails.application.routes.draw do
     end
     
     resources :training_articles
+    resources :eco_companies
   end
 
 

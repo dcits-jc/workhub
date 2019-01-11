@@ -1,0 +1,19 @@
+<%= simple_form_for [:admin,@eco_company] do |f| %>
+
+  <%= f.input :name,label: '公司名', input_html: { class: "form-control",placeholder: "填写公司名"} %>
+
+  <%= f.input :img,label: 'logo' %>
+
+  <%= f.input :description,label: '简介', input_html: { class: "form-control",placeholder: "简介"} %>
+
+
+  <%= f.input :contact_name,label: '联系人姓名', input_html: { class: "form-control",placeholder: "联系人姓名"} %>
+
+  <%= f.input :contact_phone,label: '联系人电话', input_html: { class: "form-control",placeholder: "联系人电话"} %>
+
+
+  <label>标签</label>
+  <%= f.association :eco_tags,label: false,collection: @eco_tags, as: :check_boxes ,item_wrapper_class: 'inline'  %>
+
+  <%= f.submit "提交", class: "btn btn-primary", data: { disable_with: "提交中..." } %>
+<% end %>
