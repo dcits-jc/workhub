@@ -18,6 +18,7 @@
         <Cell><Data ss:Type="String">报工人事业部</Data></Cell>
         <Cell><Data ss:Type="String">报工人所属SBU</Data></Cell>
         <Cell><Data ss:Type="String">报工人</Data></Cell>
+        <Cell><Data ss:Type="String">报工itcode</Data></Cell>
         <Cell><Data ss:Type="String">工作类型</Data></Cell>
         <Cell><Data ss:Type="String">工作内容描述</Data></Cell>
         <Cell><Data ss:Type="String">涉及厂商</Data></Cell>
@@ -62,6 +63,7 @@
           <Cell><Data ss:Type="String"><%= feed.user.team.present? ? feed.user.team.name : nil %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.team.parent.present? ? feed.user.team.parent.name : nil %></Data></Cell>
           <Cell><Data ss:Type="String"><%= feed.user.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= feed.user.code %></Data></Cell>
           <Cell><Data ss:Type="String"><%= desc_worktype(feed.feedable.worktype) %></Data></Cell>
           <Cell><Data ss:Type="String"><%= strip_tags(feed.feedable.content) %></Data></Cell>
           <Cell><Data ss:Type="String"><%= itvendors_arrary.join(',') %></Data></Cell>
@@ -84,6 +86,7 @@
     <Table>
       <Row>
         <Cell><Data ss:Type="String">用户名</Data></Cell>
+        <Cell><Data ss:Type="String">用户itcode</Data></Cell>
         <Cell><Data ss:Type="String">部门</Data></Cell>
         <Cell><Data ss:Type="String">是否提交周报</Data></Cell>
         <Cell><Data ss:Type="String">总工作量(h)</Data></Cell>
@@ -93,6 +96,7 @@
       <% @feeded_users.each do |u| %>
         <Row>
           <Cell><Data ss:Type="String"><%= u.name %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= u.code %></Data></Cell>
           <Cell><Data ss:Type="String"><%= u.team.present? ? u.team.name : nil %></Data></Cell>
           
           <Cell><Data ss:Type="String">
