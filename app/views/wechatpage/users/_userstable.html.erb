@@ -4,13 +4,33 @@
 <!-- 用户搜到了 -->
 <% if @users.present? %>
   <div class="col-md-12">
+  <% @users.each do |u| %>
+    <div class="panel panel-default">
+      <h1>hi</h1>
+<!--       <div class="panel-body">
+        <h3><%= link_to(u.name,wechatpage_user_path(u)) %></h3>
+        <p>证书: <%= u.description %></p>
+        <p>
+          <% if u.idcard_attachment.present? %>
+            <code>身份证</code>
+          <% end %>
+          <%#= user_check_uploadfile(u.idcard_attachment) %>
+          <%#= user_check_uploadfile(u.degree_attachment) %>
+          <%#= user_check_uploadfile(u.academic_attachment) %>
+          <%#= user_check_uploadfile(u.resume_attachment) %>            
+        </p>
+      </div> -->
+    </div>
+  <% end %>
+  </div>
+
+  <div>
 
     <table class="table table-hover table-condensed">
       <thead>
         <tr>
           <!-- <th>itcode</th> -->
           <th class="th_title">姓名</th>
-          <!-- <th class="th_title">用户邮箱</th> -->
           <th class="th_title">身份证</th>
           <th class="th_title">学历证</th>
           <th class="th_title">学位证</th>
@@ -22,16 +42,15 @@
       <tbody>
         <% @users.each do |u| %>
         <tr>
-          
-  <!--         <td>
-            <strong><%#= link_to(u.itcode,wechatpage_user_path(u)) %></strong>
-          </td> -->
-          <td><small><%= link_to(u.name,wechatpage_user_path(u)) %></small></td>
+          <td rowspan="2"><small><%= link_to(u.name,wechatpage_user_path(u)) %></small></td>
           <%= user_check_uploadfile(u.idcard_attachment) %>
           <%= user_check_uploadfile(u.degree_attachment) %>
           <%= user_check_uploadfile(u.academic_attachment) %>
           <td class="alert-danger text-center">X</td>
           <%= user_check_uploadfile(u.resume_attachment) %>
+        </tr>
+        <tr>
+          <td colspan="6" style="color: #fff">证书: <%= u.description %></td>
         </tr>
         <% end %>
       </tbody>
