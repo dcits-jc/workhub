@@ -3,7 +3,7 @@
   <!-- 用户搜索 -->
   <%= search_form_for [:wechatpage,@q], html: {class: "navbar-form navbar-left"} do |f|  %>
     <div class="input-group">
-      <%= f.search_field :itcode_or_name_or_email_cont, class: "form-control", placeholder: "输入itcode,姓名或邮箱"  %>
+      <%= f.search_field :itcode_or_name_or_description_or_email_cont, class: "form-control", placeholder: "输入itcode,姓名,邮箱,或证书"  %>
       <span class="input-group-btn">
         <%= f.submit '搜索',class: "btn btn-default" %>
       </span>

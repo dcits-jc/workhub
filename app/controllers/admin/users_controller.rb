@@ -5,7 +5,7 @@ class Admin::UsersController < ApplicationController
 
   def index
     @all_users = User.order_by_createtime
-    # 用户搜索
+    # 用户(按基本信息)搜索
     @q = User.ransack(params[:q])
     @users = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 20).order_by_createtime
   end
@@ -113,7 +113,7 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name,:code,:itcode,:email,:level,:title,:cost,:avatar_attachment,:password_resetting,:team_id,:resume_attachment,:idcard_attachment,:degree_attachment,:academic_attachment,:degree,:extra_cost,:is_feedneeded)
+    params.require(:user).permit(:name,:description,:code,:itcode,:email,:level,:title,:cost,:avatar_attachment,:password_resetting,:team_id,:resume_attachment,:idcard_attachment,:degree_attachment,:academic_attachment,:degree,:extra_cost,:is_feedneeded)
   end
   
 
