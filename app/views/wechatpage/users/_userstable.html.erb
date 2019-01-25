@@ -2,36 +2,66 @@
 <!-- 如果确实有搜索东西 -->
 <% if  params[:q].present? %>
 
-  
+ 
 
   <!-- 用户搜到了 -->
   <% if @users.present? %>
+
+
     <div class="col-md-12 col-xs-12">
+      <p style="color: #fff">
+       总共 <strong><em><%= @users.count %></em></strong> 个搜索结果
+      </p>
+          
+
     <% @users.each do |u| %>
       <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= link_to(u.name,wechatpage_user_path(u)) %></h3>
-        </div>
-
+        <%= link_to wechatpage_user_path(u) do %>
         <div class="panel-body">
+
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="panel-title-username" style="color: #1580fb">
+                <%#= link_to(u.name,wechatpage_user_path(u)) %> 
+                <%= u.name %> 
+                <small><%= u.title %></small>
+              </h3>
+              <p style="color: #000"><%= u.description %></p>
+
+              <% if u.team.present? %>
+                <p>
+                  <kbd>
+                    <%= u.team.name %>
+                  </kbd>
+                </p>
+              <% end %>
+
+
+<!--               <p>
+                <%# if u.idcard_attachment.present? %>
+                  <code>身份证</code>
+                <%# end %>
+                <%# if u.degree_attachment.present? %>
+                  <code>学历证</code>
+                <%# end %>
+                <%# if u.academic_attachment.present? %>
+                  <code>毕业证</code>
+                <%# end %>
+                <%# if u.resume_attachment.present? %>
+                  <code>简历</code>
+                <%# end %> 
+              </p> -->
+            </div>
+            <div>
+              
+
+            </div>
+          </div>
  
           
-          <p>证书: <%= u.description %></p>
-          <p>
-            <% if u.idcard_attachment.present? %>
-              <code>身份证</code>
-            <% end %>
-            <% if u.degree_attachment.present? %>
-              <code>学历证</code>
-            <% end %>
-            <% if u.academic_attachment.present? %>
-              <code>毕业证</code>
-            <% end %>
-            <% if u.resume_attachment.present? %>
-              <code>简历</code>
-            <% end %>         
-          </p>
+
         </div>
+        <% end %>
       </div>
     <% end %>
     </div>
@@ -50,8 +80,14 @@
 <% end %>
 
 
+
+
+
 <style type="text/css">
 th.th_title{
-  color: #fff
+  color: #fff;
+};
+h3.panel-title-username{
+  color: #1580fb;
 }
 </style>
