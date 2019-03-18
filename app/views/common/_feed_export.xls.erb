@@ -32,23 +32,27 @@
       <% @export_feeds.each do |feed| %>
 
           <% manager_arrary =[] %>
-          <% if feed.feedable.project.managers.present? %>
-            <% feed.feedable.project.managers.each do |m| %>
-              <%= manager_arrary.push(m.name) %>
-            <% end %>
-          <% end %>
-
           <% itvendors_arrary =[] %>
-          <% if feed.feedable.tag_itvendors.present? %>
-            <% feed.feedable.tag_itvendors.each do |v| %>
-              <%= itvendors_arrary.push(v.name) %>
-            <% end %>
-          <% end %>
-
           <% itskills_arrary =[] %>
-          <% if feed.feedable.tag_itskills.present? %>
-            <% feed.feedable.tag_itskills.each do |s| %>
-              <%= itskills_arrary.push(s.name) %>
+          
+          <% if feed.feedable.present? %>
+            <% if feed.feedable.project.managers.present? %>
+              <% feed.feedable.project.managers.each do |m| %>
+                <%= manager_arrary.push(m.name) %>
+              <% end %>
+            <% end %>
+            
+            <% if feed.feedable.tag_itvendors.present? %>
+              <% feed.feedable.tag_itvendors.each do |v| %>
+                <%= itvendors_arrary.push(v.name) %>
+              <% end %>
+            <% end %>
+
+            
+            <% if feed.feedable.tag_itskills.present? %>
+              <% feed.feedable.tag_itskills.each do |s| %>
+                <%= itskills_arrary.push(s.name) %>
+              <% end %>
             <% end %>
           <% end %>
         <Row>
