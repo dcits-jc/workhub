@@ -26,7 +26,9 @@ namespace :sendnotificationmail do
         send_users = t.teamusers.pluck(:email)
         # binding.pry
         # 把该下载链接发送给该部门联系人
-        download_link = 'http://daily.dcits.com/teams/team_weekly_download.xls?start_date=' + start_date.strftime('%Y-%m-%d')+'&end_date='+end_date.strftime('%Y-%m-%d')+'&team_id='+t.id.to_s
+        # download_link = 'http://daily.dcits.com/teams/team_weekly_download.xls?start_date=' + start_date.strftime('%Y-%m-%d')+'&end_date='+end_date.strftime('%Y-%m-%d')+'&team_id='+t.id.to_s
+
+        download_link = 'http://117.78.48.207/teams/team_weekly_download.xls?start_date=' + start_date.strftime('%Y-%m-%d')+'&end_date='+end_date.strftime('%Y-%m-%d')+'&team_id='+t.id.to_s
 
         # 文件名
         file_name = t.name+"周报("+start_date.strftime('%Y-%m-%d')+"~"+end_date.strftime('%Y-%m-%d')+").xls"
