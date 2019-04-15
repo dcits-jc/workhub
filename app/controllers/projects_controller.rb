@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
       format.html
       format.xls{ 
         # 设置文件名
-        headers["Content-Disposition"]="attachment; filename=工作量导出("+@project.name+"#"+@project.code+").xls"
+        headers["Content-Disposition"]="attachment; filename=工作量导出("+@project.name+"#"+(@project.code.present? ? @project.code : "")+").xls"
       }  
     end
 
